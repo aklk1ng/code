@@ -1,6 +1,20 @@
+// #include <stdio.h>
+// int main ()
+// {
+//   printf("hello\n");
+//   return 0;
+// }
+
 #include <stdio.h>
-int main ()
+#define A "a"
+#define B "b"
+int main()
 {
-  printf("hello\n");
+  if(A<B){
+    printf("<\n");
+  }
+  else{
+    printf(">\n");
+  }
   return 0;
 }

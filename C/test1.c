@@ -1,11 +1,11 @@
-//¶ş·Ö²éÕÒÊı×Ö´úÂë
+//äºŒåˆ†æŸ¥æ‰¾æ•°å­—ä»£ç 
 #include <stdio.h>
 int main()
 {
     int k = 7;
     int arr[] = {1,2,3,4,5,6,7,8,9,10};
     int left = 0;
-    int sz = sizeof(arr) / sizeof(arr[0]);//Êı×éÔªËØµÄ¸öÊı(Êı×é×Ü´óĞ¡³ıÒÔµÚÒ»¸öÔªËØµÄ´óĞ¡)
+    int sz = sizeof(arr) / sizeof(arr[0]);//æ•°ç»„å…ƒç´ çš„ä¸ªæ•°(æ•°ç»„æ€»å¤§å°é™¤ä»¥ç¬¬ä¸€ä¸ªå…ƒç´ çš„å¤§å°)
     int right = sz-1;
     while (left <= right)
     {
@@ -20,7 +20,7 @@ int main()
         }
         else
         {
-            printf("OK!Ä¿±êÊı×ÖÏÂ±êÎª:%d\n", mid);
+            printf("OK!ç›®æ ‡æ•°å­—ä¸‹æ ‡ä¸º:%d\n", mid);
             break;
         }
     }
