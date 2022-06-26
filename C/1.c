@@ -402,19 +402,55 @@
 //     return 0;
 // }
 
+//continue的陷阱
+// #include<stdio.h>
+// enum {false,true};
+// int main()
+// {
+//     int i=1;
+//     do
+//     {
+//         printf("%d\n",i);
+//         i++;
+
+//         if(i < 15)
+//             continue;
+//     }while(false);
+
+//     return 0;
+// }
+
+// #include<stdio.h>
+// int test()
+// {
+//     return ((1-sizeof(int))>>32);
+// }
+// int main()
+// {
+//     printf("%u\n", sizeof(int));
+//     printf("%d\n",test());
+//     printf("%d\n", sizeof(int));
+//     return 0;
+// }
+// #include<stdio.h>
+// int main()
+// {
+//     int arr1[]={1,2,3};
+//     int arr2[][3]={1,2,3,4,5,6};
+//     int *p=NULL;
+//     p=arr1;
+//     printf("%p ", p);
+//     p=&arr1;
+//     printf("%p ", p);
+//     p=&arr2;
+//     printf("%p ", p);
+//     p=arr2;
+//     printf("%p ", p);
+//     return 0;
+// }
+
 #include<stdio.h>
 int main()
 {
-    int arr1[]={1,2,3};
-    int arr2[][3]={1,2,3,4,5,6};
-    int *p=NULL;
-    p=arr1;
-    printf("%p ", p);
-    p=&arr1;
-    printf("%p ", p);
-    p=&arr2;
-    printf("%p ", p);
-    p=arr2;
-    printf("%p ", p);
     return 0;
 }

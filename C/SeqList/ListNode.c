@@ -111,7 +111,8 @@ void test()
     ListPushBack(plist,3);
     ListPushBack(plist,4);
     ListPushBack(plist,5);
-    LNode* pos=ListFind(plist,5);
+    ListPrint(plist);
+    LNode* pos=ListFind(plist,3);
     ListErase(pos);
     ListPrint(plist);
     ListDestroy(plist);
