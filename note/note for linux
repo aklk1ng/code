@@ -12,7 +12,7 @@ https://gitee.com/chxuan/vimplus.git
 2.进入网址https://wwt.lanzouj.com/ivmrjyltnif(看看该压缩文件能能坚持多久,目前已在u盘备份)
 3.将上一步下载的压缩包在~/.vim/pluuged/(vim-plug插件目录位置)下进行解压，得到的是许多的需要的插件包
 3.在进入上一步骤的目录中Youcompleteme目录下进行执行install.sh文件(需要进行相应的安装配置,使用 --help可以查到相关操作方式)
-4.对相应的插件功能进行测试,这里可能有会有无数的bug(但我在centos7.6版本的新服务器下是没有大bug了,只有一点小bug,后来我也规避但没有解决了)
+4.对相应的插件功能进行测试,这里可能有会有无数的bug(但我在centos7.6版本的新器下是没有大bug了,只有一点小bug,后来我也规避但没有解决了)
 5.心情愉悦地开始写代码(欣赏)
 
 
@@ -664,3 +664,6 @@ zip命令：
 
 locate命令：
 进行文件的查找，查找内容为本地的数据库文件，使用前先使用updatedb进行更新数据库
+
+github令牌:
+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
