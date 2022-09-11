@@ -11,7 +11,7 @@ typedef struct SeqListNode
 void SListPrint(SLNode* phead)
 {
     SLNode* cur=phead;
-    while(cur){
+    while(cur) {
         printf("%d->",cur->data);
         cur=cur->next;
     }
@@ -20,7 +20,7 @@ void SListPrint(SLNode* phead)
 SLNode* CreateNewNode(SLDataType x)
 {
     SLNode* newnode=(SLNode*)malloc(sizeof(SLNode));
-    if(newnode==NULL){
+    if(newnode==NULL) {
         printf("malloc failed!\n");
         exit(-1);
     }
@@ -38,11 +38,11 @@ void SListInsert(SLNode* pos, SLDataType x)
 SLNode* SListFind(SLNode* phead, SLDataType x)
 {
     SLNode* cur=phead;
-    while(cur){
-        if(cur->data==x){
+    while(cur) {
+        if(cur->data==x) {
             return cur;
         }
-        else{
+        else {
             cur=cur->next;
         }
     }
@@ -57,12 +57,12 @@ void SListPushFront(SLNode** pphead, SLDataType x)
 void SListPushBack(SLNode** pphead, SLDataType x)
 {
     SLNode* newnode=CreateNewNode(x);
-    if(*pphead==NULL){
+    if(*pphead==NULL) {
         *pphead=newnode;
     }
-    else{
+    else {
         SLNode* tail=*pphead;
-        while(tail->next!=NULL){
+        while(tail->next!=NULL) {
             tail=tail->next;
         }
         tail->next=newnode;
@@ -78,12 +78,12 @@ void SListPopFront(SLNode** pphead)
 void SListErase(SLNode** pphead, SLNode* pos)
 {
     SLNode* tail=*pphead;
-    if(*pphead==pos){
+    if(*pphead==pos) {
         *pphead=pos->next;
         free(pos);
     }
-    else{
-        while(tail->next!=pos){
+    else {
+        while(tail->next!=pos) {
             tail=tail->next;
         }
         tail->next=pos->next;
@@ -94,7 +94,7 @@ void SListDestory(SLNode** pphead)
 {
     assert(pphead);
     SLNode* cur=*pphead;
-    while(cur){
+    while(cur) {
         SLNode* next=cur->next;
         free(cur);
         cur=next;

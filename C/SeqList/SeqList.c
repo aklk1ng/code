@@ -12,8 +12,7 @@ typedef struct SeqList
 void SeqListPrint(SL *ps)
 {
     int i;
-    for (i = 0; i < ps->size; i++)
-    {
+    for (i = 0; i < ps->size; i++) {
         printf("%d ", ps->a[i]);
     }
     printf("\n");
@@ -33,12 +32,10 @@ void SeqListDestory(SL *ps)
 }
 void SeqListCheckcapacity(SL *ps)
 {
-    if (ps->size == ps->capacity)
-    {
+    if (ps->size == ps->capacity) {
         int newcapacity = ps->capacity == 0 ? 4 : ps->capacity * 2;
         SListDataType *tmp = (SListDataType *)realloc(ps->a, newcapacity * sizeof(SListDataType));
-        if (tmp == NULL)
-        {
+        if (tmp == NULL) {
             printf("realloc failed!\n");
             exit(-1);
         }
@@ -51,8 +48,7 @@ void SeqListInsert(SL *ps, int pos, SListDataType x)
     assert(pos >= 0 && pos <= ps->size);
     SeqListCheckcapacity(ps);
     int end = ps->size;
-    while (end > pos)
-    {
+    while (end > pos) {
         ps->a[end] = ps->a[end - 1];
         end--;
     }
@@ -63,8 +59,7 @@ void SeqListErase(SL *ps, int pos)
 {
     assert(pos >= 0 && pos <= ps->size - 1);
     int begin = pos;
-    while (begin <= ps->size - 1)
-    {
+    while (begin <= ps->size - 1) {
         ps->a[begin] = ps->a[begin + 1];
         begin++;
     }
@@ -73,10 +68,8 @@ void SeqListErase(SL *ps, int pos)
 int SeqListFind(const SL *ps, SListDataType x)
 {
     int i;
-    for (i = 0; i < ps->size; i++)
-    {
-        if (ps->a[i] == x)
-        {
+    for (i = 0; i < ps->size; i++) {
+        if (ps->a[i] == x) {
             return i;
         }
     }
