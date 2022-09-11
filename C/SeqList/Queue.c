@@ -24,8 +24,7 @@ void QueueDestroy(Queue* ps)
 {
     assert(ps);
     QueueNode* cur=ps->head;
-    while(cur!=NULL)
-    {
+    while(cur!=NULL) {
         QueueNode* next=cur->next;
         free(cur);
         cur=next;
@@ -37,18 +36,16 @@ void QueuePush(Queue* ps, QDataType x)
 {
     assert(ps);
     QueueNode* newnode=(QueueNode*)malloc(sizeof(QueueNode));
-    if(newnode==NULL)
-    {
+    if(newnode==NULL) {
         printf("malloc failed!\n");
         exit(-1);
     }
     newnode->data=x;
     newnode->next=NULL;
-    if(ps->head==NULL)
-    {
+    if(ps->head==NULL) {
         ps->head=ps->tail=newnode;
     }
-    else{
+    else {
         ps->tail->next=newnode;
         ps->tail=newnode;
     }
@@ -62,8 +59,7 @@ void QueuePop(Queue* ps)
     free(ps->head);
     ps->head=next;
     //如果队列中只有一个元素，删除后还要把队尾置空
-    if(ps->head==NULL)
-    {
+    if(ps->head==NULL) {
         ps->tail=NULL;
     }
 }
@@ -86,8 +82,7 @@ int QueueSize(Queue* ps)
     assert(ps);
     QueueNode* cur=ps->head;
     int n=0;
-    while(cur)
-    {
+    while(cur) {
         n++;
         cur=cur->next;
     }

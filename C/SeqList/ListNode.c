@@ -12,8 +12,7 @@ typedef struct ListNode
 LNode* CreateNode(LTNDataType x)
 {
     LNode* newnode=(LNode*)malloc(sizeof(LNode));
-    if(newnode==NULL)
-    {
+    if(newnode==NULL) {
         printf("malloc failed!\n");
         exit(-1);
     }
@@ -24,8 +23,7 @@ LNode* CreateNode(LTNDataType x)
 LNode* ListInit()
 {
     LNode* phead=(LNode*)malloc(sizeof(LNode));
-    if(phead==NULL)
-    {
+    if(phead==NULL) {
         printf("malloc failed!\n");
         exit(-1);
     }
@@ -37,8 +35,7 @@ void ListPrint(LNode* phead)
 {
     assert(phead);
     LNode* cur=phead->next;
-    while(cur!=phead)
-    {
+    while(cur!=phead) {
         printf("%d ", cur->data);
         cur=cur->next;
     }
@@ -48,14 +45,11 @@ LNode* ListFind(LNode* phead, LTNDataType x)
 {
     assert(phead);
     LNode* cur=phead->next;
-    while(cur!=phead)
-    {
-        if(cur->data==x)
-        {
+    while(cur!=phead) {
+        if(cur->data==x) {
             return cur;
         }
-        else
-        {
+        else {
             cur=cur->next;
         }
     }
@@ -65,8 +59,7 @@ void ListDestroy(LNode* phead)
 {
     assert(phead);
     LNode* cur=phead->next;
-    while(cur!=phead)
-    {
+    while(cur!=phead) {
         LNode* next=cur->next;
         free(cur);
         cur=next;
