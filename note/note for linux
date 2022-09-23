@@ -6,14 +6,6 @@ zsh主题:agnoster
 ssh连接重置后的服务器:
 先ssh-keykan -R ip地址
 
-centos7配置vimplus：
-1.现在码云上进行相应vimplus的安装(进行全部的步骤，会有报错，但也十分正常)
-https://gitee.com/chxuan/vimplus.git
-2.进入网址https://wwt.lanzouj.com/ivmrjyltnif(看看该压缩文件能能坚持多久,目前已在u盘备份)
-3.将上一步下载的压缩包在~/.vim/pluuged/(vim-plug插件目录位置)下进行解压，得到的是许多的需要的插件包
-3.在进入上一步骤的目录中Youcompleteme目录下进行执行install.sh文件(需要进行相应的安装配置,使用 --help可以查到相关操作方式)
-4.对相应的插件功能进行测试,这里可能有会有无数的bug(但我在centos7.6版本的新器下是没有大bug了,只有一点小bug,后来我也规避但没有解决了)
-5.心情愉悦地开始写代码(欣赏)
 
 
 外网服务器网络搭建脚本：
@@ -22,14 +14,6 @@ bash <(curl -s -L https://git.io/v2ray.sh)
 BBR Plus脚本
 wget -N --no-check-certificate "https://raw.githubusercontent.com/hijkpw/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
 
-linux中的界面（X WINDOW）其实就是一款软件，以进程的形式启动
-ubuntu简单配置：
-安装vmtools：
-https://blog.csdn.net/Lcking18325/article/details/103249783
-安装google输入法：
-https://blog.csdn.net/a805607966/article/details/105874756
-安装google浏览器：
-https://www.cnblogs.com/livelab/p/12801344.html
 
 好玩的命令：
 1.跑火车:
@@ -376,7 +360,7 @@ BOOTPROTO   ip分配地址的方式，dhcp为动态分配
 HWADDR  硬件地址（MAC地址）
 
 网络相关命令：
-ping：检测当前主机与目标主机之间的连通性（有的服务器🈲ping）
+ping：检测当前主机与目标主机之间的连通性
 netstat命令  查看网络连接状态
 选项：
 -t：只显示tcp协议的连接
@@ -664,6 +648,3 @@ zip命令：
 
 locate命令：
 进行文件的查找，查找内容为本地的数据库文件，使用前先使用updatedb进行更新数据库
-
-github令牌:
-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
