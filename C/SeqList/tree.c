@@ -24,8 +24,12 @@ TNode *TreeInsert(TNode *root, DataType data)
     else if(root->data > data) {
         root->left = TreeInsert(root->left, data);
     }
-    else {
+    else if(root->data < data) {
         root->right = TreeInsert(root->right, data);
+    }
+    else {
+        printf("the data has already exist!\n");
+        exit(-1);
     }
     return root;
 
