@@ -76,7 +76,7 @@ TNode *Tree_Min(TNode *root)
         return Tree_Min(root->left);
     }
 }
-TNode *TreeDelate(TNode *root, DataType data)
+TNode *TreeDelete(TNode *root, DataType data)
 {
     if(root == NULL) {
         printf("the tree is empty!\n");
@@ -84,16 +84,16 @@ TNode *TreeDelate(TNode *root, DataType data)
     }
     TNode *tmp;
     if(root->data > data) {
-        root->left = TreeDelate(root->left, data);
+        root->left = TreeDelete(root->left, data);
     }
     else if(root->data < data) {
-        root->right = TreeDelate(root->right, data);
+        root->right = TreeDelete(root->right, data);
     }
     else {
         if(root->left && root->right) {
             tmp = Tree_Min(root->right);
             root->data = tmp->data;
-            root->right = TreeDelate(root, data);
+            root->right = TreeDelete(root, data);
         }
         else {
             tmp = root;
@@ -140,8 +140,8 @@ int main(int argc, char const *argv[])
     root = TreeInsert(root, 3);
     root = TreeInsert(root, 4);
     TNode *tmp = Tree_Max(root);
-    printf("%d", tmp->data);
+    printf("%d\n", tmp->data);
     tmp = Tree_Min(root);
-    printf("%d", tmp->data);
+    printf("%d\n", tmp->data);
     return 0;
 }
