@@ -28,7 +28,7 @@ TNode *TreeInsert(TNode *root, DataType data)
         root->right = TreeInsert(root->right, data);
     }
     else {
-        printf("the data has already exist!\n");
+        printf("data has already exist!\n");
         exit(-1);
     }
     return root;
@@ -112,7 +112,6 @@ void PreOrderTree(TNode *root)
 {
     if(root == NULL) {
         printf("the tree is empty!\n");
-        return root;
     }
     else {
         printf("d ", root->data);
@@ -125,7 +124,6 @@ void InOrderTree(TNode *root)
 {
     if(root == NULL) {
         printf("the tree is empty!\n");
-        return root;
     }
     else {
         PreOrderTree(root->left);
@@ -136,5 +134,14 @@ void InOrderTree(TNode *root)
 int main(int argc, char const *argv[])
 {
     TNode *root =NULL;
+    root = TreeInsert(root, 0);
+    root = TreeInsert(root, 1);
+    root = TreeInsert(root, 2);
+    root = TreeInsert(root, 3);
+    root = TreeInsert(root, 4);
+    TNode *tmp = Tree_Max(root);
+    printf("%d", tmp->data);
+    tmp = Tree_Min(root);
+    printf("%d", tmp->data);
     return 0;
 }
