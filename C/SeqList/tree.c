@@ -114,7 +114,7 @@ void PreOrderTree(TNode *root)
         printf("the tree is empty!\n");
     }
     else {
-        printf("d ", root->data);
+        printf("%d ", root->data);
         PreOrderTree(root->left);
         PreOrderTree(root->right);
     }
@@ -127,7 +127,7 @@ void InOrderTree(TNode *root)
     }
     else {
         PreOrderTree(root->left);
-        printf("d ", root->data);
+        printf("%d ", root->data);
         PreOrderTree(root->right);
     }
 }
