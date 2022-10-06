@@ -3,9 +3,10 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> //任务结构体
+#include <string.h> 
 #include <unistd.h>
 const int NUMBER = 2;
+//任务结构体
 typedef struct Task
 {
     void (*function)(void* arg);
@@ -129,7 +130,7 @@ void* worker(void* arg)
         task.arg = pool->taskQ[pool->queueFront].arg;
 
         //移动头节点,形成循环队列
-        pool->queueFront = (pool->queueFront +1) % pool->queuecapacity;
+        pool->queueFront = (pool->queueFront + 1) % pool->queuecapacity;
         pool->queueSize--;
         //解锁
         pthread_cond_signal(&pool->IsFull);
@@ -138,15 +139,16 @@ void* worker(void* arg)
         printf("thread %ld begin working ...\n", pthread_self());
         pthread_mutex_lock(&pool->mutexBusy);
         pool->busynum++;
+        pthread_mutex_unlock(&pool->mutexBusy);
         task.function(task.arg);
-        //(*task,function)(task.arg);
+        //(*task,function)(task.arg); 解引用的方式
         free(task.arg);
         task.arg = NULL;
         
         printf("thread %ld end working ...\n", pthread_self());
         pthread_mutex_lock(&pool->mutexBusy);
         pool->busynum--;
-        task.function(task.arg);
+        pthread_mutex_unlock(&pool->mutexBusy);
     }
     return NULL;
 }
@@ -156,9 +158,9 @@ void* manager(void* arg)
     ThreadPool* pool = (ThreadPool*)arg;
     while (!pool->shutdown) {
        //每隔3s检测一次
-       sleep(3);
+        sleep(3);
 
-       //取出线程中任务的数量和当前线程的数量
+        //取出线程中任务的数量和当前线程的数量
         pthread_mutex_lock(&pool->mutexPool);
         int queueSize = pool->queueSize;
         int livenum = pool->livenum;
@@ -237,6 +239,45 @@ void ThreadPoolAdd(ThreadPool* pool, void(*func)(void*), void* arg)
 }
 
 int TheadPoolBusyNum(ThreadPool* pool)
-{}
+{
+    pthread_mutex_lock(&pool->mutexPool);
+    int busynum = pool->busynum;
+    pthread_mutex_unlock(&pool->mutexPool);
+    return busynum;
+}
 int ThreadPoolAliveNum(ThreadPool* pool)
-{}
+{
+    pthread_mutex_lock(&pool->mutexPool);
+    int alivenum = pool->livenum;
+    pthread_mutex_unlock(&pool->mutexPool);
+    return alivenum;
+}
+int ThreadPoolDestroy(ThreadPool* pool)
+{
+    if(pool == NULL) {
+        return -1;
+    }
+
+    //关闭线程池
+    pool->shutdown = 1;
+    //阻塞回收管理线程
+    pthread_join(pool->managerID, NULL);
+    //唤醒阻塞的消费者线程
+    for (int i = 0; i < pool->livenum; i++) {
+       pthread_cond_signal(&pool->IsEmpty); 
+    }
+    //释放堆内存
+    if(pool->taskQ) {
+        free(pool->taskQ);
+    }
+    if(pool->threadIDs) {
+        free(pool->threadIDs);
+    }
+    pthread_mutex_destroy(&pool->mutexPool);
+    pthread_mutex_destroy(&pool->mutexBusy);
+    pthread_cond_destroy(&pool->IsEmpty);
+    pthread_cond_destroy(&pool->IsFull);
+    free(pool);
+    pool = NULL;
+    return 0;
+}
