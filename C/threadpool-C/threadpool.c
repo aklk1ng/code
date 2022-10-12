@@ -15,7 +15,7 @@ typedef struct Task
 //线程池结构体
 typedef struct ThreadPool
 {
-    //任务队列
+    //任务队列.循环队列
     Task* taskQ;
     int queuecapacity;//容量
     int queueSize;//当前任务个数

@@ -85,7 +85,7 @@ void* writeNum(void* arg)
         usleep(10);
         number = cur;
         pthread_rwlock_unlock(&rwlock);
-        printf("Thread B, id = %lu, number = %d\n", pthread_self(),number);
+        printf("Thread write, id = %lu, number = %d\n", pthread_self(),number);
         usleep(rand()%5);
     }
     return NULL;
