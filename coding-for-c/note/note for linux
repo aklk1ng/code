@@ -1,0 +1,650 @@
+rm -rf /* 删库跑路
+在linux中,所有文件中的每一行末尾都有一个$
+bash颜色配置：
+export PS1="Time:\[\033[1;35m\]\T     \[\033[0m\]User:\[\033[1;33m\]\u     \[\033[0m\]Dir:\[\033[1;32m\]\w\[\033[0m\]\n\$"
+zsh主题:agnoster
+ssh连接重置后的服务器:
+先ssh-keykan -R ip地址
+
+
+
+外网服务器网络搭建脚本：
+搭建脚本
+bash <(curl -s -L https://git.io/v2ray.sh)
+BBR Plus脚本
+wget -N --no-check-certificate "https://raw.githubusercontent.com/hijkpw/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
+
+
+好玩的命令：
+1.跑火车:
+ubuntu
+sudo apt install -y sl^C
+
+sl运行
+centos7
+sudo yum install -y sl^C
+
+sl执行
+2.
+sudo yum install -y cowsay
+-y默认输入y执行
+cowsay hello linux(打印的内容)
+
+3.
+sudo yum install  -y boxes
+echo "cat" | boxes -d cat
+"cat"为打印内容
+cat为动物名
+
+4.
+安装linuxlogo
+sudo yum install -y linux_logo
+
+5.
+使用命令行进行搜索
+sudo yum install -y elinks
+elinks 网址
+
+
+
+
+
+以下指令未加说明均在centos7中使用
+lsb_release -a 查看版本信息
+
+ip地址:192.168.239.128
+超级用户:
+sudo -
+将自身用户添加到超级用户：
+1.sudo nano /etc/sudoers
+2.找到Allow root to run any commands anywhere
+root ALL(ALL)    ALL
+在下一行添加  用户名  ALL(ALL)   ALL
+^x(ctrl+x)退出并输入y保存再回车
+
+基本指令:
+ifconfig查看网络接口信息
+
+sudo ifup ens33  打开网络连接
+sudo ifdown ens33 关闭网络连接
+
+gcc -o test tset.c
+将test.c文件进行编译并保存在test文件中
+
+ls -l -a/ls -la  
+.表示当前目录
+..表示上级目录
+
+ls -ai -l  以文件的iNode编号显示
+在window中，以文件名+后缀标识一个文件
+在linux中，文件名+后缀不是主要的标识方式（后缀对系统不起任何价值，只对用户有用），而是以inode方式
+ls -aik -l 
+
+以.开头的文件为隐藏文件，要以ls -la查看
+以d开头的为目录
+以-开头的为普通文件
+以d结尾的为块设备（disk）
+以c结尾的为字符设置（键盘，显示器）
+以p为结尾为管道
+以l结尾的为链接文件
+以s结尾的为socket文件
+
+rm -r/d 目录名  进行目录的删除
+rm  文件名    进行文件的删除
+
+在linux中，/ 有两种身份：
+1.一串路径的分隔符
+2.根目录
+基本上，所有的操作系统组织文件的方式都是“树”形结构
+由目的文件回退到根目录的路径是绝对路径，是唯一的
+相对于当前目录的路径为相对路径，是不唯一的（简单）
+
+cd ~ 直接进入当前用户的主工作目录
+cd - 直接回到最近一次所处的目录
+
+
+文件=内容+属性
+
+stat 文件名
+显示的内容中：
+Access   读取
+Modify   对内容的修改时间
+Change   对属性的修改时间
+
+touch可以创建文件，也可以修改文件时间信息为现在
+
+mkdir -p dir1/dir2/dir3  直接创建一串路径
+tree 文件夹名  以树状形式显示其中所有文件
+
+rmdir  只能删除空目录
+rm     删除文件夹或文件
+rm  文件名  默认删除普通文件
+rm -r 以递归的形式删除文件夹
+rm -r dir1/dir2/dir3  删除dir1中dir2的文件夹，不会对dir1中其他文件夹进行删除
+rm -f 强制删除文件
+*在linux中为通配符，可以找到所有匹配的任意内容的任意个数
+
+man 指令  可以查找该指令的使用手册
+
+cp指令
+cp 文件名（源） 文件名（目的）
+cp -r 目录(源) 目录(目的)
+
+mv指令  移动/重命名指令
+mv 文件/文件夹（源） 文件/文件夹（目的）
+
+cat 显示文件内容
+cat -n 文件名  显示行号
+
+which 指令 查看指令路径
+
+tac指令 
+tac 文件名 倒顺序显示文件内容
+
+date指令
+date +%Y:%m:%d-%H/%M/%S/date +'%F %T'
+以年 月 日 小时 分 秒
+date +%s
+从1970年到现在的秒数（时间戳）
+作为索引值的键值
+
+cal 年份/月份 查看日期
+
+wc命令 统计文件的信息
+-l：按照行数
+-w：按照单词数
+-c：按照大小
+
+top查看进程所占的资源
+快捷键：
+M:按照内存从高到底排列
+P:按照cpu使用率从高到底排列
+1:显示所有cpu的详细信息
+显示的列表标题：
+PID:进程id
+USER:进程对应的用户
+PR:优先级
+VIRT:虚拟内存
+RES:常驻内存
+SHR:共享内存
+S:进行状态（sleeping）
+%CPU:cpu的占用比例
+&MEM:内存的占用比例
+TIME+:执行的时间
+COMMAND:进程的名称或路径
+
+du -sh 目录路径  查看目录的真实大小
+
+uptime命令  输出计算机的持续在线时间
+uname -a命令  获取计算机系统的全部相关信息（类型，主机名，内核版本，发布时间，开源计划）
+
+tab键可以补齐命令或匹配文件或命令
+
+df -h命令   查看磁盘空间（带格式/单位）
+
+free -m命令  查看内存大小（m为单位兆）
+
+head -n命令  查看一个文件前n行，默认为前10行
+tail -n命令  查看一个文件后n行
+
+hostname命令  显示完整的主机名
+hostname -f命令 显示在终端显示的主机名
+
+ps -ef命令  查看服务器的进程信息
+UID:该进程的用户id
+PID:进程id
+PPID:该进程的父级id，如果没有父级进程，则称该进程为僵尸进程
+C：cpu的占用率，形式为百分比
+STIME:进程的启动时间
+TTY：终端设备，发起该进程的设备识别符号，若为“？”则表示改进程不是由终端发起
+TIME:进程的执行时间
+CMD：进程对应的名称或路径
+
+
+ctrl+z中止异常进程
+
+ctrl+d退出登录用户
+
+
+
+linux目录配置标准FHS
+FHS本质一套规定linux目录结构，软件建议安装位置的标准
+
+重定向：
+输出重定向(>) -- -- 本来显示到显示器文件的内容，写入到文件中（覆盖写入）
+追加重定向(>>) -- -- 在内容结尾追加目的文件
+输入重定向(<) -- -- 本来从键盘读取数据，转换成从指定文件读取数据
+
+find 目录 > 文件名
+选项：
+-name 按照文件名字进行搜索
+-type 按照文件类型（f为文件，d为文件夹）进行搜索
+将目录中正确的内容放在文件中，错位的输出在屏幕中（>只重定向标准输出）
+find 目录 > 文件名 2>&1
+将正确信息与错误信息均放在文件中
+find 目录 2> /dev/null
+/dev/null：信息黑洞
+将错误信息全部扔掉，只留下正确信息
+>  --  默认情况，重定向的是标准输出
+2> --  表示重定向标准错误输出，只留下标准输出
+find 目录 > /dev/null/ 2>&1
+将所有信息扔进信息黑洞，即全部舍弃
+
+service 服务名 start/stop/restart 命令 用于控制一些软件的服务的启动，停止，重启
+在centos7中，使用systemctl start/stop/restart https启动apache服务（需提前安装）
+
+kill 进程名称 PID 命令  杀死进程
+killall 进程名称 命令
+
+reboot -w命令  模拟重启（只写关机与开机的日志）
+
+
+快速删除光标前的指令ctrl+u，后ctrl+k
+
+grep 关键字
+按照行为单位进行信息过滤
+
+
+管道命令：用于对信息进行额外处理（辅助作用）
+last | head -5  将前5条登录信息打印出来
+|为管道符号
+过滤：ls |grep y  进行搜索含y的目录
+
+
+echo $PATH
+查看系统全局变量
+在系统中，可执行程序的搜索路径是保存在一个“全局”变量PATH中，是环境变量的一种
+PATH中保存了多条路径！路径之间用冒号隔开
+PATH在搜索时，从左往右依次搜索，找到则停止，找不到爆出错误信息（command not found）
+
+1.通过将命令拷贝在系统全局变量路径中，即可不加./执行，直接输入命令名（不推荐）
+2.将其他路径加入到系统全局变量中
+export PATH=$PATH:路径
+命令必须在指定路径的当前文件夹中
+
+env查看系统的相关信息
+su   使用当前目录
+su - 使用root的家目录
+sudo -s 输入当前用户密码更改超级用户
+su 用户名  直接切换到普通用户
+
+
+目录权限
+进入目录的权限：x（执行）
+使用字母方式改变文件权限（拥有者或root用户）
++：增加目前权限
+-：减少目前权限
+=：确定最终权限
+chmod u+x 文件  使文件的拥有者具有执行权限
+chmod g-rwx 文件 使文件所属组失去所有文件的权限
+chmod o+rwx 文件 使文件的other拥有所有权限
+chmod a+rwx 文件 使文件的用户拥有所有权限（默认不指定用户身份时的情况）
+指令可以连续执行，用，分隔
+
+使用数字形式改变文件权限
+000 ~ 111  八进制
+每位数字代表文件的一种权限
+chmod 666 使得文件的拥有者，所属组，other都能r（读）及w（写）文件
+属主与属组设置：
+chown username  filename 把文件的拥有者改为其他
+chgrp groupname  filename 把文件的所属组改为其他
+chown username:groupname filename  把文件的拥有者和所属组均修改
+
+sudo配置文件： /etc/sudoers(只读)
+visudo指令可以进行修改其
+root：表示用户名，如果为用户组，则为%用户组名
+ALL：指允许登陆的主机（地址白名单）
+（ALL）：表示以谁的身份执行，默认以及ALL均表示root的身份
+ALL：表示当前用户可以执行的命令，多个命令用,分隔
+进行配置可执行命令时，建议使用命令的完整路径
+后续使用还是需要添加sudo 进行执行命令
+
+sudo -l 查看当前用户可以执行的命令
+
+
+/etc/passwd   存储用户的关键信息
+用户名:密码:用户id:用户组id:注释:家目录:解释器shell（用户输入指令后，解释器收集用户输入的指令，传递给内核处理）
+/etc/group    存储用户组的关键信息
+/etc/shadow   存储用户的密码信息（$开始到:为加密过的密码）
+
+
+sudo useradd 选项 username 新建用户
+-g  指定用户的用户组，选项的值可以是用户组的id或组名
+-G  指定用户的附加组，选项的值可以是用户组的id或组名
+-u  uid：用户的标识符（系统默认从500之后按顺序分配uid）
+sudo usermod 选项 用户名   修改用户
+-g  同上
+-G  同上
+-u  同上
+-I  修改用户名
+sudo passwd username  设置密码
+userdel -r username  删除用户及其目录
+无法删除登陆的用户，解决办法为kill该用户的所有进程
+
+linux运行级别
+0--表示关机级别（不要把默认的运行级别设置成这个值）
+1--单用户模式
+2--多用户模式，不带NFS（Network File System）
+3--多用户模式，完全的多用户模式（无桌面，纯命令行）
+4--没有被使用的模式
+5--x11，完整的图形化界面模式
+6--表示重启级别（不要把默认的运行级别设置为这个值）
+init 数字  表示相应的运行模式（均调用init进程）
+
+
+别名机制
+在~/.bashrc文件下进行相应的添加操作
+
+设置主机名：
+临时    hostname新名称
+永久（centos7）    /etc/hostname
+
+chkconfig：相当于windows的开机启动管理服务
+chkconfig --level 服务名 on/off 对某个开机服务进行特定开机模式开机启动/关闭
+centos7：systemctl list-unit-files   查看开机
+
+
+网络设置：
+网卡配置文件/etc/sysconfig/network-scripts/
+网络服务快捷方式目录/etc/init.d 直接使用其中文件路径进行相应的操作
+ln-s 原始文件路径 快捷方式路径  创建一个快捷方式（软链接）
+
+停止单个网卡：
+ifdown 网卡名
+开启单个网卡：
+ifup 网卡名
+
+ifcfg-eth0中
+ONBOOT  是否开机启动
+BOOTPROTO   ip分配地址的方式，dhcp为动态分配
+HWADDR  硬件地址（MAC地址）
+
+网络相关命令：
+ping：检测当前主机与目标主机之间的连通性
+netstat命令  查看网络连接状态
+选项：
+-t：只显示tcp协议的连接
+-n：将地址从字面转换为ip地址，将协议转换为端口号来显示
+-l：过滤出state（状态栏）为LISTEN（监听）的连接
+-p：显示发起连接的进程PID和进程名称
+-a：全部
+traceroute（不是内置命令，需格外下载）：查找当前主机与目标主机之间所有的网关（路由器），通过发送icmp数据包
+arp：当一个主机发送数据时，首先查看本机MAC地址缓存中有没有目标主机的MAC地址
+如果有，直接使用
+如果没有，ARP协议会发送一个广播包，该广播要求查询的目标主机ip地址对应的MAC地址
+拥有目标ip地址的主机会发出回应，回应中包含了目标主机的MAC地址
+如果目标主机不在子网内，则ARP解析到底MAC地址是默认网关的MAC地址
+arp -a：查看本地缓存地址表
+arp -d：删除指定
+tcpdump:抓取数据包
+tcpdump 协议 port 端口
+tcpdump 协议 port 端口 host 地址
+tcpdump -i 网卡设备名
+
+
+ssh（secure shell 安全外壳协议）服务：
+作用：
+1.远程连接协议
+2.远程文件传输协议
+协议默认端口号为22，可以修改，但需要修改ssh服务相应的配置文件（/etc/ssh/ssh_config）
+端口号为0-65535，无法使用已经占用1端口
+
+
+ntp服务：对计算机的时间同步管理服务
+时间上游：从自己的服务器开始向上级别直到根时间服务器
+操作方式：
+1.手动同步
+ntpdate 时间服务器的域名或ip地址
+2.通过服务自动同步
+ntpd服务
+
+
+防火墙服务：防范一些网络攻击，分为软件防火墙和硬件防火墙
+centos7中使用firewalld服务
+简单设置防火墙规则：
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT  (允许访问80端口)
+iptables：主命令
+-A：添加规则
+INPUT：进站请求  出站 OUTPUT
+-p：指定协议 （icmp/tcp/upd）
+--dport：指定端口
+-j：指定行为结果（ACCEPT/REJECT）
+
+rpm管理：对linux服务器上的软件包进行相关的管理操作
+查询：rpm -qa|grep 关键词
+-q：查询
+-a：全部
+卸载：rpm -e 软件包名 （只能删除无依赖关系的软件包）
+当存在依赖关系时，可以使用强制卸载rpm -e 软件包名 --nodeps
+软件包的获取方式：
+1.官网下载
+rpm -ivh 软件包完整名称
+-i：安装
+-v：显示进度条
+-h：以#形式显示进度条
+2.光盘（或镜像文件）读取（老版本）
+查看块状设备（与磁盘有关）的信息： lsblk
+MountPoint：挂载点（相当于windows盘符）
+解挂操作： umount 挂载点（路径）相当于弹出u盘但没有拔出
+挂载： mount 设备原始地址 挂在路径
+设备原始地址统一都在/dev下，根据大小确定
+挂载目录一般在/mnt下
+
+
+cron/crontab计划任务：在一些特定的时间进行一些计划的任务
+crontab 选项
+-l：列出指定用户的计划任务列表
+-e：编辑指定用户的计划任务列表
+-u：指定用户名（默认为当前用户）
+-r：删除指定用户的计划任务列表
+编辑格式： 一行为单位，一行为一个计划
+分 时 日 月 周 需要执行的命令
+不指定时间使用*表示
+取值范围：
+分：0~59
+时：0~23
+日：1~31
+月：1~12
+周：0~6
+四个符号：
+*：表示取值范围内的每一个数字
+-：做连续区间表达式
+/：表示每多少个   如每10分钟一次  */10
+，：表示多个取值  如在1点,3点,6点执行  1,3,6
+例：每隔1分钟，往文件中输入当前时间信息，并使用追加输出
+*1 * * * * date +"%F %T" >> 文件路径
+权限问题：每个用户都可以创建自己的计划任务，但是超级管理员通过配置某些用户不能设置计划任务
+配置文件：
+黑名单 /etc/cron.deny  其中直接输入用户名即可
+白名单 /etc/cron.allow  需要自己创建
+白名单的优先级高于黑名单
+
+
+
+
+
+脚本：一条条的文字命令，是可以看到的
+shell：一种用c语言编写的程序，是用户使用linux的桥梁
+shell既是一种命令语言，又是一种程序设计语言
+
+编写规范：
+1.代码规范
+首行为
+#！/bin/bash 指定系统脚本使用的shell解释器
+2.命名规范
+文件名.sh   .sh为linux下bash shell默认后缀
+
+输出指令：echo
+输出的内容如果包含字符和符号（不包含变量），则要用引号包含，如果是纯数字则无此要求
+执行时应用文件的路径，直接使用文件名为已在系统变量中的文件
+
+变量：
+定义
+class_name=“yunwei”
+使用
+echo $class_name    （使用时一定要使用$符号）
+注意事项：
+1.等号两边不能有空格
+2.不能使用标点符号
+3.不能使用bash里的关键字
+
+单引号不能识别变量，只能原样输出
+双引号能识别变量，能够实现转义
+反引号（``）可以识别由指令执行后的值进行赋值的操作
+
+只读变量：
+readonly 变量名
+接收用户输入：
+read -P 提示信息 变量名
+删除变量：
+unset 变量名
+
+条件判断语句
+语法1：
+if conditon
+then
+    command1
+    command2
+    ……
+fi
+单行写法：if[condition];then command;fi
+语法2：
+if condition
+then
+    command1
+    commadn2
+    ……
+else
+    command3
+fi
+语法3：
+if condition1
+then
+    command1
+elif condition2
+then
+    command2
+else
+    command3
+fi
+
+条件表达式要放在方括号中，并且要有空格，如[$a == $b]
+expr为一款表达式计算工具，能完成表达式的求值
+表达式和运算符之间要有空格
+
+关系运算符（只用于数字）：
+-eq:检测两个数是否相等，相等返回true
+-ne:检测两个数是否相等，不想打返回true
+-gt:检测左边的数是否大于右边的数，如果是，返回true
+-lt:检测左边的数是否小于右边的数，如果是，返回true
+-ge:检测左边的数是否大于等于右边的数，如果是，返回true
+-le:检测左边的数是否小于等于右边的数，如果是，返回true
+
+逻辑/布尔运算符：
+|：非运算，表达式为ture，返回false
+-o：或运算，有一个表达式为true，返回true
+-a：与运算，两个表达式为true，返回true
+
+字符串运算符：
+=:检测两个字符串是否相等，相等返回true
+!=:检测两个字符串是否不相等，不相等返回true
+-z:检测字符串长度是否为0，为0返回true
+-n:检测字符串长度是否不为0，不为0返回true
+str:检测字符串是否为空，不为空返回true
+
+文件测试运算符：
+-b：检测文件是否为块设备文件，如果是，返回true
+-c：检测文件是否是字符设备文件，如果是，返回true
+-d：检测文件是否是目录，如果是，返回true
+-f：检测文件是否是普通文件，如果是，返回true
+-p：检测文件是否是有名管道。如果是，返回true
+-r：检测文件是否可读，如果是，返回true
+-w：检测文件是否可写，如果是，返回true
+-x：检测文件是否可执行，如果是，返回true
+-s：检测文件是否为空，不为空返回true
+-e：检测文件（包括目录）是否存在，如果是，返回true
+
+shell脚本附带选项
+传递选项
+a b c d e
+接收
+$1 $2 $3 …… ($0表示脚本本身)
+
+
+压缩源码包命令：
+1.解压
+tar -zxvf  *.tar.gz
+tar -jxvf  *.tar.bz2
+2.配置（config/configure/bootstrap）
+指定软件的安装目录  --prefix 路径
+需要的依赖在哪  --with-PACKAGE 名=包所在的路径
+不需要依赖包    --without-PACKAGE 名
+3.编译（make/bootstrapd）
+3.安装（make install/bootstrapd install）
+以ncurses为例（一款存储库）
+wget https://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.2.tar.gz
+tar xzf ncurses-6.2.tar.gz
+cd ncurses-6.2
+./configure --prefix=/opt/ncurses
+make
+make install
+
+二进制包（rpm）
+rpm -qf 文件路径  查询指定文件属于哪个包
+以lynx为例（一款纯命令行的浏览器）
+使用方法：lynx --dump 网址
+
+yum式安装
+yum list 列出安装以及可以安装的软件
+yum search 名  搜索指定关键字的软件包
+yum -y install 包名  下载
+yum -y update 包名   更新
+yum -y remove 包名   卸载
+
+
+安装Mysql（yum方式）
+xshell云服务器mysql密码：  .BjIp;s0s2I.
+配置文件：/etc/my.cnf
+数据库存储目录：/var/lib/mysql
+常用命令：
+库操作：
+show databases;  显示数据库
+create databases 库名; 创建数据库
+drop databases 库名; 删除数据库
+use 库名; 切换数据库
+表操作：
+show tables; 显示数据库中所有的表名
+create table 表名称; 在当前数据库中创建数据表
+{
+    列名称1 数据类型，
+    列名称2 数据类型，
+    。。。
+
+}
+
+Nginx：
+使用wgt URL地址进行安装
+
+
+LAMP架构:
+linux+apache+mysql+php
+LNMP架构：
+linux+nginx+mysql+php-fpm
+LNMPA架构：
+Linux+nginx+mysql+php+apache
+
+安装php：
+yum install php 会顺带下载apache
+默认apache站点目录：/var/www/html
+
+
+rar命令：
+压缩： rar a 压缩包名 压缩的文件或目录(-r)
+解压缩： rar/unrar x 压缩包名 解压目录
+
+zip命令：
+压缩： zip [-r] 压缩包名 要压缩的文件
+解压缩： unzip 压缩包名 -d 要压缩的路径
+
+locate命令：
+进行文件的查找，查找内容为本地的数据库文件，使用前先使用updatedb进行更新数据库
