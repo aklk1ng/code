@@ -1,4 +1,4 @@
-//链式队列
+//链式队列,非循环
 #include<stdio.h>
 #include<stdlib.h>
 #include<assert.h>
