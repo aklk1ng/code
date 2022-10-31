@@ -56,6 +56,7 @@ TNode *Tree_Max(TNode *root)
         printf("the tree is empty!]n");
         return NULL;
     }
+    //此时代表root节点没有右节点，由于tree的定义，root就为最大值
     else if(root->right) {
         return root;
     }
@@ -69,6 +70,7 @@ TNode *Tree_Min(TNode *root)
         printf("the tree is empty!]n");
         return NULL;
     }
+    //此时代表root节点没有左节点，由于tree的定义，root就为最小值
     else if(root->left) {
         return root->left;
     }
