@@ -138,6 +138,7 @@ void* worker(void* arg)
 
         printf("thread %ld begin working ...\n", pthread_self());
         pthread_mutex_lock(&pool->mutexBusy);
+        //工作函数具体工作的内容
         pool->busynum++;
         pthread_mutex_unlock(&pool->mutexBusy);
         task.function(task.arg);
