@@ -68,11 +68,11 @@ int main (int argc, char *argv[])
     }
     
     close(fd);
+    return 0;
 }
 void* working(void* arg)
 {
     struct SockInfo* pinfo = (struct SockInfo*)arg;
-    int cfd = pinfo->fd;
     //连接建立成功，打印客户端的IP和端口信息
     char ip[32];
     printf("the client's IP: %s. port: %d\n", inet_ntop(AF_INET, &pinfo->addr.sin_addr, ip, sizeof(ip)), ntohs(pinfo->addr.sin_port));
@@ -80,10 +80,10 @@ void* working(void* arg)
     while (1) {
         //接收数据 
         char buff[1024];
-        int len = recv(cfd, buff, sizeof(buff), 0);
+        int len = recv(pinfo->fd, buff, sizeof(buff), 0);
         if (len > 0) {
             printf("client say: %s\n", buff);
-            send(cfd, buff, len, 0);
+            send(pinfo->fd, buff, len, 0);
         }
         else if (len == 0) {
             printf("the client disconnect...\n");
@@ -96,6 +96,6 @@ void* working(void* arg)
     }
     //关闭文件描述符
     close(pinfo->fd);
-    close(cfd);
-    return 0;
+    pinfo->fd = -1;
+    return NULL;
 }
