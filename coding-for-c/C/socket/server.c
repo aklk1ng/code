@@ -1,3 +1,4 @@
+#include <asm-generic/socket.h>
 #include <netinet/in.h>
 #include<stdio.h>
 #include<stdlib.h>
@@ -7,13 +8,18 @@
 #include<string.h>
 #include<arpa/inet.h>
 #include<pthread.h>
+#include "threadpool.h"
 //信息结构体
 struct SockInfo {
     struct sockaddr_in addr;
     int fd;
 };
-struct SockInfo infos[512];
-void* working(void* arg);
+typedef struct poolInfo {
+    ThreadPool* p;
+    int fd;
+}PoolInfo;
+void working(void* arg);
+void accptConn(void* arg);
 
 int main (int argc, char *argv[])
 {
@@ -39,38 +45,35 @@ int main (int argc, char *argv[])
         perror("listen");
         return -1;
     }
-    //初始化结构体
-    int max = sizeof(infos)/sizeof(infos[0]);
-    for (int i = 0; i < max; i++) {
-        bzero(&infos[i], sizeof(infos[i]));
-        infos[i].fd = -1;
-    }
+    //创建线程池
+    ThreadPool* pool = ThreadPoolCreate(3, 8, 100);
+    PoolInfo* info = (PoolInfo*)malloc(sizeof(PoolInfo));
+    info->p = pool;
+    info->fd = fd;
+    ThreadPoolAdd(pool, accptConn, info);
+    ThreadExit(NULL);
+    return 0;
+}
+void accptConn(void* arg)
+{
+    PoolInfo* poolInfo = (PoolInfo*)arg;
     //4.阻塞并等待客户端的连接
     int addrlen = sizeof(struct sockaddr_in);
     while (1) {
         struct SockInfo* pinfo;
-        for (int i = 0; i < max; i++) {
-            if (infos[i].fd == -1) {
-                pinfo = &infos[i];
-                break;
-            }
-        }
-        int cfd = accept(fd, (struct sockaddr*)&pinfo->addr, &addrlen);
-        pinfo->fd = cfd;
-        if (cfd == -1) {
+        pinfo = (struct SockInfo*)malloc(sizeof(struct SockInfo));
+        pinfo->fd = accept(poolInfo->fd, (struct sockaddr*)&pinfo->addr, &addrlen);
+        if (pinfo->fd == -1) {
             perror("accept");
             break;
         }
-        //创建出一个子线程
-        pthread_t tid;
-        pthread_create(&tid, NULL, working, pinfo);
-        pthread_detach(tid);
+        //添加通信的任务
+        ThreadPoolAdd(poolInfo->p, working, pinfo);
     }
     
-    close(fd);
-    return 0;
+    close(poolInfo->fd);
 }
-void* working(void* arg)
+void working(void* arg)
 {
     struct SockInfo* pinfo = (struct SockInfo*)arg;
     //连接建立成功，打印客户端的IP和端口信息
@@ -96,6 +99,4 @@ void* working(void* arg)
     }
     //关闭文件描述符
     close(pinfo->fd);
-    pinfo->fd = -1;
-    return NULL;
 }

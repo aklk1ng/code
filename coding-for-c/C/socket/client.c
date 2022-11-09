@@ -17,7 +17,7 @@ int main (int argc, char *argv[])
     struct sockaddr_in saddr;
     saddr.sin_family = AF_INET;
     saddr.sin_port = htons(9999);
-    inet_pton(AF_INET, "10.32.148.236", &saddr.sin_addr.s_addr);
+    inet_pton(AF_INET, "192.168.251.82", &saddr.sin_addr.s_addr);
     int ret = connect(fd, (struct sockaddr*)&saddr, sizeof(saddr));
     if (ret == -1) {
         perror("connect");
