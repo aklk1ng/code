@@ -87,12 +87,10 @@ void working(void* arg)
         if (len > 0) {
             printf("client say: %s\n", buff);
             send(pinfo->fd, buff, len, 0);
-        }
-        else if (len == 0) {
+        } else if (len == 0) {
             printf("the client disconnect...\n");
             break;
-        }
-        else {
+        } else {
             perror("recv");
             break;
         }
