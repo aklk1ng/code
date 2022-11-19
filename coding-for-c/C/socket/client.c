@@ -37,12 +37,10 @@ int main (int argc, char *argv[])
         int len = recv(fd, buff, sizeof(buff), 0);
         if (len > 0) {
             printf("server say: %s\n", buff);
-        }
-        else if (len == 0) {
+        } else if (len == 0) {
             printf("the server disconnect...\n");
             break;
-        }
-        else {
+        } else {
             perror("recv");
             break;
         }
