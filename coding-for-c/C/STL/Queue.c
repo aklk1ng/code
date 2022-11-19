@@ -44,8 +44,7 @@ void QueuePush(Queue* ps, QDataType x)
     newnode->next=NULL;
     if(ps->head==NULL) {
         ps->head=ps->tail=newnode;
-    }
-    else {
+    } else {
         ps->tail->next=newnode;
         ps->tail=newnode;
     }

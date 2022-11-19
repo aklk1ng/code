@@ -41,8 +41,7 @@ SLNode* SListFind(SLNode* phead, SLDataType x)
     while(cur) {
         if(cur->data==x) {
             return cur;
-        }
-        else {
+        } else {
             cur=cur->next;
         }
     }
@@ -59,8 +58,7 @@ void SListPushBack(SLNode** pphead, SLDataType x)
     SLNode* newnode=CreateNewNode(x);
     if(*pphead==NULL) {
         *pphead=newnode;
-    }
-    else {
+    } else {
         SLNode* tail=*pphead;
         while(tail->next!=NULL) {
             tail=tail->next;
@@ -81,8 +79,7 @@ void SListErase(SLNode** pphead, SLNode* pos)
     if(*pphead==pos) {
         *pphead=pos->next;
         free(pos);
-    }
-    else {
+    } else {
         while(tail->next!=pos) {
             tail=tail->next;
         }

@@ -20,14 +20,11 @@ TNode *TreeInsert(TNode *root, DataType data)
         node->left=NULL;
         node->right=NULL;
         return node;
-    }
-    else if(root->data > data) {
+    } else if(root->data > data) {
         root->left = TreeInsert(root->left, data);
-    }
-    else if(root->data < data) {
+    } else if(root->data < data) {
         root->right = TreeInsert(root->right, data);
-    }
-    else {
+    } else {
         printf("data has already exist!\n");
         exit(-1);
     }
@@ -40,14 +37,11 @@ TNode *TreeFind(TNode *root, DataType data)
     if(root ==NULL) {
         printf("the tree is empty!\n");
         return NULL;
-    }
-    if(root->data > data) {
+    } else if(root->data > data) {
         TreeFind(root->left , data);
-    }
-    else if(root->data < data) {
+    } else if(root->data < data) {
         TreeFind(root->right, data);
-    }
-    else
+    } else
     return root;
 }
 TNode *Tree_Max(TNode *root)
@@ -55,12 +49,10 @@ TNode *Tree_Max(TNode *root)
     if(root ==NULL) {
         printf("the tree is empty!]n");
         return NULL;
-    }
-    //此时代表root节点没有右节点，由于tree的定义，root就为最大值
-    else if(root->right) {
+    } else if(root->right) {
+        //此时代表root节点没有右节点，由于tree的定义，root就为最大值
         return root;
-    }
-    else {
+    } else {
         return Tree_Max(root->right);
     }
 }
@@ -69,12 +61,10 @@ TNode *Tree_Min(TNode *root)
     if(root ==NULL) {
         printf("the tree is empty!]n");
         return NULL;
-    }
-    //此时代表root节点没有左节点，由于tree的定义，root就为最小值
-    else if(root->left) {
+    } else if(root->left) {
+        //此时代表root节点没有左节点，由于tree的定义，root就为最小值
         return root->left;
-    }
-    else {
+    } else {
         return Tree_Min(root->left);
     }
 }
@@ -87,22 +77,18 @@ TNode *TreeDelete(TNode *root, DataType data)
     TNode *tmp;
     if(root->data > data) {
         root->left = TreeDelete(root->left, data);
-    }
-    else if(root->data < data) {
+    } else if(root->data < data) {
         root->right = TreeDelete(root->right, data);
-    }
-    else {
+    } else {
         if(root->left && root->right) {
             tmp = Tree_Min(root->right);
             root->data = tmp->data;
             root->right = TreeDelete(root, data);
-        }
-        else {
+        } else {
             tmp = root;
             if(root->left == NULL) {
                 root = root->right;
-            }
-            else {
+            } else {
                 root = root->left;
             }
         }
@@ -114,8 +100,7 @@ void PreOrderTree(TNode *root)
 {
     if(root == NULL) {
         printf("the tree is empty!\n");
-    }
-    else {
+    } else {
         printf("%d ", root->data);
         PreOrderTree(root->left);
         PreOrderTree(root->right);
@@ -126,8 +111,7 @@ void InOrderTree(TNode *root)
 {
     if(root == NULL) {
         printf("the tree is empty!\n");
-    }
-    else {
+    } else {
         PreOrderTree(root->left);
         printf("%d ", root->data);
         PreOrderTree(root->right);

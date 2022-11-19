@@ -48,8 +48,7 @@ LNode* ListFind(LNode* phead, LTNDataType x)
     while(cur!=phead) {
         if(cur->data==x) {
             return cur;
-        }
-        else {
+        } else {
             cur=cur->next;
         }
     }
