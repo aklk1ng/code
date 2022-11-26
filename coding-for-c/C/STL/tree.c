@@ -32,16 +32,30 @@ TNode *TreeInsert(TNode *root, DataType data)
 
 }
 //递归查找
-TNode *TreeFind(TNode *root, DataType data)
+TNode *TreeRecursionFind(TNode *root, DataType data)
 {
     if(root ==NULL) {
         printf("the tree is empty!\n");
         return NULL;
     } else if(root->data > data) {
-        return TreeFind(root->left , data);
+        return TreeRecursionFind(root->left , data);
     } else if(root->data < data) {
-        return TreeFind(root->right, data);
+        return TreeRecursionFind(root->right, data);
     } else return root;
+}
+//非递归查找
+TNode *TreeIterationFind(TNode *root, DataType data)
+{
+    TNode* T = root;
+    while (T) {
+        if(root->data > data) {
+            T = T->left;
+        } else if(root->data < data) {
+            T = T->right;
+        } else return T;
+    }
+    //查找失败
+    return NULL;
 }
 TNode *Tree_Max(TNode *root)
 {
