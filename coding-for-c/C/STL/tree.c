@@ -8,18 +8,22 @@ typedef struct TreeNode
     struct TreeNode *left;
     struct TreeNode *right;
 }TNode;
+TNode *CreateNode(DataType data)
+{
+    TNode *node = (TNode*)malloc(sizeof(TNode));
+    if(node == NULL) {
+        printf("malloc falied\n");
+        return NULL;
+    }
+    node->data=data;
+    node->left=NULL;
+    node->right=NULL;
+    return node;
+}
 TNode *TreeInsert(TNode *root, DataType data)
 {
     if(root == NULL) {
-        TNode *node = (TNode*)malloc(sizeof(TNode));
-        if(node == NULL) {
-            printf("malloc falied\n");
-            return NULL;
-        }
-        node->data=data;
-        node->left=NULL;
-        node->right=NULL;
-        return node;
+        TNode *node = CreateNode(data);
     } else if(root->data > data) {
         root->left = TreeInsert(root->left, data);
     } else if(root->data < data) {
