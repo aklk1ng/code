@@ -18,15 +18,12 @@ LNode* CreateNode(LTNDataType x)
     }
     newnode->data=x;
     newnode->next=NULL;
+    newnode->prev=NULL;
     return newnode;
 }
 LNode* ListInit()
 {
-    LNode* phead=(LNode*)malloc(sizeof(LNode));
-    if(phead==NULL) {
-        printf("malloc failed!\n");
-        exit(-1);
-    }
+    LNode* phead=CreateNode(9999);
     phead->prev=phead;
     phead->next=phead;
     return phead;
