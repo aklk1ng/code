@@ -31,18 +31,17 @@ TNode *TreeInsert(TNode *root, DataType data)
     return root;
 
 }
-//递归
+//递归查找
 TNode *TreeFind(TNode *root, DataType data)
 {
     if(root ==NULL) {
         printf("the tree is empty!\n");
         return NULL;
     } else if(root->data > data) {
-        TreeFind(root->left , data);
+        return TreeFind(root->left , data);
     } else if(root->data < data) {
-        TreeFind(root->right, data);
-    } else
-    return root;
+        return TreeFind(root->right, data);
+    } else return root;
 }
 TNode *Tree_Max(TNode *root)
 {
