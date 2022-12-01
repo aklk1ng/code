@@ -61,10 +61,10 @@ ThreadPool* ThreadPoolCreate(int max, int min, int queueSize)
         pool->destroynum = 0;
 
         if(
-                pthread_mutex_init(&pool->mutexPool,NULL) != 0 ||
-                pthread_mutex_init(&pool->mutexBusy,NULL) != 0 ||
-                pthread_cond_init(&pool->IsEmpty,NULL) != 0 ||
-                pthread_cond_init(&pool->IsFull,NULL) != 0
+            pthread_mutex_init(&pool->mutexPool,NULL) != 0 ||
+            pthread_mutex_init(&pool->mutexBusy,NULL) != 0 ||
+            pthread_cond_init(&pool->IsEmpty,NULL) != 0 ||
+            pthread_cond_init(&pool->IsFull,NULL) != 0
           ) {
             printf("mutex or conditon int faield!\n");
             break;
@@ -145,7 +145,7 @@ void* worker(void* arg)
         //(*task,function)(task.arg); 解引用的方式
         free(task.arg);
         task.arg = NULL;
-        
+
         printf("thread %ld end working ...\n", pthread_self());
         pthread_mutex_lock(&pool->mutexBusy);
         pool->busynum--;
@@ -158,7 +158,7 @@ void* manager(void* arg)
 {
     ThreadPool* pool = (ThreadPool*)arg;
     while (!pool->shutdown) {
-       //每隔3s检测一次
+        //每隔3s检测一次
         sleep(3);
 
         //取出线程中任务的数量和当前线程的数量
@@ -204,16 +204,16 @@ void* manager(void* arg)
 
 void ThreadExit(ThreadPool* pool)
 {
-   pthread_t tid = pthread_self();
-   for (int i = 0; i < pool->maxnum; i++) {
-       //对线程是否同时占用进行销毁线程
-       if(pool->threadIDs[i] == tid) {
-           pool->threadIDs[i] = 0;
-           printf("threadExit called, %ld exiting ...", tid);
-           break;
-       }
-   }
-   pthread_exit(NULL);
+    pthread_t tid = pthread_self();
+    for (int i = 0; i < pool->maxnum; i++) {
+        //对线程是否同时占用进行销毁线程
+        if(pool->threadIDs[i] == tid) {
+            pool->threadIDs[i] = 0;
+            printf("threadExit called, %ld exiting ...", tid);
+            break;
+        }
+    }
+    pthread_exit(NULL);
 }
 
 void ThreadPoolAdd(ThreadPool* pool, void(*func)(void*), void* arg)
@@ -265,7 +265,7 @@ int ThreadPoolDestroy(ThreadPool* pool)
     pthread_join(pool->managerID, NULL);
     //唤醒阻塞的消费者线程
     for (int i = 0; i < pool->livenum; i++) {
-       pthread_cond_signal(&pool->IsEmpty); 
+        pthread_cond_signal(&pool->IsEmpty); 
     }
     //释放堆内存
     if(pool->taskQ) {
