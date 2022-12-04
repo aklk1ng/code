@@ -11,7 +11,7 @@ void taskFunc(void* arg)
 }
 int main(int argc, char *argv[])
 {
-    //创建线程池
+    // create a threadpool
     ThreadPool* pool = ThreadPoolCreate(10, 3, 100);
     for (int i = 0; i < 100; i++) {
         int* num = (int*)malloc(sizeof(int));
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
         ThreadPoolAdd(pool, taskFunc, num);
     } 
 
-    //让主线程确保完成任务
+    // let the main thread do the work
     sleep(20);
     ThreadPoolDestroy(pool);
     return 0;
