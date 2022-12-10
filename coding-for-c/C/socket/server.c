@@ -9,7 +9,7 @@
 #include<arpa/inet.h>
 #include<pthread.h>
 #include "threadpool.h"
-//信息结构体
+// the information structure
 struct SockInfo {
     struct sockaddr_in addr;
     int fd;
@@ -23,29 +23,29 @@ void accptConn(void* arg);
 
 int main (int argc, char *argv[])
 {
-    //1.创建监听的套接字
+    //1.create a listening socket
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     if (fd == -1) {
         perror("socket");
         return -1;
     }
-    //2.绑定本地的IP port
+    //2.bind local IP port
     struct sockaddr_in saddr;
     saddr.sin_family = AF_INET;
     saddr.sin_port = htons(9999);
-    saddr.sin_addr.s_addr = INADDR_ANY;// 0 = 0,0,0,0 该宏定义自动读取本地网卡IP地址
+    saddr.sin_addr.s_addr = INADDR_ANY;// 0 = 0,0,0,0 this macro automatically read the IP address of the local network card
     int ret = bind(fd, (struct sockaddr*)&saddr, sizeof(saddr));
     if (ret == -1) {
         perror("bind");
         return -1;
     }
-    //3.设置监听
+    //3.set monitor
     ret = listen(fd, 128);
     if (ret == -1) {
         perror("listen");
         return -1;
     }
-    //创建线程池
+    // create the thread pool
     ThreadPool* pool = ThreadPoolCreate(3, 8, 100);
     PoolInfo* info = (PoolInfo*)malloc(sizeof(PoolInfo));
     info->p = pool;
@@ -57,7 +57,7 @@ int main (int argc, char *argv[])
 void accptConn(void* arg)
 {
     PoolInfo* poolInfo = (PoolInfo*)arg;
-    //4.阻塞并等待客户端的连接
+    //4. block and wait for client connection
     int addrlen = sizeof(struct sockaddr_in);
     while (1) {
         struct SockInfo* pinfo;
@@ -67,7 +67,7 @@ void accptConn(void* arg)
             perror("accept");
             break;
         }
-        //添加通信的任务
+        // add communication tasks
         ThreadPoolAdd(poolInfo->p, working, pinfo);
     }
     
@@ -76,12 +76,12 @@ void accptConn(void* arg)
 void working(void* arg)
 {
     struct SockInfo* pinfo = (struct SockInfo*)arg;
-    //连接建立成功，打印客户端的IP和端口信息
+    // connecting successfully, print the client IP and port information
     char ip[32];
     printf("the client's IP: %s. port: %d\n", inet_ntop(AF_INET, &pinfo->addr.sin_addr, ip, sizeof(ip)), ntohs(pinfo->addr.sin_port));
-    //5.通信
+    //5. communicate
     while (1) {
-        //接收数据 
+        // receive data 
         char buff[1024];
         int len = recv(pinfo->fd, buff, sizeof(buff), 0);
         if (len > 0) {
@@ -95,6 +95,6 @@ void working(void* arg)
             break;
         }
     }
-    //关闭文件描述符
+    // close file descriptor
     close(pinfo->fd);
 }

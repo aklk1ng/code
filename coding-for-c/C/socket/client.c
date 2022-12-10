@@ -7,13 +7,13 @@
 #include<arpa/inet.h>
 int main (int argc, char *argv[])
 {
-    //1.创建通信的套接字
+    //1. create the listening socket
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     if (fd == -1) {
         perror("socket");
         return -1;
     }
-    //2.连接服务器IP port
+    //2. connect server IP port
     struct sockaddr_in saddr;
     saddr.sin_family = AF_INET;
     saddr.sin_port = htons(9999);
@@ -23,16 +23,16 @@ int main (int argc, char *argv[])
         perror("connect");
         return -1;
     }
-    //3.通信
+    //3. communicate
     int number = 0; 
     while (1) {
-        //发送数据 
+        // send data 
         char buff[1024];
         sprintf(buff, "hello world, %d ...\n",number);
         number++;
         send(fd, buff, strlen(buff)+1, 0);
 
-        //接收数据
+        // receive data
         memset(buff, 0, sizeof(buff));
         int len = recv(fd, buff, sizeof(buff), 0);
         if (len > 0) {
@@ -46,7 +46,7 @@ int main (int argc, char *argv[])
         }
         sleep(1);
     }
-    //关闭文件描述符
+    // close file descriptor
     close(fd);
     return 0;
 }

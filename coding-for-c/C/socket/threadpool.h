@@ -5,30 +5,30 @@
 #include <string.h>
 
 typedef struct ThreadPool ThreadPool;
-//创建线程池并初始化
+// create the thread pool and init it
 ThreadPool* ThreadPoolCreate(int max, int min, int queueSize);
 
-//销毁线程池
+// destroy the thread pool
 int ThreadPoolDestroy(ThreadPool* pool);
 
 
-//给线程池添加任务
+// add tasks to the thread pool
 void ThreadPoolAdd(ThreadPool* pool, void(*func)(void*), void* arg);
 
-//当前线程池的工作的线程数
+// get the number of working threads in the thread pool 
 
 int ThreadPoolBusyNum(ThreadPool* pool);
 
-//线程池中的存活的线程的个数
+// get the number of living threads in the thread pool
 int ThreadPoolAliveNum(ThreadPool* pool);
 
-//工作函数
+// the working function
 void* worker(void* arg);
 
 
-//管理函数
+// the manager function
 void* manager(void* arg);
 
-//线程退出函数
+// thread exit function
 void ThreadExit(ThreadPool* pool);
 
