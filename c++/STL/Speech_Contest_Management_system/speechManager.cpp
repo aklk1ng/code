@@ -200,9 +200,6 @@ void SpeechManager::loadRecord()
         index++;
     }
     ifs.close();
-    /* for (map<int, vector<string>>::iterator it = m_Record.begin(); it != m_Record.end(); it++) { */
-    /*     cout << it->first << " Speaker:" << it->second[0] << " Score:" << it->second[1] << endl; */ 
-    /* } */
 }
 void SpeechManager::showRecord()
 {
