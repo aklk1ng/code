@@ -1,8 +1,5 @@
 src=$(wildcard *.cpp)
-obj=$(patsubst %.cpp, %.o, $(src))
 tar=Speech_Contest
-$(tar):$(obj)
-	$(CXX) $(obj) -o $(tar)
+$(tar):$(src)
+	$(CXX) $(src) -o $(tar)
 .PHONY:clean
-clean:
-	rm $(obj)
