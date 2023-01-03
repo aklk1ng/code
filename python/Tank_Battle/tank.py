@@ -376,4 +376,5 @@ class Music():
         pygame.mixer.music.play(loops=-1)
 
 
-MainGame().startGame()
+if __name__ == "__main__":
+    MainGame().startGame()
