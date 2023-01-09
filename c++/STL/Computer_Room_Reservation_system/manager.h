@@ -6,8 +6,7 @@
 #include "teacher.h"
 #include "computerRoom.h"
 #include <vector>
-class Manager :public Identity
-{
+class Manager :public Identity {
     public:
         Manager();
         Manager(string name, string pwd);
@@ -24,4 +23,4 @@ class Manager :public Identity
         vector<Student>vStu;
         vector<Teacher>vTea;
         vector<ComputerRoom>vCom;
-    };
+};
