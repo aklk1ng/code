@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type Humaner interface {
     sayhi()
@@ -122,6 +125,13 @@ func test6() {
         }
     }
 }
+func test7() {
+    err := fmt.Errorf("%s", "this is a normal error")
+    fmt.Println(err)
+
+    err1 := errors.New("this is a normal error1")
+    fmt.Println(err1)
+}
 
 func main() {
     // test() 
@@ -129,5 +139,6 @@ func main() {
     // test3()
     // test4()
     // test5()
-    test6()
+    // test6()
+    test7()
 }
