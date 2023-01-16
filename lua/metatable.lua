@@ -21,3 +21,4 @@ local myFavs = {food = 'pizza'}
 setmetatable(myFavs, {__index = defaultFavs})
 local print_eatenBy = myFavs.animal
 print(print_eatenBy)
+print(getmetatable(print_eatenBy))
