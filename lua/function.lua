@@ -1,7 +1,7 @@
 assert(1)
 
-local a = {1, 2, 3, sfasdf = "asdfds", 1}
-local c = {1, 2, 3, nil}
+local a = { 1, 2, 3, sfasdf = "asdfds", 1 }
+local c = { 1, 2, 3, nil }
 local b = {}
 local result = next(a, 2)
 -- use the function to check whether a table is empty
@@ -24,5 +24,6 @@ local function f(s1, s2)
     -- return the total number of extra arguments
     print(select('#', s1, s2))
 end
+
 f(1, 3)
 print(_VERSION)

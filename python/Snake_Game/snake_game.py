@@ -55,6 +55,18 @@ def show_score(choice, color, font, size):
     game_window.blit(score_surface, score_rect)
 
 
+class Music():
+    def __init__(self, fileName):
+        self.fileName = fileName
+        pygame.mixer.init()
+        pygame.mixer.music.load(self.fileName)
+
+    def play(self):
+        pygame.mixer.music.play(loops=-1)
+
+
+music = Music('music/startup.mp3')
+music.play()
 # game loop
 while True:
     for event in pygame.event.get():

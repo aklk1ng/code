@@ -1,5 +1,5 @@
-local a = {1, 2}
-local b = {3, 4}
+local a = { 1, 2 }
+local b = { 3, 4 }
 local c = table.concat(a, ' ')
 print(c)
 
@@ -16,15 +16,16 @@ local function table_maxn(t)
     end
     return mn
 end
-local tb = {[1] = 2, [2] = 6, [3] = 34, [4] = 5}
+
+local tb = { [1] = 2, [2] = 6, [3] = 34, [4] = 5 }
 print(table_maxn(tb))
 print(#tb)
 
 local fibs = { 1, 1 }
 setmetatable(fibs, {
-  __index = function(values, n) --[[__index is a function predefined by Lua,it is called if key "n" does not exist.]]
-    values[n] = values[n - 1] + values[n - 2]  -- Calculate and memoize fibs[n].
-    return values[n]
-  end
+    __index = function(values, n) --[[__index is a function predefined by Lua,it is called if key "n" does not exist.]]
+        values[n] = values[n - 1] + values[n - 2] -- Calculate and memoize fibs[n].
+        return values[n]
+    end
 })
 print(fibs[3])
