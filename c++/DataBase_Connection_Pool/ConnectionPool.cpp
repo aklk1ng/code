@@ -28,13 +28,13 @@ shared_ptr<MysqlConn>ConnectionPool::getConnection() {
             }
         }
     }
-    shared_ptr<MysqlConn> connptr(m_connectionQ.front(), [this](MysqlConn *conn){
-                                      /* m_mutexQ.lock(); */
-                                      lock_guard<mutex> locker(m_mutexQ);
-                                      conn->refreshAliveTime();
-                                      m_connectionQ.push(conn);
-                                      /* m_mutexQ.unlock(); */
-                                  });
+    shared_ptr<MysqlConn> connptr(m_connectionQ.front(), [this](MysqlConn *conn) {
+            /* m_mutexQ.lock(); */
+            lock_guard<mutex> locker(m_mutexQ);
+            conn->refreshAliveTime();
+            m_connectionQ.push(conn);
+            /* m_mutexQ.unlock(); */
+            });
     m_connectionQ.pop();
     m_cond.notify_all();
     return connptr;
