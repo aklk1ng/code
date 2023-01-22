@@ -5,19 +5,18 @@
 #include "teacher.h"
 #include <fstream>
 #include <vector>
-Manager::Manager()
-{
+Manager::Manager() {
 
 }
-Manager::Manager(string name, string pwd)
-{
+
+Manager::Manager(string name, string pwd) {
     this->m_name = name;
     this->m_pwd = pwd;
     this->initVector();
     this->initComputer();
 }
-void Manager::operMenu()
-{
+
+void Manager::operMenu() {
     cout << "Welcome! " << this->m_name << endl;
     cout << "\t\t------------------------\n";
     cout << "\t\t|                      |\n";
@@ -34,8 +33,8 @@ void Manager::operMenu()
     cout << "\t\t------------------------\n";
     cout << "Please enter your choice: ";
 }
-bool Manager::checkRepeat(int id, int type)
-{
+
+bool Manager::checkRepeat(int id, int type) {
     if (type == 1) {
         for (vector<Student>::iterator it = vStu.begin(); it != vStu.end(); it++) {
             if (id == it->m_Id) {
@@ -52,8 +51,7 @@ bool Manager::checkRepeat(int id, int type)
     return false;
 }
 
-void Manager::initVector()
-{
+void Manager::initVector() {
     ifstream ifs;
     ifs.open(STUDENT_FILE, ios::in);
     if (!ifs.is_open()) {
@@ -80,8 +78,8 @@ void Manager::initVector()
     cout << "the number of teachers currently: " << vTea.size() << endl;
     ifs.close();
 }
-void Manager::initComputer()
-{
+
+void Manager::initComputer() {
     ifstream ifs;
     ifs.open(COMPUTER_FILE, ios::in);
     ComputerRoom com;
@@ -90,8 +88,8 @@ void Manager::initComputer()
     }
     ifs.close();
 }
-void Manager::addPerson()
-{
+
+void Manager::addPerson() {
     cout << "Please enter the account type" << endl;
     cout << "1.student" << endl;
     cout << "2.teacher" << endl;
@@ -135,8 +133,8 @@ void Manager::addPerson()
     ofs.close();
     this->initVector();
 }
-void Manager::showPerson()
-{
+
+void Manager::showPerson() {
     cout << "Please select the content" << endl;
     cout << "1.students" << endl;
     cout << "2.teachers" << endl;
@@ -152,15 +150,15 @@ void Manager::showPerson()
        } 
     }
 }
-void Manager::showComputer()
-{
+
+void Manager::showComputer() {
     cout << "The computer room information:" << endl; 
     for (vector<ComputerRoom>::iterator it = vCom.begin(); it != vCom.end(); it++) {
         cout << "ComputerID: " << it->m_ComId << "\tComputerCapacuty: " << it->m_MaxNum << endl;
     }
 }
-void Manager::cleanFile()
-{
+
+void Manager::cleanFile() {
     ofstream ofs(ORDER_FILE, ios::trunc);
     ofs.close();
     cout << "clean sucessfully!" << endl;

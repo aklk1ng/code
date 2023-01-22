@@ -2,8 +2,7 @@
 #include "globalFile.h"
 #include <map>
 #include <utility>
-OrderFile::OrderFile()
-{
+OrderFile::OrderFile() {
     ifstream ifs;
     ifs.open(ORDER_FILE, ios::in);
     string date;
@@ -78,8 +77,8 @@ OrderFile::OrderFile()
     /*     } */
     /* } */
 }
-void OrderFile::updateOrder()
-{
+
+void OrderFile::updateOrder() {
     if (this->m_Size == 0) {
         return;
     }

@@ -7,8 +7,7 @@
 #include "manager.h"
 using namespace std;
 
-void studentMenu(Identity * &student)
-{
+void studentMenu(Identity * &student) {
     while (1) {
         student->operMenu();
         Student *stu = (Student*)student;
@@ -30,8 +29,8 @@ void studentMenu(Identity * &student)
         }
     }
 }
-void teacherMenu(Identity * &teacher)
-{
+
+void teacherMenu(Identity * &teacher) {
     while (1) {
         teacher->operMenu();
         Teacher *tea = (Teacher*)teacher;
@@ -48,6 +47,7 @@ void teacherMenu(Identity * &teacher)
         }
     }
 }
+
 void managerMenu(Identity * &manager) {
     while (1) {
         manager->operMenu();
@@ -70,8 +70,7 @@ void managerMenu(Identity * &manager) {
     }
 }
 
-void LoginIn(string filename, int type)
-{
+void LoginIn(string filename, int type) {
     Identity *person = NULL;
     ifstream ifs;
     ifs.open(filename, ios::in);
@@ -138,8 +137,7 @@ void LoginIn(string filename, int type)
     return;
 }
 
-int main (int argc, char *argv[])
-{
+int main (int argc, char *argv[]) {
     int select = 0;
     cout << "Please enter your identity" << endl;
     cout << "\t\t------------------------\n";

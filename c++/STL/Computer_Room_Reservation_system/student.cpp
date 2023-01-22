@@ -3,21 +3,18 @@
 #include <cstdlib>
 #include <fstream>
 #include <vector>
-Student::Student()
-{
+Student::Student() {
 
 }
 
-Student::Student(int id, string name, string pwd)
-{
+Student::Student(int id, string name, string pwd) {
     this->m_Id = id;
     this->m_name = name;
     this->m_pwd = pwd;
     this->initComputer();
 }
 
-void Student::initComputer()
-{
+void Student::initComputer() {
     ifstream ifs;
     ifs.open(COMPUTER_FILE, ios::in);
     ComputerRoom com;
@@ -26,8 +23,7 @@ void Student::initComputer()
     }
     ifs.close();
 }
-void Student::operMenu()
-{
+void Student::operMenu() {
     cout << "Welcome! " << this->m_name << endl;
     cout << "\t\t------------------------\n";
     cout << "\t\t|                      |\n";
@@ -45,8 +41,7 @@ void Student::operMenu()
     cout << "Please enter your choice: ";
 }
 
-void Student::applyOrder()
-{
+void Student::applyOrder() {
     cout << "1.Monday" << endl;
     cout << "2.Tuesday" << endl;
     cout << "3.Wednessay" << endl;
@@ -99,8 +94,7 @@ void Student::applyOrder()
 
 }
 
-void Student::showOrder()
-{
+void Student::showOrder() {
     OrderFile of;
     if (of.m_Size == 0) {
         cout << "the orders is empty!" << endl;
@@ -124,8 +118,7 @@ void Student::showOrder()
     }
 }
 
-void Student::showAllOrder()
-{
+void Student::showAllOrder() {
     OrderFile of;
     if (of.m_Size == 0) {
         cout << "the orders is empty!" << endl;
@@ -152,8 +145,7 @@ void Student::showAllOrder()
     }
 }
 
-void Student::cancelOrder()
-{
+void Student::cancelOrder() {
     OrderFile of;
     if (of.m_Size == 0) {
         cout << "the orders is empty!" << endl;

@@ -2,18 +2,15 @@
 #include "orderFile.h"
 #include "Computer_Room_Reservation.h"
 
-Teacher::Teacher()
-{
+Teacher::Teacher() {
 
 }
-Teacher::Teacher(int empId, string name, string pwd)
-{
+Teacher::Teacher(int empId, string name, string pwd) {
     this->m_EmpId = empId;
     this->m_name = name;
     this->m_pwd = pwd;
 }
-void Teacher::operMenu()
-{
+void Teacher::operMenu() {
     cout << "Welcome! " << this->m_name << endl;
     cout << "\t\t------------------------\n";
     cout << "\t\t|                      |\n";
@@ -26,8 +23,7 @@ void Teacher::operMenu()
     cout << "\t\t------------------------\n";
     cout << "Please enter your choice: ";
 }
-void Teacher::showAllOrder()
-{
+void Teacher::showAllOrder() {
     OrderFile of;
     if (of.m_Size == 0) {
         cout << "the orders is empty!" << endl;
@@ -50,8 +46,7 @@ void Teacher::showAllOrder()
         cout << status << endl;
     }
 }
-void Teacher::validOrder()
-{
+void Teacher::validOrder() {
     OrderFile of;
     if (of.m_Size == 0) {
         cout << "the orders is empty!" << endl;
