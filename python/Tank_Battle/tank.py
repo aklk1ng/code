@@ -185,6 +185,8 @@ class Tank(BaseItem):
         }
         self.direction = 'U'
         self.image = self.images[self.direction]
+        self.image.set_colorkey(color_bg)
+        self.image.convert_alpha()
         self.rect = self.image.get_rect()
         # the initial position
         self.rect.left = left
