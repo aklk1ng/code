@@ -27,16 +27,16 @@ int main (int argc, char *argv[])
     int number = 0; 
     while (1) {
         // send data 
-        char buff[1024];
-        sprintf(buff, "hello world, %d ...\n",number);
+        char buf[1024];
+        sprintf(buf, "hello world, %d ...\n",number);
         number++;
-        send(fd, buff, strlen(buff)+1, 0);
+        send(fd, buf, strlen(buf)+1, 0);
 
         // receive data
-        memset(buff, 0, sizeof(buff));
-        int len = recv(fd, buff, sizeof(buff), 0);
+        memset(buf, 0, sizeof(buf));
+        int len = recv(fd, buf, sizeof(buf), 0);
         if (len > 0) {
-            printf("server say: %s\n", buff);
+            printf("server say: %s\n", buf);
         } else if (len == 0) {
             printf("the server disconnect...\n");
             break;

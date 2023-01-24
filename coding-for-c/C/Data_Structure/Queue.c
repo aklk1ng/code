@@ -4,24 +4,22 @@
 #include<assert.h>
 #include<stdbool.h>
 typedef int QDataType;
-typedef struct QueueNode
-{
+typedef struct QueueNode {
     QDataType data;
     struct QueueNode* next;
 }QueueNode;
-typedef struct Queue
-{
+typedef struct Queue {
     QueueNode* head;
     QueueNode* tail;
 }Queue;
-void QueueInit(Queue* ps)
-{
+
+void QueueInit(Queue* ps) {
     assert(ps);
     ps->head=NULL;
     ps->tail=NULL;
 }
-void QueueDestroy(Queue* ps)
-{
+
+void QueueDestroy(Queue* ps) {
     assert(ps);
     QueueNode* cur=ps->head;
     while(cur!=NULL) {
@@ -32,8 +30,8 @@ void QueueDestroy(Queue* ps)
     ps->tail=NULL;
     ps->head=NULL;
 }
-void QueuePush(Queue* ps, QDataType x)
-{
+
+void QueuePush(Queue* ps, QDataType x) {
     assert(ps);
     QueueNode* newnode=(QueueNode*)malloc(sizeof(QueueNode));
     if(newnode==NULL) {
@@ -49,9 +47,9 @@ void QueuePush(Queue* ps, QDataType x)
         ps->tail=newnode;
     }
 }
+
 //删除队头的数据
-void QueuePop(Queue* ps)
-{
+void QueuePop(Queue* ps) {
     assert(ps);
     assert(ps->head!=NULL);
     QueueNode* next=ps->head->next;
@@ -62,22 +60,21 @@ void QueuePop(Queue* ps)
         ps->tail=NULL;
     }
 }
+
 //获取数据
-QDataType QueueFront(Queue* ps)
-{
+QDataType QueueFront(Queue* ps) {
     assert(ps);
     assert(ps->head!=NULL);
     return ps->head->data;
 }
-QDataType QueueBack(Queue* ps)
-{
+
+QDataType QueueBack(Queue* ps) {
     assert(ps);
     assert(ps->head!=NULL);
     return ps->tail->data;
 }
 
-int QueueSize(Queue* ps)
-{
+int QueueSize(Queue* ps) {
     assert(ps);
     QueueNode* cur=ps->head;
     int n=0;
@@ -87,8 +84,8 @@ int QueueSize(Queue* ps)
     }
     return n;
 }
-void test()
-{
+
+void test() {
     Queue ps;
     QueueInit(&ps);
     QueuePush(&ps, 0);
@@ -104,8 +101,8 @@ void test()
     printf("%d\n",QueueSize(&ps));
     QueueDestroy(&ps);
 }
-int main()
-{
+
+int main() {
     test();
     return 0;
 }

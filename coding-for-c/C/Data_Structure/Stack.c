@@ -4,28 +4,27 @@
 #include<stdbool.h>
 #include<assert.h>
 typedef int StackDataType;
-typedef struct Stack
-{
+typedef struct Stack {
     StackDataType* a;
     int top;
     int capacity;
 }ST;
-void StackInit(ST* ps)
-{
+
+void StackInit(ST* ps) {
     assert(ps);
     ps->a=NULL;
     ps->top=0;
     ps->capacity=0;
 }
-void StackDestroy(ST* ps)
-{
+
+void StackDestroy(ST* ps) {
     assert(ps);
     free(ps->a);
     ps->top=0;
     ps->capacity=0;
 }
-void StackPush(ST* ps, StackDataType x)
-{
+
+void StackPush(ST* ps, StackDataType x) {
     assert(ps);
     if(ps->top==ps->capacity) {
         int newcapacity=ps->capacity==0?4:ps->capacity*2;
@@ -40,30 +39,30 @@ void StackPush(ST* ps, StackDataType x)
     ps->a[ps->top]=x;
     ps->top++;
 }
-void StackPop(ST* ps)
-{
+
+void StackPop(ST* ps) {
     assert(ps);
     assert(ps->top>0);
     ps->top--;
 }
-int StackSize(ST* ps)
-{
+
+int StackSize(ST* ps) {
     assert(ps);
     return ps->top;
 }
-bool StackEmpty(ST* ps)
-{
+
+bool StackEmpty(ST* ps) {
     assert(ps);
     return ps->top==0;
 }
-StackDataType StackTop(ST* ps)
-{
+
+StackDataType StackTop(ST* ps) {
     assert(ps);
     assert(ps->top>0);
     return ps->a[ps->top-1];
 }
-void test()
-{
+
+void test() {
     ST ps;
     StackInit(&ps);
     StackPush(&ps,0);
@@ -76,8 +75,8 @@ void test()
     printf("%d\n",StackTop(&ps));
     StackDestroy(&ps);
 }
-int main()
-{
+
+int main() {
     test();
     return 0;
 }

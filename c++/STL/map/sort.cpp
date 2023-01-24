@@ -10,12 +10,11 @@ using namespace std;
 #define CEHUA 0
 #define MEISHU 1
 #define YANFA 2
-class Worker
-{
+class Worker {
     public:
         string m_name;
         int m_money;
-    };
+};
 void createworker(vector<Worker>&v)
 {
     string nameseed = "ABCDEFGHIJ";
@@ -43,7 +42,7 @@ void showWorker(multimap<int, Worker>&m)
     int count = m.count(CEHUA);
     int index = 0;
     for (; pos != m.end() && index < count; pos++, index++) {
-        cout << pos->second.m_name << " " << pos->second.m_money << endl; 
+        cout << pos->second.m_name << " " << pos->second.m_money << endl;
     }
     cout << "-------------------" << endl;
     cout << "meishu:" << endl;
@@ -51,7 +50,7 @@ void showWorker(multimap<int, Worker>&m)
     pos = m.find(MEISHU);
     index = 0;
     for (; pos != m.end() && index < count; pos++, index++) {
-        cout << pos->second.m_name << " " << pos->second.m_money << endl; 
+        cout << pos->second.m_name << " " << pos->second.m_money << endl;
     }
     cout << "-------------------" << endl;
     cout << "yanfa:" << endl;
@@ -59,14 +58,14 @@ void showWorker(multimap<int, Worker>&m)
     pos = m.find(YANFA);
     index = 0;
     for (; pos != m.end() && index < count; pos++, index++) {
-        cout << pos->second.m_name << " " << pos->second.m_money << endl; 
+        cout << pos->second.m_name << " " << pos->second.m_money << endl;
     }
 }
 
 void test()
 {
     srand((unsigned int)time(NULL));
-    vector<Worker>vworker; 
+    vector<Worker>vworker;
     createworker(vworker);
     multimap<int, Worker>mworker;
     setGroup(vworker, mworker);
@@ -78,6 +77,6 @@ void test()
 
 int main (int argc, char *argv[])
 {
-    test();     
+    test();
     return 0;
 }

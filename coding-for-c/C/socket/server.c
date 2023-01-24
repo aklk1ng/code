@@ -82,11 +82,11 @@ void working(void* arg)
     //5. communicate
     while (1) {
         // receive data 
-        char buff[1024];
-        int len = recv(pinfo->fd, buff, sizeof(buff), 0);
+        char buf[1024];
+        int len = recv(pinfo->fd, buf, sizeof(buf), 0);
         if (len > 0) {
-            printf("client say: %s\n", buff);
-            send(pinfo->fd, buff, len, 0);
+            printf("client say: %s\n", buf);
+            send(pinfo->fd, buf, len, 0);
         } else if (len == 0) {
             printf("the client disconnect...\n");
             break;

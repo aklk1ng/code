@@ -8,8 +8,8 @@ typedef struct TreeNode
     struct TreeNode *left;
     struct TreeNode *right;
 }TNode;
-TNode *CreateNode(DataType data)
-{
+
+TNode *CreateNode(DataType data) {
     TNode *node = (TNode*)malloc(sizeof(TNode));
     if(node == NULL) {
         printf("malloc falied\n");
@@ -20,8 +20,8 @@ TNode *CreateNode(DataType data)
     node->right=NULL;
     return node;
 }
-TNode *TreeInsert(TNode *root, DataType data)
-{
+
+TNode *TreeInsert(TNode *root, DataType data) {
     if(root == NULL) {
         TNode *node = CreateNode(data);
     } else if(root->data > data) {
@@ -35,9 +35,9 @@ TNode *TreeInsert(TNode *root, DataType data)
     return root;
 
 }
+
 //递归查找
-TNode *TreeRecursionFind(TNode *root, DataType data)
-{
+TNode *TreeRecursionFind(TNode *root, DataType data) {
     if(root ==NULL) {
         printf("the tree is empty!\n");
         return NULL;
@@ -47,9 +47,9 @@ TNode *TreeRecursionFind(TNode *root, DataType data)
         return TreeRecursionFind(root->right, data);
     } else return root;
 }
+
 //非递归查找
-TNode *TreeIterationFind(TNode *root, DataType data)
-{
+TNode *TreeIterationFind(TNode *root, DataType data) {
     TNode* T = root;
     while (T) {
         if(root->data > data) {
@@ -61,8 +61,8 @@ TNode *TreeIterationFind(TNode *root, DataType data)
     //查找失败
     return NULL;
 }
-TNode *Tree_Max(TNode *root)
-{
+
+TNode *Tree_Max(TNode *root) {
     if(root ==NULL) {
         printf("the tree is empty!]n");
         return NULL;
@@ -73,8 +73,8 @@ TNode *Tree_Max(TNode *root)
         return Tree_Max(root->right);
     }
 }
-TNode *Tree_Min(TNode *root)
-{
+
+TNode *Tree_Min(TNode *root) {
     if(root ==NULL) {
         printf("the tree is empty!]n");
         return NULL;
@@ -85,8 +85,8 @@ TNode *Tree_Min(TNode *root)
         return Tree_Min(root->left);
     }
 }
-TNode *TreeDelete(TNode *root, DataType data)
-{
+
+TNode *TreeDelete(TNode *root, DataType data) {
     if(root == NULL) {
         printf("the tree is empty!\n");
         return root;
@@ -112,9 +112,9 @@ TNode *TreeDelete(TNode *root, DataType data)
     }
     return root;
 }
+
 //先序遍历
-void PreOrderTree(TNode *root)
-{
+void PreOrderTree(TNode *root) {
     if(root == NULL) {
         printf("the tree is empty!\n");
     } else {
@@ -123,9 +123,9 @@ void PreOrderTree(TNode *root)
         PreOrderTree(root->right);
     }
 }
+
 //中序遍历
-void InOrderTree(TNode *root)
-{
+void InOrderTree(TNode *root) {
     if(root == NULL) {
         printf("the tree is empty!\n");
     } else {
@@ -134,8 +134,8 @@ void InOrderTree(TNode *root)
         PreOrderTree(root->right);
     }
 }
-int main(int argc, char const *argv[])
-{
+
+int main(int argc, char const *argv[]) {
     TNode *root =NULL;
     root = TreeInsert(root, 0);
     root = TreeInsert(root, 1);

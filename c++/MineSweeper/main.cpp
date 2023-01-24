@@ -20,7 +20,10 @@ int main (int argc, char *argv[])
     int grid[12][12];
     int sgrid[12][12];
     Texture t;
-    t.loadFromFile();
+    bool err = t.loadFromFile();
+    if (err) {
+        return EXIT_FAILURE;
+    }
     Sprite s(t);
     for (int i = 0; i <= 10; i++) {
         for (int j = 0; j <= 10; j++) {

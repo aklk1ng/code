@@ -3,13 +3,12 @@
 #include<stdlib.h>
 #include<assert.h>
 typedef int SLDataType;
-typedef struct SeqListNode
-{
+typedef struct SeqListNode {
     SLDataType data;
     struct SeqListNode* next;
 }SLNode;
-void SListPrint(SLNode* phead)
-{
+
+void SListPrint(SLNode* phead) {
     SLNode* cur=phead;
     while(cur) {
         printf("%d->",cur->data);
@@ -17,8 +16,8 @@ void SListPrint(SLNode* phead)
     }
     printf("NULL\n");
 }
-SLNode* CreateNewNode(SLDataType x)
-{
+
+SLNode* CreateNewNode(SLDataType x) {
     SLNode* newnode=(SLNode*)malloc(sizeof(SLNode));
     if(newnode==NULL) {
         printf("malloc failed!\n");
@@ -28,15 +27,15 @@ SLNode* CreateNewNode(SLDataType x)
     newnode->next=NULL;
     return newnode;
 }
-void SListInsert(SLNode* pos, SLDataType x)
-{
+
+void SListInsert(SLNode* pos, SLDataType x) {
     assert(pos);
     SLNode* newnode=CreateNewNode(x);
     newnode->next=pos->next;
     pos->next=newnode;
 }
-SLNode* SListFind(SLNode* phead, SLDataType x)
-{
+
+SLNode* SListFind(SLNode* phead, SLDataType x) {
     SLNode* cur=phead;
     while(cur) {
         if(cur->data==x) {
@@ -47,14 +46,14 @@ SLNode* SListFind(SLNode* phead, SLDataType x)
     }
     return NULL;
 }
-void SListPushFront(SLNode** pphead, SLDataType x)
-{
+
+void SListPushFront(SLNode** pphead, SLDataType x) {
     SLNode* newnode=CreateNewNode(x);
     newnode->next=*pphead;
     *pphead=newnode;
 }
-void SListPushBack(SLNode** pphead, SLDataType x)
-{
+
+void SListPushBack(SLNode** pphead, SLDataType x) {
     SLNode* newnode=CreateNewNode(x);
     if(*pphead==NULL) {
         *pphead=newnode;
@@ -66,15 +65,15 @@ void SListPushBack(SLNode** pphead, SLDataType x)
         tail->next=newnode;
     }
 }
-void SListPopFront(SLNode** pphead)
-{
+
+void SListPopFront(SLNode** pphead) {
     assert(*pphead!=NULL);
     SLNode* cur=*pphead;
     *pphead=(*pphead)->next;
     free(cur);
 }
-void SListErase(SLNode** pphead, SLNode* pos)
-{
+
+void SListErase(SLNode** pphead, SLNode* pos) {
     SLNode* tail=*pphead;
     if(*pphead==pos) {
         *pphead=pos->next;
@@ -87,8 +86,8 @@ void SListErase(SLNode** pphead, SLNode* pos)
         free(pos);
     }
 }
-void SListDestory(SLNode** pphead)
-{
+
+void SListDestory(SLNode** pphead) {
     assert(pphead);
     SLNode* cur=*pphead;
     while(cur) {
@@ -98,8 +97,8 @@ void SListDestory(SLNode** pphead)
     }
     *pphead=NULL;
 }
-void test1()
-{
+
+void test1() {
     SLNode* n1=NULL;
     SListPushFront(&n1,1);
     SListPushBack(&n1,5);
@@ -110,8 +109,8 @@ void test1()
     SListPrint(n1);
     SListDestory(&n1);
 }
-int main()
-{
+
+int main() {
     test1();
     return 0;
 }

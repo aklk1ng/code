@@ -3,14 +3,13 @@
 #include<stdlib.h>
 #include<assert.h>
 typedef int LTNDataType;
-typedef struct ListNode
-{
+typedef struct ListNode {
     LTNDataType data;
     struct ListNode* prev;
     struct ListNode* next;
 }LNode;
-LNode* CreateNode(LTNDataType x)
-{
+
+LNode* CreateNode(LTNDataType x) {
     LNode* newnode=(LNode*)malloc(sizeof(LNode));
     if(newnode==NULL) {
         printf("malloc failed!\n");
@@ -21,15 +20,15 @@ LNode* CreateNode(LTNDataType x)
     newnode->prev=NULL;
     return newnode;
 }
-LNode* ListInit()
-{
+
+LNode* ListInit() {
     LNode* phead=CreateNode(9999);
     phead->prev=phead;
     phead->next=phead;
     return phead;
 }
-void ListPrint(LNode* phead)
-{
+
+void ListPrint(LNode* phead) {
     assert(phead);
     LNode* cur=phead->next;
     while(cur!=phead) {
@@ -38,8 +37,8 @@ void ListPrint(LNode* phead)
     }
     printf("\n");
 }
-LNode* ListFind(LNode* phead, LTNDataType x)
-{
+
+LNode* ListFind(LNode* phead, LTNDataType x) {
     assert(phead);
     LNode* cur=phead->next;
     while(cur!=phead) {
@@ -51,8 +50,8 @@ LNode* ListFind(LNode* phead, LTNDataType x)
     }
     return NULL;
 }
-void ListDestroy(LNode* phead)
-{
+
+void ListDestroy(LNode* phead) {
     assert(phead);
     LNode* cur=phead->next;
     while(cur!=phead) {
@@ -62,8 +61,8 @@ void ListDestroy(LNode* phead)
     }
     free(phead);
 }
-void ListInsert(LNode* pos, LTNDataType x)
-{
+
+void ListInsert(LNode* pos, LTNDataType x) {
     assert(pos);
     LNode* newnode=CreateNode(x);
     LNode* posprev=pos->prev;
@@ -72,8 +71,8 @@ void ListInsert(LNode* pos, LTNDataType x)
     newnode->next=pos;
     pos->prev=newnode;
 }
-void ListErase(LNode* pos)
-{
+
+void ListErase(LNode* pos) {
     assert(pos);
     LNode* posprev=pos->prev;
     LNode* posnext=pos->next;
@@ -82,18 +81,18 @@ void ListErase(LNode* pos)
     free(pos);
     pos=NULL;
 }
-void ListPushFront(LNode* phead, LTNDataType x)
-{
+
+void ListPushFront(LNode* phead, LTNDataType x) {
     assert(phead);
     ListInsert(phead->next, x);
 }
-void ListPushBack(LNode* phead, LTNDataType x)
-{
+
+void ListPushBack(LNode* phead, LTNDataType x) {
     assert(phead);
     ListInsert(phead, x);
 }
-void test()
-{
+
+void test() {
     LNode* plist=ListInit();
     ListPushFront(plist,1);
     ListPushBack(plist,2);
@@ -107,8 +106,7 @@ void test()
     ListDestroy(plist);
     plist=NULL;
 }
-int main()
-{
+int main() {
     test();
     return 0;
 }
