@@ -15,7 +15,9 @@ MysqlConn::~MysqlConn() {
 }
 
 bool MysqlConn::connect(string user, string passwd, string dbName, string ip, unsigned short int port) {
-    MYSQL *ptr = mysql_real_connect(m_conn, ip.c_str(), user.c_str(), passwd.c_str(), dbName.c_str(), port, nullptr, 0);
+    MYSQL *ptr =
+        mysql_real_connect(m_conn, ip.c_str(), user.c_str(), passwd.c_str(),
+                           dbName.c_str(), port, nullptr, 0);
     return ptr != nullptr;
 }
 
@@ -33,7 +35,6 @@ bool MysqlConn::query(string sql) {
     }
     m_result = mysql_store_result(m_conn);
     return true;
-
 }
 
 bool MysqlConn::next() {
@@ -56,17 +57,11 @@ string MysqlConn::value(int index) {
     return string(val, length);
 }
 
-bool MysqlConn::transaction() {
-    return mysql_autocommit(m_conn, false);
-}
+bool MysqlConn::transaction() { return mysql_autocommit(m_conn, false); }
 
-bool MysqlConn::commmit() {
-    return mysql_commit(m_conn);
-}
+bool MysqlConn::commmit() { return mysql_commit(m_conn); }
 
-bool MysqlConn::rollback() {
-    return mysql_rollback(m_conn);
-}
+bool MysqlConn::rollback() { return mysql_rollback(m_conn); }
 
 void MysqlConn::freeResult() {
     if (m_result) {
@@ -75,11 +70,9 @@ void MysqlConn::freeResult() {
     }
 }
 
-void MysqlConn::refreshAliveTime() {
-    m_alivetime = steady_clock::now();
-}
+void MysqlConn::refreshAliveTime() { m_alivetime = steady_clock::now(); }
 
-long long  MysqlConn::getAliveTime() {
+long long MysqlConn::getAliveTime() {
     nanoseconds res = steady_clock::now() - m_alivetime;
     milliseconds millsec = duration_cast<milliseconds>(res);
     return millsec.count();

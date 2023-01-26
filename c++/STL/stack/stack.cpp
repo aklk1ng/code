@@ -2,9 +2,8 @@
 #include <stack>
 using namespace std;
 
-void test1()
-{
-    stack<int>s;
+void test1() {
+    stack<int> s;
     s.push(1);
     s.push(2);
     s.push(3);
@@ -16,10 +15,9 @@ void test1()
         s.pop();
     }
     cout << s.size() << endl;
-
 }
-int main (int argc, char *argv[])
-{
-    test1();    
+
+int main(int argc, char *argv[]) {
+    test1();
     return 0;
 }

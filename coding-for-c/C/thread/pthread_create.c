@@ -1,4 +1,4 @@
-//互斥锁
+// 互斥锁
 /* #include <stdio.h> */
 /* #include <stdlib.h> */
 /* #include <string.h> */
@@ -19,7 +19,8 @@
 /*         number = cur; */
 /*         //解锁 */
 /*         pthread_mutex_unlock(&mutex); */
-/*         printf("Thread A, id = %lu, number = %d\n", pthread_self(),number); */
+/*         printf("Thread A, id = %lu, number = %d\n", pthread_self(),number);
+ */
 /*     } */
 /*     return NULL; */
 /* } */
@@ -32,7 +33,8 @@
 /*         usleep(10); */
 /*         number = cur; */
 /*         pthread_mutex_unlock(&mutex); */
-/*         printf("Thread B, id = %lu, number = %d\n", pthread_self(),number); */
+/*         printf("Thread B, id = %lu, number = %d\n", pthread_self(),number);
+ */
 /*     } */
 /*     return NULL; */
 /* } */
@@ -52,32 +54,29 @@
 /*     return 0; */
 /* } */
 
-
-//读写锁
-//三个写资源线程，每个线程对共享资源进行累加操作
+// 读写锁
+// 三个写资源线程，每个线程对共享资源进行累加操作
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//sleep()
-#include <unistd.h>
+// sleep()
 #include <pthread.h>
+#include <unistd.h>
 #define MAX 50
 int number;
 pthread_rwlock_t rwlock;
-void* readNum(void* arg)
-{
+void *readNum(void *arg) {
     for (int i = 0; i < MAX; ++i) {
-        //对公共资源加锁
+        // 对公共资源加锁
         pthread_rwlock_rdlock(&rwlock);
-        printf("Thread read, id = %lu, number = %d\n", pthread_self(),number);
-        //解锁
+        printf("Thread read, id = %lu, number = %d\n", pthread_self(), number);
+        // 解锁
         pthread_rwlock_unlock(&rwlock);
-        usleep(rand()%5);
+        usleep(rand() % 5);
     }
     return NULL;
 }
-void* writeNum(void* arg)
-{
+void *writeNum(void *arg) {
     for (int i = 0; i < MAX; ++i) {
         pthread_rwlock_wrlock(&rwlock);
         int cur = number;
@@ -85,24 +84,23 @@ void* writeNum(void* arg)
         usleep(10);
         number = cur;
         pthread_rwlock_unlock(&rwlock);
-        printf("Thread write, id = %lu, number = %d\n", pthread_self(),number);
-        usleep(rand()%5);
+        printf("Thread write, id = %lu, number = %d\n", pthread_self(), number);
+        usleep(rand() % 5);
     }
     return NULL;
 }
-int main(int argc, char *argv[])
-{
-    pthread_t p1[5],p2[3];
+int main(int argc, char *argv[]) {
+    pthread_t p1[5], p2[3];
     pthread_rwlock_init(&rwlock, NULL);
     /* 创建子线程 */
     for (int i = 0; i < 5; i++) {
-        pthread_create(&p1[i],NULL,readNum,NULL);
+        pthread_create(&p1[i], NULL, readNum, NULL);
     }
     for (int i = 0; i < 3; i++) {
-        pthread_create(&p2[i],NULL,writeNum,NULL);
+        pthread_create(&p2[i], NULL, writeNum, NULL);
     }
 
-    //阻塞，资源回收
+    // 阻塞，资源回收
     for (int i = 0; i < 5; i++) {
         pthread_join(p1[i], NULL);
     }
@@ -113,4 +111,3 @@ int main(int argc, char *argv[])
     pthread_rwlock_destroy(&rwlock);
     return 0;
 }
-

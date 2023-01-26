@@ -2,9 +2,8 @@
 #include <queue>
 using namespace std;
 
-void test1()
-{
-    queue<int>q;
+void test1() {
+    queue<int> q;
     q.push(1);
     q.push(2);
     q.push(3);
@@ -19,8 +18,7 @@ void test1()
         cout << q.size() << endl;
     }
 }
-int main (int argc, char *argv[])
-{
-    test1();    
+int main(int argc, char *argv[]) {
+    test1();
     return 0;
 }

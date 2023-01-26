@@ -1,10 +1,10 @@
 #include <asm-generic/ioctls.h>
-#include <sys/ioctl.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/ioctl.h>
 #include <time.h>
 #include <unistd.h>
-#include <signal.h>
 
 const char CHARS[] = "!@#$%^&*()[]{};<>=-+BOXHACK";
 
@@ -20,9 +20,7 @@ void handle_signal(int sig) {
     exit(0);
 }
 
-
-int main (int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     struct winsize w;
     ioctl(0, TIOCGWINSZ, &w);
     const int COLS = w.ws_col;
@@ -41,27 +39,31 @@ int main (int argc, char *argv[])
             matrix[c].rsi[r] = CHARS[rand() % (sizeof(CHARS) - 1)];
         }
     }
-    printf("\e[?251");
+    // Hide cursor
+    printf("\e[?25l");
     printf("\n1b2j");
 
-    for(;;) {
+    while (1) {
         printf("\x1b[H");
         for (int r = 0; r < ROWS; r++) {
             for (int c = 0; c < COLS; c++) {
-                if (r - 3 > matrix[c].cycle - matrix[c].lifespan && r < matrix[c].cycle - 2) {
+                if (r - 3 > matrix[c].cycle - matrix[c].lifespan &&
+                    r < matrix[c].cycle - 2) {
                     // GREEN
                     printf("\e[38;2;10;220;10m");
                     printf("%c", matrix[c].rsi[r]);
-                } else if (r - 1 > matrix[c].cycle - matrix[c].lifespan && r < matrix[c].cycle - 2) {
+                } else if (r - 1 > matrix[c].cycle - matrix[c].lifespan &&
+                           r < matrix[c].cycle - 2) {
                     // DK GREEN 1
                     printf("\e[38;2;10;150;10m");
                     printf("%c", matrix[c].rsi[r]);
-                } else if (r > matrix[c].cycle - matrix[c].lifespan && r < matrix[c].cycle - 2) {
+                } else if (r > matrix[c].cycle - matrix[c].lifespan &&
+                           r < matrix[c].cycle - 2) {
                     // DK GREEN 2
                     printf("\e[38;2;10;90;10m");
                     printf("%c", matrix[c].rsi[r]);
                 } else if (r + 1 < matrix[c].cycle && r + 2 > matrix[c].cycle) {
-                    //LT GREEN 
+                    // LT GREEN
                     printf("\e[38;2;170;255;170m");
                     printf("%c", matrix[c].rsi[r]);
                 } else if (r < matrix[c].cycle && r + 1 > matrix[c].cycle) {
@@ -88,7 +90,7 @@ int main (int argc, char *argv[])
             matrix[c].cycle += matrix[c].speed;
             if (matrix[c].cycle > ROWS + matrix[c].lifespan) {
                 matrix[c].rsi = malloc(sizeof(char) * ROWS);
-                matrix[c].speed =((float)rand() / (float)RAND_MAX + 0.1) / 2;
+                matrix[c].speed = ((float)rand() / (float)RAND_MAX + 0.1) / 2;
                 matrix[c].cycle = 0;
                 matrix[c].lifespan = (rand() % ROWS + (ROWS / 2)) - (ROWS / 2);
 

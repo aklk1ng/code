@@ -1,7 +1,7 @@
-//顺序表
+// 顺序表
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 typedef int SListDataType;
 typedef struct SeqList {
     SListDataType *a;
@@ -31,7 +31,8 @@ void SeqListDestory(SL *ps) {
 void SeqListCheckcapacity(SL *ps) {
     if (ps->size == ps->capacity) {
         int newcapacity = ps->capacity == 0 ? 4 : ps->capacity * 2;
-        SListDataType *tmp = (SListDataType *)realloc(ps->a, newcapacity * sizeof(SListDataType));
+        SListDataType *tmp = (SListDataType *)realloc(
+            ps->a, newcapacity * sizeof(SListDataType));
         if (tmp == NULL) {
             printf("realloc failed!\n");
             exit(-1);

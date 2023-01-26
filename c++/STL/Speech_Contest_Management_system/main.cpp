@@ -3,8 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <map>
-int main (int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     srand((unsigned int)time(NULL));
     SpeechManager sm;
     int choice = 0;

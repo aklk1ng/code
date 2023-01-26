@@ -3,20 +3,18 @@
 #include <string>
 using namespace std;
 
-class Person
-{
-    public:
-        Person(string name, int age, int height) {
-            this->m_name = name;
-            this->m_age = age;
-            this->m_height = height;
-        }
-        string m_name;
-        int m_age;
-        int m_height;
-    };
-bool ComparePerson(Person &p1, Person &p2)
-{
+class Person {
+public:
+    Person(string name, int age, int height) {
+        this->m_name = name;
+        this->m_age = age;
+        this->m_height = height;
+    }
+    string m_name;
+    int m_age;
+    int m_height;
+};
+bool ComparePerson(Person &p1, Person &p2) {
     if (p1.m_age == p2.m_age) {
         // descending
         return p1.m_height > p2.m_height;
@@ -24,9 +22,8 @@ bool ComparePerson(Person &p1, Person &p2)
     // ascending
     return p1.m_age < p2.m_age;
 }
-void test()
-{
-    list<Person>l;
+void test() {
+    list<Person> l;
     Person p1("A", 20, 160);
     Person p2("BC", 19, 177);
     Person p3("C", 19, 155);
@@ -49,8 +46,7 @@ void test()
         cout << it->m_name << "\t" << it->m_age << "\t" << it->m_height << endl;
     }
 }
-int main (int argc, char *argv[])
-{
-    test(); 
+int main(int argc, char *argv[]) {
+    test();
     return 0;
 }

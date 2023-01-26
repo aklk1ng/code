@@ -1,6 +1,6 @@
+#include <chrono>
 #include <iostream>
 #include <thread>
-#include <chrono>
 using namespace std;
 
 void func(int num, string str) {
@@ -15,11 +15,11 @@ void func1() {
     }
 }
 
-int main (int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
     cout << this_thread::get_id() << endl;
     thread t1(func, 520, "i love you");
     thread t2(func1);
-    cout <<t1.get_id() << endl;
+    cout << t1.get_id() << endl;
     cout << t2.get_id() << endl;
     t1.join();
     t2.join();

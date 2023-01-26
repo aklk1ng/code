@@ -1,9 +1,9 @@
 #pragma once
-#include <memory>
-#include <queue>
-#include <mutex>
-#include <condition_variable>
 #include "MysqlConn.h"
+#include <condition_variable>
+#include <memory>
+#include <mutex>
+#include <queue>
 using namespace std;
 class ConnectionPool {
 public:
@@ -12,6 +12,7 @@ public:
     ConnectionPool &operator=(const ConnectionPool &obj) = delete;
     shared_ptr<MysqlConn> getConnection();
     ~ConnectionPool();
+
 private:
     ConnectionPool();
     bool parseJsonFile();
@@ -28,7 +29,7 @@ private:
     int m_maxSize;
     int m_timeout;
     int m_maxIdleTime;
-    queue<MysqlConn*> m_connectionQ;
+    queue<MysqlConn *> m_connectionQ;
     mutex m_mutexQ;
     condition_variable m_cond;
 };

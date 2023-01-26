@@ -1,10 +1,8 @@
 #include "teacher.h"
-#include "orderFile.h"
 #include "Computer_Room_Reservation.h"
+#include "orderFile.h"
 
-Teacher::Teacher() {
-
-}
+Teacher::Teacher() {}
 Teacher::Teacher(int empId, string name, string pwd) {
     this->m_EmpId = empId;
     this->m_name = name;
@@ -31,7 +29,9 @@ void Teacher::showAllOrder() {
     }
     for (int i = 0; i < of.m_Size; i++) {
         cout << "Order date:" << of.m_orderData[i]["date"] << "\t";
-        cout << "Order time:" << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening") << "\t";
+        cout << "Order time:"
+             << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening")
+             << "\t";
         cout << "stuID:" << of.m_orderData[i]["stuID"] << "\t";
         cout << "StuName:" << of.m_orderData[i]["stuName"] << "\t";
         cout << "Order room:" << of.m_orderData[i]["room"] << "\t";
@@ -42,7 +42,8 @@ void Teacher::showAllOrder() {
             status += "examination passed";
         } else if (of.m_orderData[i]["status"] == "-1") {
             status += "review failed";
-        } else status += "cancel review";
+        } else
+            status += "cancel review";
         cout << status << endl;
     }
 }
@@ -52,7 +53,7 @@ void Teacher::validOrder() {
         cout << "the orders is empty!" << endl;
         return;
     }
-    vector<int>v;
+    vector<int> v;
     int index = 1;
     cout << "the orders:" << endl;
     for (int i = 0; i < of.m_Size; i++) {
@@ -60,7 +61,10 @@ void Teacher::validOrder() {
             v.push_back(i);
             cout << index++ << ". ";
             cout << "Order date:" << of.m_orderData[i]["date"] << "\t";
-            cout << "Order time:" << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening") << "\t";
+            cout << "Order time:"
+                 << (of.m_orderData[i]["interval"] == "1" ? "morning"
+                                                          : "evening")
+                 << "\t";
             cout << "Order room:" << of.m_orderData[i]["room"] << "\t";
             string status = "Status:under review";
             cout << status << endl;
@@ -70,18 +74,19 @@ void Teacher::validOrder() {
     int select = 0;
     int ret = 0;
     while (1) {
-        cin >>select;
+        cin >> select;
         if (select >= 0 && select <= v.size()) {
-           if (select == 0) {
+            if (select == 0) {
                 break;
-           } else {
+            } else {
                 cout << "Please enter the review result" << endl;
                 cout << "1.pass" << endl;
                 cout << "2.fail" << endl;
                 cin >> ret;
                 if (ret == 1) {
                     of.m_orderData[v[select - 1]]["status"] = "2";
-                } else of.m_orderData[v[select - 1]]["status"] = "-1";
+                } else
+                    of.m_orderData[v[select - 1]]["status"] = "-1";
             }
             of.updateOrder();
             cout << "review over!" << endl;

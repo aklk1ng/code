@@ -1,9 +1,9 @@
 #pragma once
-#include <vector>
-#include <algorithm>
-#include <string>
-#include <map>
-#include <iostream>
-#include <fstream>
 #include "globalFile.h"
+#include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
 using namespace std;

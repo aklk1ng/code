@@ -1,6 +1,6 @@
+#include "MysqlConn.h"
 #include <iostream>
 #include <memory>
-#include "MysqlConn.h"
 using namespace std;
 
 int query() {
@@ -12,14 +12,12 @@ int query() {
     sql = "select * from student";
     conn.query(sql);
     while (conn.next()) {
-        cout << conn.value(0) << ","
-            << conn.value(1) << endl;
+        cout << conn.value(0) << "," << conn.value(1) << endl;
     }
     return 0;
 }
 
-int main (int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     query();
     return 0;
 }

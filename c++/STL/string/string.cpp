@@ -3,8 +3,7 @@
 #include <system_error>
 using namespace std;
 
-void test1()
-{
+void test1() {
     string s1;
     const char *str = "hello";
     string s2(str);
@@ -16,8 +15,7 @@ void test1()
 }
 
 // string assignment operation
-void test2()
-{
+void test2() {
     // string& operator=(const char *s)
     string str1;
     str1 = "hello";
@@ -55,8 +53,7 @@ void test2()
 }
 
 // string append operator
-void test3()
-{
+void test3() {
     // string& operator+=(const char *str)
     string str1 = "a";
     str1 += "aa";
@@ -94,69 +91,61 @@ void test3()
 }
 
 // string find and replace operator
-void test4()
-{
-    //the find function find the string from left to right
+void test4() {
+    // the find function find the string from left to right
     string str1 = "abc";
     int pos = str1.find("de");
     /* int pos = str1.find("ab"); */
     cout << pos << endl;
-    
+
     // the rfind function find the string from right to left
     pos = str1.rfind("de");
     cout << pos << endl;
-    
+
     // but the find function and the rfind function
     // will have the same result
 
-    //replace
+    // replace
     string str2 = "defgh";
-    str2.replace(1,3,"1111");
+    str2.replace(1, 3, "1111");
     cout << str2 << endl;
-
 }
 
 // string compare
-void test5()
-{
+void test5() {
     string str1 = "a";
     string str2 = "b";
     int pos = str1.compare(str2);
     cout << pos << endl;
-
 }
 
 // string read and write
-void test6()
-{
+void test6() {
     string str1 = "abcd";
     cout << str1[1] << endl;
-    cout << str1.at(2)<< endl;
+    cout << str1.at(2) << endl;
 }
 
 // string insert and delete
-void test7()
-{
+void test7() {
     string str1 = "abcde";
-    str1.insert(5,"f");
+    str1.insert(5, "f");
     cout << str1 << endl;
 
-    str1.erase(5,1);
+    str1.erase(5, 1);
     cout << str1 << endl;
 }
 
 // get a substring of a string
-void test8()
-{
+void test8() {
     string str = "abcdef@gmail.com";
     int pos = str.rfind("@");
     cout << pos << endl;
-    string substr =str.substr(0,pos);
+    string substr = str.substr(0, pos);
     cout << substr << endl;
 }
-int main (int argc, char *argv[])
-{
-    /* test1(); */ 
+int main(int argc, char *argv[]) {
+    /* test1(); */
     /* test2(); */
     /* test3(); */
     /* test4(); */

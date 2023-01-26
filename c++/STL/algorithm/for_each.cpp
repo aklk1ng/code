@@ -1,23 +1,18 @@
 
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <vector>
 using namespace std;
 // for_each
-void print01(int val)
-{
+void print01(int val) {
     cout << val << " ";
 }
-class print02
-{
-    public:
-        void operator() (int val) {
-            cout << val << " ";
-        }
+class print02 {
+public:
+    void operator()(int val) { cout << val << " "; }
 };
-void test()
-{
-    vector<int>v; 
+void test() {
+    vector<int> v;
     for (int i = 0; i < 10; i++) {
         v.push_back(i);
     }
@@ -26,8 +21,7 @@ void test()
     for_each(v.begin(), v.end(), print02());
     cout << endl;
 }
-int main (int argc, char *argv[])
-{
-    test();    
+int main(int argc, char *argv[]) {
+    test();
     return 0;
 }

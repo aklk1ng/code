@@ -4,8 +4,7 @@
 #include<pthread.h>
 using callback = void (*)(void* arg);
 template <typename T>
-struct Task
-{
+struct Task {
     Task() {
             function = nullptr;
             arg = nullptr;
@@ -19,8 +18,7 @@ struct Task
 };
 
 template <typename T>
-class TaskQueue
-{
+class TaskQueue {
     public:
         TaskQueue();
         ~TaskQueue();

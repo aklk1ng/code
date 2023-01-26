@@ -5,9 +5,7 @@
 #include "teacher.h"
 #include <fstream>
 #include <vector>
-Manager::Manager() {
-
-}
+Manager::Manager() {}
 
 Manager::Manager(string name, string pwd) {
     this->m_name = name;
@@ -36,13 +34,15 @@ void Manager::operMenu() {
 
 bool Manager::checkRepeat(int id, int type) {
     if (type == 1) {
-        for (vector<Student>::iterator it = vStu.begin(); it != vStu.end(); it++) {
+        for (vector<Student>::iterator it = vStu.begin(); it != vStu.end();
+             it++) {
             if (id == it->m_Id) {
                 return true;
             }
         }
     } else {
-        for (vector<Teacher>::iterator it = vTea.begin(); it != vTea.end(); it++) {
+        for (vector<Teacher>::iterator it = vTea.begin(); it != vTea.end();
+             it++) {
             if (id == it->m_EmpId) {
                 return true;
             }
@@ -62,8 +62,7 @@ void Manager::initVector() {
     vTea.clear();
 
     Student s;
-    while (ifs >> s.m_Id && ifs >> s.m_name && ifs >> s.m_pwd)
-    {
+    while (ifs >> s.m_Id && ifs >> s.m_name && ifs >> s.m_pwd) {
         vStu.push_back(s);
     }
     cout << "the number of students currently: " << vStu.size() << endl;
@@ -71,8 +70,7 @@ void Manager::initVector() {
 
     ifs.open(TEACHER_FILE, ios::in);
     Teacher t;
-    while (ifs >> t.m_EmpId && ifs >> t.m_name && ifs >> t.m_pwd)
-    {
+    while (ifs >> t.m_EmpId && ifs >> t.m_name && ifs >> t.m_pwd) {
         vTea.push_back(t);
     }
     cout << "the number of teachers currently: " << vTea.size() << endl;
@@ -93,7 +91,7 @@ void Manager::addPerson() {
     cout << "Please enter the account type" << endl;
     cout << "1.student" << endl;
     cout << "2.teacher" << endl;
-    
+
     string fileName;
     string tip; // show the id
     string errorTip;
@@ -103,11 +101,11 @@ void Manager::addPerson() {
     cin >> select;
     if (select == 1) {
         fileName = STUDENT_FILE;
-        tip ="Please enter student ID: ";
+        tip = "Please enter student ID: ";
         errorTip = "the student ID is repeated,please enter again:";
     } else if (select == 2) {
         fileName = TEACHER_FILE;
-        tip ="Please enter teacher ID: ";
+        tip = "Please enter teacher ID: ";
         errorTip = "the teacher ID is repeated,please enter again:";
     }
 
@@ -121,7 +119,8 @@ void Manager::addPerson() {
         bool ret = checkRepeat(id, select);
         if (ret) {
             cout << errorTip << endl;
-        } else break;
+        } else
+            break;
     }
 
     cout << "Please enter the name: ";
@@ -141,20 +140,26 @@ void Manager::showPerson() {
     int select = 0;
     cin >> select;
     if (select == 1) {
-       for (vector<Student>::iterator it = vStu.begin(); it != vStu.end(); it++) {
-        cout << "ID: " <<it->m_Id << "\tName: " << it->m_name << "\tPassword:" << it->m_pwd << endl;
-       } 
+        for (vector<Student>::iterator it = vStu.begin(); it != vStu.end();
+             it++) {
+            cout << "ID: " << it->m_Id << "\tName: " << it->m_name
+                 << "\tPassword:" << it->m_pwd << endl;
+        }
     } else {
-       for (vector<Teacher>::iterator it = vTea.begin(); it != vTea.end(); it++) {
-        cout << "ID: " <<it->m_EmpId << "\tName: " << it->m_name << "\tPassword:" << it->m_pwd << endl;
-       } 
+        for (vector<Teacher>::iterator it = vTea.begin(); it != vTea.end();
+             it++) {
+            cout << "ID: " << it->m_EmpId << "\tName: " << it->m_name
+                 << "\tPassword:" << it->m_pwd << endl;
+        }
     }
 }
 
 void Manager::showComputer() {
-    cout << "The computer room information:" << endl; 
-    for (vector<ComputerRoom>::iterator it = vCom.begin(); it != vCom.end(); it++) {
-        cout << "ComputerID: " << it->m_ComId << "\tComputerCapacuty: " << it->m_MaxNum << endl;
+    cout << "The computer room information:" << endl;
+    for (vector<ComputerRoom>::iterator it = vCom.begin(); it != vCom.end();
+         it++) {
+        cout << "ComputerID: " << it->m_ComId
+             << "\tComputerCapacuty: " << it->m_MaxNum << endl;
     }
 }
 

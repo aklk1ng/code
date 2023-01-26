@@ -1,27 +1,27 @@
 #include "Computer_Room_Reservation.h"
-#include "globalFile.h"
 #include "Identity.h"
-#include "student.h"
-#include <fstream>
-#include "teacher.h"
+#include "globalFile.h"
 #include "manager.h"
+#include "student.h"
+#include "teacher.h"
+#include <fstream>
 using namespace std;
 
-void studentMenu(Identity * &student) {
+void studentMenu(Identity *&student) {
     while (1) {
         student->operMenu();
-        Student *stu = (Student*)student;
+        Student *stu = (Student *)student;
         int select = 0;
         cin >> select;
 
         if (select == 1) { // apply order
-            stu->applyOrder(); 
+            stu->applyOrder();
         } else if (select == 2) { // check orders
             stu->showOrder();
         } else if (select == 3) { // check all orders
-            stu->showAllOrder(); 
+            stu->showAllOrder();
         } else if (select == 4) { // cancel orders
-            stu->cancelOrder(); 
+            stu->cancelOrder();
         } else { // logout
             delete student;
             cout << "Logout successfully!" << endl;
@@ -30,14 +30,14 @@ void studentMenu(Identity * &student) {
     }
 }
 
-void teacherMenu(Identity * &teacher) {
+void teacherMenu(Identity *&teacher) {
     while (1) {
         teacher->operMenu();
-        Teacher *tea = (Teacher*)teacher;
-        int  select = 0;
+        Teacher *tea = (Teacher *)teacher;
+        int select = 0;
         cin >> select;
         if (select == 1) {
-            tea->showAllOrder();            
+            tea->showAllOrder();
         } else if (select == 2) {
             tea->validOrder();
         } else {
@@ -48,17 +48,17 @@ void teacherMenu(Identity * &teacher) {
     }
 }
 
-void managerMenu(Identity * &manager) {
+void managerMenu(Identity *&manager) {
     while (1) {
         manager->operMenu();
-        Manager *man = (Manager*)manager;
+        Manager *man = (Manager *)manager;
         int select = 0;
         cin >> select;
         if (select == 1) { // add account
             man->addPerson();
         } else if (select == 2) { // check account
             man->showPerson();
-        } else if (select == 3) { //check computer room
+        } else if (select == 3) { // check computer room
             man->showComputer();
         } else if (select == 4) { // empty reserves
             man->cleanFile();
@@ -137,7 +137,7 @@ void LoginIn(string filename, int type) {
     return;
 }
 
-int main (int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
     int select = 0;
     cout << "Please enter your identity" << endl;
     cout << "\t\t------------------------\n";
@@ -154,21 +154,21 @@ int main (int argc, char *argv[]) {
     cout << "Please enter your choice: ";
     cin >> select;
     switch (select) {
-        case 1:
-                LoginIn(STUDENT_FILE, 1);
+    case 1:
+        LoginIn(STUDENT_FILE, 1);
         break;
-        case 2:
-                LoginIn(TEACHER_FILE, 2);
+    case 2:
+        LoginIn(TEACHER_FILE, 2);
         break;
-        case 3:
-                LoginIn(ADMIN_FILE, 3);
+    case 3:
+        LoginIn(ADMIN_FILE, 3);
         break;
-        case 0:
-            cout << "See you again!" << endl;
-            return 0;
+    case 0:
+        cout << "See you again!" << endl;
+        return 0;
         break;
-        default:
-            cout << "The choice is wrong!" << endl;
+    default:
+        cout << "The choice is wrong!" << endl;
         break;
     }
     return 0;

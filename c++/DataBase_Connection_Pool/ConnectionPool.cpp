@@ -3,10 +3,10 @@
 #include <chrono>
 #include <condition_variable>
 #include <fstream>
+#include <json/json.h>
 #include <memory>
 #include <mutex>
 #include <thread>
-#include <json/json.h>
 using namespace Json;
 void ConnectionPool::addConnection() {
     MysqlConn *conn = new MysqlConn;
@@ -14,21 +14,23 @@ void ConnectionPool::addConnection() {
     m_connectionQ.push(conn);
 }
 
-ConnectionPool * ConnectionPool::getConnectPool() {
+ConnectionPool *ConnectionPool::getConnectPool() {
     static ConnectionPool pool;
     return &pool;
 }
 
-shared_ptr<MysqlConn>ConnectionPool::getConnection() {
+shared_ptr<MysqlConn> ConnectionPool::getConnection() {
     unique_lock<mutex> locker(m_mutexQ);
     while (m_connectionQ.empty()) {
-        if (cv_status::timeout == m_cond.wait_for(locker, chrono::milliseconds(m_timeout))) {
+        if (cv_status::timeout ==
+            m_cond.wait_for(locker, chrono::milliseconds(m_timeout))) {
             if (m_connectionQ.empty()) {
                 continue;
             }
         }
     }
-    shared_ptr<MysqlConn> connptr(m_connectionQ.front(), [this](MysqlConn *conn) {
+    shared_ptr<MysqlConn> connptr(m_connectionQ.front(),
+            [this](MysqlConn *conn) {
             /* m_mutexQ.lock(); */
             lock_guard<mutex> locker(m_mutexQ);
             conn->refreshAliveTime();
@@ -46,15 +48,15 @@ bool ConnectionPool::parseJsonFile() {
     Value root;
     rd.parse(ifs, root);
     if (root.isObject()) {
-        m_ip =root["ip"].asString();
-        m_port =root["port"].asInt();
-        m_user =root["userName"].asString();
-        m_passwd =root["password"].asString();
-        m_dbName =root["dbName"].asString();
-        m_minSize =root["minSize"].asInt();
-        m_maxSize =root["maxSize"].asInt();
-        m_maxIdleTime =root["maxIdleTime"].asInt();
-        m_timeout =root["timeout"].asInt();
+        m_ip = root["ip"].asString();
+        m_port = root["port"].asInt();
+        m_user = root["userName"].asString();
+        m_passwd = root["password"].asString();
+        m_dbName = root["dbName"].asString();
+        m_minSize = root["minSize"].asInt();
+        m_maxSize = root["maxSize"].asInt();
+        m_maxIdleTime = root["maxIdleTime"].asInt();
+        m_timeout = root["timeout"].asInt();
         return true;
     }
     return false;

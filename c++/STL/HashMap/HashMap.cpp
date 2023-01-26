@@ -12,7 +12,7 @@ void test() {
     cout << (*pos).first << " " << (*pos).second << endl;
 }
 
-int main (int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
     test();
     return 0;
 }

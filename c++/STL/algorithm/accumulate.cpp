@@ -3,9 +3,8 @@
 #include <vector>
 using namespace std;
 
-void test()
-{
-    vector<int>v; 
+void test() {
+    vector<int> v;
     for (int i = 0; i <= 100; i++) {
         v.push_back(i);
     }
@@ -13,8 +12,7 @@ void test()
     int total = accumulate(v.begin(), v.end(), 0);
     cout << total << endl;
 }
-int main (int argc, char *argv[])
-{
-    test(); 
+int main(int argc, char *argv[]) {
+    test();
     return 0;
 }

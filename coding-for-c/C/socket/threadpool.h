@@ -1,34 +1,31 @@
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <pthread.h>
 #include <string.h>
+#include <unistd.h>
 
 typedef struct ThreadPool ThreadPool;
 // create the thread pool and init it
-ThreadPool* ThreadPoolCreate(int max, int min, int queueSize);
+ThreadPool *ThreadPoolCreate(int max, int min, int queueSize);
 
 // destroy the thread pool
-int ThreadPoolDestroy(ThreadPool* pool);
-
+int ThreadPoolDestroy(ThreadPool *pool);
 
 // add tasks to the thread pool
-void ThreadPoolAdd(ThreadPool* pool, void(*func)(void*), void* arg);
+void ThreadPoolAdd(ThreadPool *pool, void (*func)(void *), void *arg);
 
-// get the number of working threads in the thread pool 
+// get the number of working threads in the thread pool
 
-int ThreadPoolBusyNum(ThreadPool* pool);
+int ThreadPoolBusyNum(ThreadPool *pool);
 
 // get the number of living threads in the thread pool
-int ThreadPoolAliveNum(ThreadPool* pool);
+int ThreadPoolAliveNum(ThreadPool *pool);
 
 // the working function
-void* worker(void* arg);
-
+void *worker(void *arg);
 
 // the manager function
-void* manager(void* arg);
+void *manager(void *arg);
 
 // thread exit function
-void ThreadExit(ThreadPool* pool);
-
+void ThreadExit(ThreadPool *pool);
