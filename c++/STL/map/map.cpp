@@ -8,6 +8,10 @@ void Print(map<int, int> &m) {
     for (map<int, int>::iterator it = m.begin(); it != m.end(); it++) {
         cout << (*it).first << " " << (*it).second << endl;
     }
+    /* auto it = m.begin(); */
+    /* for (; it != m.end(); it++) { */
+    /*     cout << (*it).first << " " << (*it).second << endl; */
+    /* } */
     cout << endl;
 }
 void test() {
@@ -46,7 +50,8 @@ void test1() {
     m.insert(make_pair(2, 10));
     m.insert(pair<int, int>(3, 8));
     m.insert(pair<int, int>(4, 14));
-    for (map<int, int>::iterator it = m.begin(); it != m.end(); it++) {
+    auto it = m.begin();
+    for (; it != m.end(); it++) {
         cout << (*it).first << " " << (*it).second << endl;
     }
 }

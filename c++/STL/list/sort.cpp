@@ -36,13 +36,15 @@ void test() {
     l.push_back(p4);
     l.push_back(p5);
 
-    for (list<Person>::iterator it = l.begin(); it != l.end(); it++) {
+    auto it = l.begin();
+    for (; it != l.end(); it++) {
         cout << it->m_name << "\t" << it->m_age << "\t" << it->m_height << endl;
     }
 
     l.sort(ComparePerson);
     cout << "--------------" << endl;
-    for (list<Person>::iterator it = l.begin(); it != l.end(); it++) {
+    it = l.begin();
+    for (; it != l.end(); it++) {
         cout << it->m_name << "\t" << it->m_age << "\t" << it->m_height << endl;
     }
 }
