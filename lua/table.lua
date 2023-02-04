@@ -29,3 +29,15 @@ setmetatable(fibs, {
     end
 })
 print(fibs[3])
+print("------------------")
+
+local test = {
+    ["1"] = "ast",
+    ["1234"] = "dsfads",
+    ["23"] = "asdfsda",
+}
+table.insert(test, 3)
+table.insert(test, 5)
+for key, value in pairs(test) do
+    print(key, value)
+end
