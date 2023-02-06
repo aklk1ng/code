@@ -24,6 +24,7 @@ local test = {
     ["1"] = "ast",
     ["1234"] = "dsfads",
     ["23"] = "asdfsda",
+    ["[ ]"] = "[x]",
 }
 
 for key, value in pairs(test) do
