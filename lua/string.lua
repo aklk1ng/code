@@ -6,5 +6,6 @@ print(string.rep("fasdf", 2))
 local str = "asdfds134"
 if string.find(str, "asd") then
     local new_str = string.gsub(str, "asd", "aassdd", 1)
-    print(new_str)
+    str = new_str
 end
+print(str)

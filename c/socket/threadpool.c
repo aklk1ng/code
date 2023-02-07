@@ -18,7 +18,7 @@ typedef struct ThreadPool {
     int queuecapacity; // capacity
     int queueSize;     // current task quantity
     int queueFront;    // head of queue
-    int queuBack;      // end of queue
+    int queueBack;      // end of queue
 
     pthread_t managerID;  // manager id
     pthread_t *threadIDs; // thread id
@@ -70,7 +70,7 @@ ThreadPool *ThreadPoolCreate(int max, int min, int queueSize) {
         pool->queuecapacity = queueSize;
         pool->queueSize = 0;
         pool->queueFront = 0;
-        pool->queuBack = 0;
+        pool->queueBack = 0;
         pool->shutdown = 0;
 
         // create threads
@@ -225,9 +225,9 @@ void ThreadPoolAdd(ThreadPool *pool, void (*func)(void *), void *arg) {
     }
 
     // add task
-    pool->taskQ[pool->queuBack].function = func;
-    pool->taskQ[pool->queuBack].arg = arg;
-    pool->queuBack = (pool->queuBack + 1) % pool->queuecapacity;
+    pool->taskQ[pool->queueBack].function = func;
+    pool->taskQ[pool->queueBack].arg = arg;
+    pool->queueBack = (pool->queueBack + 1) % pool->queuecapacity;
     pool->queueSize++;
 
     pthread_cond_signal(&pool->IsEmpty);
