@@ -1,14 +1,14 @@
 local f1 = { a = 1, b = 2 }
 for key, value in pairs(f1) do
-    print(key, value)
+  print(key, value)
 end
 local f2 = { a = 2, b = 3 }
 local metafraction = {}
 function metafraction.__add(t1, t2)
-    local sum = {}
-    sum.b = t1.b + t2.b
-    sum.a = t1.a + t2.a
-    return sum
+  local sum = {}
+  sum.b = t1.b + t2.b
+  sum.a = t1.a + t2.a
+  return sum
 end
 
 setmetatable(f1, metafraction)

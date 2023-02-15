@@ -15,14 +15,14 @@ local v2 = "sdfsdf"
 print(rawequal(v1, v2))
 print(rawget(a, 2))
 for key, value in pairs(a) do
-    print(key, value)
+  print(key, value)
 end
 print(rawlen(c))
 
 local function f(s1, s2)
-    print(select(2, s1, s2))
-    -- return the total number of extra arguments
-    print(select('#', s1, s2))
+  print(select(2, s1, s2))
+  -- return the total number of extra arguments
+  print(select('#', s1, s2))
 end
 
 f(1, 3)

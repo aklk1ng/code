@@ -8,7 +8,7 @@ sc = pyspark.SparkContext(conf=conf)
 
 
 def add(data):
-    return 10 * data
+  return 10 * data
 
 
 # rdd = sc.parallelize("abcd")

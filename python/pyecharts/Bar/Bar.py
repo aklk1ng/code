@@ -15,9 +15,9 @@ timeline = pyecharts.charts.Timeline({"theme": pyecharts.globals.ThemeType.LIGHT
 timeline.add(bar1, "2021/GDP")
 timeline.add(bar2, "2022/GDP")
 timeline.add_schema(
-    play_interval=1000,
-    is_timeline_show=True,
-    is_auto_play=True,
-    is_loop_play=True
+  play_interval=1000,
+  is_timeline_show=True,
+  is_auto_play=True,
+  is_loop_play=True
 )
 timeline.render("GDP_Show.html")
