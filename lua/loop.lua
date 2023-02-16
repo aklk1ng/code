@@ -12,3 +12,4 @@ print(#a)
 
 local a = nil
 print(not nil)
+print(os.getenv("HOME"))
