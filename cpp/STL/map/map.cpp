@@ -50,8 +50,7 @@ void test1() {
     m.insert(make_pair(2, 10));
     m.insert(pair<int, int>(3, 8));
     m.insert(pair<int, int>(4, 14));
-    auto it = m.begin();
-    for (; it != m.end(); it++) {
+    for (map<int, int>::iterator it = m.begin(); it != m.end(); it++) {
         cout << (*it).first << " " << (*it).second << endl;
     }
 }

@@ -27,7 +27,7 @@ func test2() {
     fmt.Printf("The time is over")
 }
 func main() {
-    // test() 
+    // test()
     // test1()
     test2()
 }

@@ -33,3 +33,16 @@ print("---------------2")
 if string.match(line2, "*- [x]*", 1) ~= nil then
   print("- [x]")
 end
+print("-----------------------")
+
+local cwd = "~/code/lua"
+function split(str,reps)
+    local resultStrList = {}
+    string.gsub(str,'[^'..reps..']+',function (w)
+        table.insert(resultStrList,w)
+    end)
+    return resultStrList
+end
+local data = split(cwd, '/')
+print(#data)
+-- print(string.sub(cwd, pos))
