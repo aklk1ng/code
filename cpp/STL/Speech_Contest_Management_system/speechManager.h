@@ -14,26 +14,26 @@ using namespace std;
 
 class SpeechManager {
 public:
-    SpeechManager();
-    void show_Menu();
-    void exitSystem();
-    ~SpeechManager();
-    void InitSpeech();
-    void createSpeaker();
-    void startSpeech();
-    void speechDraw();
-    void speechContest();
-    void showScore();
-    void saveRecord();
-    void loadRecord();
-    void showRecord();
-    void clearRecord();
+  SpeechManager();
+  void show_Menu();
+  void exitSystem();
+  ~SpeechManager();
+  void InitSpeech();
+  void createSpeaker();
+  void startSpeech();
+  void speechDraw();
+  void speechContest();
+  void showScore();
+  void saveRecord();
+  void loadRecord();
+  void showRecord();
+  void clearRecord();
 
-    vector<int> first_round;
-    vector<int> first_victory;
-    vector<int> top_three;
-    map<int, Speaker> m_Speaker;
-    map<int, vector<string>> m_Record;
-    int Index;
-    bool fileIsEmpty;
+  vector<int> first_round;
+  vector<int> first_victory;
+  vector<int> top_three;
+  map<int, Speaker> m_Speaker;
+  map<int, vector<string>> m_Record;
+  int Index;
+  bool fileIsEmpty;
 };

@@ -607,14 +607,6 @@
 /*     return 0; */
 /* } */
 
-
-
-
-
-
-
-
-
 // shared_ptr
 /* #include <ctime> */
 /* #include <iostream> */
@@ -626,7 +618,8 @@
 /* class Test { */
 /* public: */
 /*     Test() { cout << "construct Test.." << endl; } */
-/*     Test(int x) : m_num(x) { cout << "construct Test, x = " << x << endl; } */
+/*     Test(int x) : m_num(x) { cout << "construct Test, x = " << x << endl; }
+ */
 /*     Test(string str) { cout << "construct Test, str = " << str << endl; } */
 /*     ~Test() { cout << "destruct Test..." << endl; } */
 /*     void setvalue(int v) { m_num = v; } */
@@ -671,11 +664,6 @@
 /*     return 0; */
 /* } */
 
-
-
-
-
-
 // unique_ptr
 /* #include <iostream> */
 /* #include <memory> */
@@ -703,36 +691,28 @@
 /*     return 0; */
 /* } */
 
-
-
-
-
-
-
-
-
 //  weak_ptr
 #include <iostream>
 #include <memory>
 using namespace std;
 
 void test() {
-    shared_ptr<int> sp(new int);
-    weak_ptr<int> wp1;
-    weak_ptr<int> wp2(wp1);
-    weak_ptr<int> wp3(sp);
-    cout << wp3.use_count() << endl;
-    cout << wp3.lock() << endl;
-    sp.reset();
-    weak_ptr<int> wp4;
-    wp4 = sp;
-    weak_ptr<int> wp5;
-    wp5 = wp3;
-    cout << wp5.use_count() << endl;
-    wp5.reset();
-    cout << wp5.expired() << endl;
+  shared_ptr<int> sp(new int);
+  weak_ptr<int> wp1;
+  weak_ptr<int> wp2(wp1);
+  weak_ptr<int> wp3(sp);
+  cout << wp3.use_count() << endl;
+  cout << wp3.lock() << endl;
+  sp.reset();
+  weak_ptr<int> wp4;
+  wp4 = sp;
+  weak_ptr<int> wp5;
+  wp5 = wp3;
+  cout << wp5.use_count() << endl;
+  wp5.reset();
+  cout << wp5.expired() << endl;
 }
 int main(int argc, char *argv[]) {
-    test();
-    return 0;
+  test();
+  return 0;
 }

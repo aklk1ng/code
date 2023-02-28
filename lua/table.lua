@@ -41,3 +41,5 @@ table.insert(test, 5)
 for key, value in pairs(test) do
   print(key, value)
 end
+print("-------------------")
+print(test["1"])

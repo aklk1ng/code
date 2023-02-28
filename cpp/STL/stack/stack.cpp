@@ -3,21 +3,21 @@
 using namespace std;
 
 void test1() {
-    stack<int> s;
-    s.push(1);
-    s.push(2);
-    s.push(3);
-    s.push(4);
-    s.push(5);
-    cout << s.size() << endl;
-    while (!s.empty()) {
-        cout << s.top() << endl;
-        s.pop();
-    }
-    cout << s.size() << endl;
+  stack<int> s;
+  s.push(1);
+  s.push(2);
+  s.push(3);
+  s.push(4);
+  s.push(5);
+  cout << s.size() << endl;
+  while (!s.empty()) {
+    cout << s.top() << endl;
+    s.pop();
+  }
+  cout << s.size() << endl;
 }
 
 int main(int argc, char *argv[]) {
-    test1();
-    return 0;
+  test1();
+  return 0;
 }

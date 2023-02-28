@@ -6,15 +6,15 @@
 #include <vector>
 class Student : public Identity {
 public:
-    Student();
-    Student(int id, string name, string pwd);
-    virtual void operMenu();
+  Student();
+  Student(int id, string name, string pwd);
+  virtual void operMenu();
 
-    void initComputer();
-    void applyOrder();
-    void showOrder();
-    void showAllOrder();
-    void cancelOrder();
-    int m_Id;
-    vector<ComputerRoom> vCom;
+  void initComputer();
+  void applyOrder();
+  void showOrder();
+  void showAllOrder();
+  void cancelOrder();
+  int m_Id;
+  vector<ComputerRoom> vCom;
 };
