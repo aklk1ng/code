@@ -22,7 +22,7 @@ TNode *CreateNode(DataType data) {
 
 TNode *TreeInsert(TNode *root, DataType data) {
   if (root == NULL) {
-    TNode *node = CreateNode(data);
+    root = CreateNode(data);
   } else if (root->data > data) {
     root->left = TreeInsert(root->left, data);
   } else if (root->data < data) {
@@ -49,40 +49,38 @@ TNode *TreeRecursionFind(TNode *root, DataType data) {
 
 // 非递归查找
 TNode *TreeIterationFind(TNode *root, DataType data) {
-  TNode *T = root;
-  while (T) {
+  TNode *node = root;
+  while (node) {
     if (root->data > data) {
-      T = T->left;
+      node = node->left;
     } else if (root->data < data) {
-      T = T->right;
+      node = node->right;
     } else
-      return T;
+      return node;
   }
-  // 查找失败
+
   return NULL;
 }
 
-TNode *Tree_Max(TNode *root) {
+TNode *Find_Max(TNode *root) {
   if (root == NULL) {
-    printf("the tree is empty!]n");
+    printf("the tree is empty!\n");
     return NULL;
   } else if (root->right) {
-    // 此时代表root节点没有右节点，由于tree的定义，root就为最大值
-    return root;
+    return Find_Max(root->right);
   } else {
-    return Tree_Max(root->right);
+    return root;
   }
 }
 
-TNode *Tree_Min(TNode *root) {
+TNode *Find_Min(TNode *root) {
   if (root == NULL) {
-    printf("the tree is empty!]n");
+    printf("the tree is empty!\n");
     return NULL;
   } else if (root->left) {
-    // 此时代表root节点没有左节点，由于tree的定义，root就为最小值
-    return root->left;
+    return Find_Min(root->left);
   } else {
-    return Tree_Min(root->left);
+    return root;
   }
 }
 
@@ -98,7 +96,7 @@ TNode *TreeDelete(TNode *root, DataType data) {
     root->right = TreeDelete(root->right, data);
   } else {
     if (root->left && root->right) {
-      tmp = Tree_Min(root->right);
+      tmp = Find_Min(root->right);
       root->data = tmp->data;
       root->right = TreeDelete(root, data);
     } else {
@@ -136,15 +134,16 @@ void InOrderTree(TNode *root) {
 }
 
 int main(int argc, char const *argv[]) {
-  TNode *root = NULL;
-  root = TreeInsert(root, 0);
+  TNode *root = CreateNode(0);
   root = TreeInsert(root, 1);
   root = TreeInsert(root, 2);
   root = TreeInsert(root, 3);
   root = TreeInsert(root, 4);
-  TNode *tmp = Tree_Max(root);
-  printf("%d\n", tmp->data);
-  tmp = Tree_Min(root);
-  printf("%d\n", tmp->data);
+  TNode *tmp = Find_Max(root);
+  printf("max:%d\n", tmp->data);
+  tmp = Find_Min(root);
+  printf("min:%d\n", tmp->data);
+  printf("------------------------------");
+  PreOrderTree(root);
   return 0;
 }

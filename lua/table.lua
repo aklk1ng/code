@@ -43,3 +43,18 @@ for key, value in pairs(test) do
 end
 print("-------------------")
 print(test["1"])
+print(test[1])
+
+print("-------------------")
+local tbl = {
+}
+for i = 1, 10, 1 do
+  table.insert(tbl, {
+    window = i,
+    buffer = i,
+    filetype = "NvimTree"
+  })
+  print(tbl[1]["window"])
+end
+print(tbl[1]["window"])
+
