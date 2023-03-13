@@ -7,8 +7,8 @@
 #include <string>
 #include <unistd.h>
 using namespace std;
-template <typename T>
-class ThreadPool {
+namespace yazi {
+template <typename T> class ThreadPool {
 public:
   // 创建线程池并初始化
   ThreadPool(int max, int min);
@@ -49,3 +49,4 @@ private:
   // 线程退出函数
   void ThreadExit();
 };
+} // namespace yazi

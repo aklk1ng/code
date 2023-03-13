@@ -12,8 +12,12 @@ class TaskQueue {
 public:
   TaskQueue(const TaskQueue &t) = delete;
   TaskQueue &operator=(const TaskQueue &t) = delete;
-  static TaskQueue *getInstance() { return m_taskQ; }
-  void print() { cout << "I am a member function..." << endl; }
+  static TaskQueue *getInstance() {
+    return m_taskQ;
+  }
+  void print() {
+    cout << "I am a member function..." << endl;
+  }
 
   bool isEmpty() {
     lock_guard<mutex> locker(m_mutex);
@@ -58,32 +62,32 @@ TaskQueue *TaskQueue::m_taskQ = new TaskQueue;
 #if 0
 // lazy mode --> create a corresponding instance when using a singleton object
 class TaskQueue {
-    public:
-        TaskQueue(const TaskQueue &t) = delete;
-        TaskQueue &operator=(const TaskQueue &t) = delete;
-        static TaskQueue *getInstance() {
-            TaskQueue *task = m_taskQ.load();
-            if (task == nullptr) {
-                m_mutex.lock();
-                task = m_taskQ.load();
-                if (task == nullptr) {
-                    task = new TaskQueue;
-                    m_taskQ.store(task);
-                }
-                m_mutex.unlock();
-            }
-            return task;
-        }
-        void print() {
-            cout << "I am a member function..." << endl;
-        }
-    private:
-        TaskQueue() = default;
-        /* TaskQueue(const TaskQueue &t) = default; */
-        /* TaskQueue &operator=(const TaskQueue &t) = default; */
-        /* static TaskQueue *m_taskQ; */
-        static mutex m_mutex;
-        static atomic<TaskQueue*> m_taskQ;
+public:
+  TaskQueue(const TaskQueue &t) = delete;
+  TaskQueue &operator=(const TaskQueue &t) = delete;
+  static TaskQueue *getInstance() {
+    TaskQueue *task = m_taskQ.load();
+    if (task == nullptr) {
+      m_mutex.lock();
+      task = m_taskQ.load();
+      if (task == nullptr) {
+        task = new TaskQueue;
+        m_taskQ.store(task);
+      }
+      m_mutex.unlock();
+    }
+    return task;
+  }
+  void print() {
+    cout << "I am a member function..." << endl;
+  }
+private:
+  TaskQueue() = default;
+  /* TaskQueue(const TaskQueue &t) = default; */
+  /* TaskQueue &operator=(const TaskQueue &t) = default; */
+  /* static TaskQueue *m_taskQ; */
+  static mutex m_mutex;
+  static atomic<TaskQueue*> m_taskQ;
 };
 /* TaskQueue* TaskQueue::m_taskQ = nullptr; */
 atomic<TaskQueue*> TaskQueue::m_taskQ;

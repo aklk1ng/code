@@ -7,7 +7,7 @@
 using namespace std;
 
 template <typename T>
-ThreadPool<T>::ThreadPool(int max, int min) {
+yazi::ThreadPool<T>::ThreadPool(int max, int min) {
   //实例化任务队列
   do {
     taskQ = new TaskQueue<T>;
@@ -55,7 +55,7 @@ ThreadPool<T>::ThreadPool(int max, int min) {
 }
 
 template <typename T>
-ThreadPool<T>::~ThreadPool() {
+yazi::ThreadPool<T>::~ThreadPool() {
   //关闭线程池
   shutdown = true;
   //阻塞回收管理线程
@@ -76,7 +76,7 @@ ThreadPool<T>::~ThreadPool() {
 }
 
 template <typename T>
-void* ThreadPool<T>::worker(void* arg) {
+void* yazi::ThreadPool<T>::worker(void* arg) {
   ThreadPool* pool = static_cast<ThreadPool*>(arg);
   while (1) {
     pthread_mutex_lock(&pool->mutexPool);
@@ -122,7 +122,7 @@ void* ThreadPool<T>::worker(void* arg) {
 }
 
 template <typename T>
-void* ThreadPool<T>::manager(void* arg) {
+void* yazi::ThreadPool<T>::manager(void* arg) {
   ThreadPool* pool = static_cast<ThreadPool*>(arg);
   while (!pool->shutdown) {
     //每隔3s检测一次
@@ -140,7 +140,7 @@ void* ThreadPool<T>::manager(void* arg) {
     if(queueSize > livenum && livenum < pool->maxnum) {
       pthread_mutex_lock(&pool->mutexPool);
       int counter = 0;
-      for (int i = 0; i < pool->maxnum && counter << NUMBER && pool->livenum << pool->maxnum; i++) {
+      for (int i = 0; i < pool->maxnum && counter < NUMBER && pool->livenum < pool->maxnum; i++) {
         if(pool->threadIDs[i] == 0) {
           pthread_create(&pool->threadIDs[i], NULL, worker, NULL);
           counter++;
@@ -167,7 +167,7 @@ void* ThreadPool<T>::manager(void* arg) {
 }
 
 template <typename T>
-void ThreadPool<T>::addTask(Task<T> task) {
+void yazi::ThreadPool<T>::addTask(Task<T> task) {
   if(shutdown) {
     return;
   }
@@ -177,7 +177,7 @@ void ThreadPool<T>::addTask(Task<T> task) {
 }
 
 template <typename T>
-int ThreadPool<T>::getBusyNum() {
+int yazi::ThreadPool<T>::getBusyNum() {
   pthread_mutex_lock(&mutexPool);
   int busynum = this->busynum;
   pthread_mutex_unlock(&mutexPool);
@@ -185,7 +185,7 @@ int ThreadPool<T>::getBusyNum() {
 }
 
 template <typename T>
-int ThreadPool<T>::getAliveNum() {
+int yazi::ThreadPool<T>::getAliveNum() {
   pthread_mutex_lock(&mutexPool);
   int alivenum = this->livenum;
   pthread_mutex_unlock(&mutexPool);
@@ -193,7 +193,7 @@ int ThreadPool<T>::getAliveNum() {
 }
 
 template <typename T>
-void ThreadPool<T>::ThreadExit() {
+void yazi::ThreadPool<T>::ThreadExit() {
   pthread_t tid = pthread_self();
   for (int i = 0; i < maxnum; i++) {
     if(threadIDs[i] == tid) {
