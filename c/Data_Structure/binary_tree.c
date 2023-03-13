@@ -94,7 +94,7 @@ TNode *TreeDelete(TNode *root, DataType data) {
     root->left = TreeDelete(root->left, data);
   } else if (root->data < data) {
     root->right = TreeDelete(root->right, data);
-  } else {
+  } else if (root->data == data) { // found element to be deleted
     if (root->left && root->right) {
       tmp = Find_Min(root->right);
       root->data = tmp->data;
@@ -106,15 +106,20 @@ TNode *TreeDelete(TNode *root, DataType data) {
       } else {
         root = root->left;
       }
+      /* root = (root->left == NULL) ? root->right : root->left; */
+
+      free(tmp);
     }
   }
+  else
+    printf("the element isn't existed!\n");
   return root;
 }
 
 // 先序遍历
 void PreOrderTree(TNode *root) {
   if (root == NULL) {
-    printf("the tree is empty!\n");
+    printf("NULL\n");
   } else {
     printf("%d ", root->data);
     PreOrderTree(root->left);
@@ -125,25 +130,30 @@ void PreOrderTree(TNode *root) {
 // 中序遍历
 void InOrderTree(TNode *root) {
   if (root == NULL) {
-    printf("the tree is empty!\n");
+    printf("NULL\n");
   } else {
-    PreOrderTree(root->left);
+    InOrderTree(root->left);
     printf("%d ", root->data);
-    PreOrderTree(root->right);
+    InOrderTree(root->right);
   }
 }
 
 int main(int argc, char const *argv[]) {
-  TNode *root = CreateNode(0);
-  root = TreeInsert(root, 1);
+  TNode *root = NULL;
+  root = TreeInsert(root, 6);
   root = TreeInsert(root, 2);
-  root = TreeInsert(root, 3);
+  root = TreeInsert(root, 1);
   root = TreeInsert(root, 4);
+  root = TreeInsert(root, 3);
+  root = TreeInsert(root, 5);
+  root = TreeInsert(root, 8);
+  /* root = TreeDelete(root, 4); */
   TNode *tmp = Find_Max(root);
   printf("max:%d\n", tmp->data);
   tmp = Find_Min(root);
   printf("min:%d\n", tmp->data);
-  printf("------------------------------");
+  InOrderTree(root);
+  printf("--------------------\n");
   PreOrderTree(root);
   return 0;
 }
