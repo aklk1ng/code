@@ -110,8 +110,7 @@ TNode *TreeDelete(TNode *root, DataType data) {
 
       free(tmp);
     }
-  }
-  else
+  } else
     printf("the element isn't existed!\n");
   return root;
 }
@@ -138,7 +137,7 @@ void InOrderTree(TNode *root) {
   }
 }
 
-int main(int argc, char const *argv[]) {
+void test() {
   TNode *root = NULL;
   root = TreeInsert(root, 6);
   root = TreeInsert(root, 2);
@@ -155,5 +154,9 @@ int main(int argc, char const *argv[]) {
   InOrderTree(root);
   printf("--------------------\n");
   PreOrderTree(root);
+}
+
+int main(int argc, char const *argv[]) {
+  test();
   return 0;
 }
