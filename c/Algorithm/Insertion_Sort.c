@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
 
 void Print(int arr[], int size) {
   for (int i = 0; i < size; i++) {
@@ -18,20 +18,19 @@ void Insertion_Sort(int arr[], int size) {
       arr[j] = arr[j - 1];
     arr[j] = tmp;
   }
-  Print(arr, size);
 }
-
 
 void test() {
   srand((unsigned)time(NULL));
-  int size = 10000;
+  int size = 100;
   int arr[size];
   for (int i = 0; i < size; i++) {
-    arr[i] = rand() % 10000;
+    arr[i] = rand() % 100;
   }
   Print(arr, size);
   printf("------------------------------\n");
   Insertion_Sort(arr, size);
+  Print(arr, size);
 }
 
 int main(int argc, char *argv[]) {

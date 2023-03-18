@@ -27,3 +27,6 @@ end
 
 f(1, 3)
 print(_VERSION)
+print("-------------------------------")
+local list = { 12, 42, 41 }
+print(table.concat(list, '/'))
