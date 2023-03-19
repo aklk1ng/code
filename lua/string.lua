@@ -6,9 +6,11 @@ local line1 = "* - [ ] xxxxx"
 local line2 = "* - [x] xxxxx"
 
 local str = "asdfds134- [x]"
+local start, end_col = string.find(str, "%]", 1)
+print(start)
+print(string.match(str, 'asd', 1))
 if string.find(str, "%[%x%]") then
   local new_str = string.gsub(str, "asd", "aassdd", 1)
-  str = new_str
 end
 print(str)
 
@@ -36,13 +38,14 @@ end
 print("-----------------------")
 
 local cwd = "~/code/lua"
-function split(str,reps)
-    local resultStrList = {}
-    string.gsub(str,'[^'..reps..']+',function (w)
-        table.insert(resultStrList,w)
-    end)
-    return resultStrList
+function split(str, reps)
+  local resultStrList = {}
+  string.gsub(str, '[^' .. reps .. ']+', function(w)
+    table.insert(resultStrList, w)
+  end)
+  return resultStrList
 end
+
 local data = split(cwd, '/')
 print(#data)
 -- print(string.sub(cwd, pos))
