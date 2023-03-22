@@ -28,7 +28,8 @@ class MainGame():
   # begin the game
   def startGame(self):
     pygame.display.init()
-    MainGame.window = pygame.display.set_mode([MainGame.screen_width, MainGame.screen_height])
+    MainGame.window = pygame.display.set_mode(
+      [MainGame.screen_width, MainGame.screen_height])
     self.createMyTank()
     self.createEnemyTank()
     self.createWalls()
@@ -38,7 +39,8 @@ class MainGame():
       MainGame.window.fill(color_bg)
       self.getEvent()
       # display the text
-      MainGame.window.blit(self.getTextSurface("Enemy:%d" % len(MainGame.EnemyTank_list)), (5, 5))
+      MainGame.window.blit(
+        self.getTextSurface("Enemy:%d" % len(MainGame.EnemyTank_list)), (5, 5))
       self.blitWalls()
       # display the tank
       if MainGame.TANK_P1 and MainGame.TANK_P1.live:
@@ -171,11 +173,13 @@ class MainGame():
 
 
 class BaseItem(pygame.sprite.Sprite):
+
   def __init__(self):
     pygame.sprite.Sprite.__init__(self)
 
 
 class Tank(BaseItem):
+
   def __init__(self, left, top):
     self.images = {
       'U': pygame.image.load('images/Tank_UP.png'),
@@ -202,17 +206,17 @@ class Tank(BaseItem):
     self.oldTop = self.rect.top
     if self.direction == 'L':
       if self.rect.left > 0:
-          self.rect.left -= self.speed
+        self.rect.left -= self.speed
     elif self.direction == 'R':
       # the width and height is rect's virtual attributes
       if self.rect.left + self.rect.width < MainGame.screen_width:
-          self.rect.left += self.speed
+        self.rect.left += self.speed
     elif self.direction == 'U':
       if self.rect.top > 0:
-          self.rect.top -= self.speed
+        self.rect.top -= self.speed
     elif self.direction == 'D':
       if self.rect.top + self.rect.height < MainGame.screen_height:
-          self.rect.top += self.speed
+        self.rect.top += self.speed
 
   def stay(self):
     self.rect.left = self.oldLeft
@@ -232,6 +236,7 @@ class Tank(BaseItem):
 
 
 class MyTank(Tank):
+
   def __init__(self, left, top):
     super(MyTank, self).__init__(left, top)
 
@@ -242,6 +247,7 @@ class MyTank(Tank):
 
 
 class EnemyTank(Tank):
+
   def __init__(self, left, top, speed):
     super(EnemyTank, self).__init__(left, top)
     self.images = {
@@ -290,6 +296,7 @@ class EnemyTank(Tank):
 
 
 class Bullet(BaseItem):
+
   def __init__(self, tank):
     self.image = pygame.image.load('images/Bullet.png')
     self.direction = tank.direction
@@ -332,7 +339,7 @@ class Bullet(BaseItem):
         self.live = False
 
   def displatBullet(self):
-      MainGame.window.blit(self.image, self.rect)
+    MainGame.window.blit(self.image, self.rect)
 
   def hitEnemyTank(self):
     for eTank in MainGame.EnemyTank_list:
@@ -355,6 +362,7 @@ class Bullet(BaseItem):
 
 
 class Wall():
+
   def __init__(self, left, top):
     self.image = pygame.image.load('images/Wall.webp')
     self.rect = self.image.get_rect()
@@ -369,6 +377,7 @@ class Wall():
 
 
 class Music():
+
   def __init__(self, fileName):
     self.fileName = fileName
     pygame.mixer.init()
