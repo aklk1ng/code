@@ -1,5 +1,7 @@
-import pyspark
 import os
+
+import pyspark
+
 os.environ['PYSPARK_PYTHON'] = "/usr/bin/python3"
 conf = pyspark.SparkConf()
 conf.setMaster("local[*]")

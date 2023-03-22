@@ -1,5 +1,6 @@
-import numpy as np
 from multiprocessing import Pool
+
+import numpy as np
 from scipy import signal
 
 

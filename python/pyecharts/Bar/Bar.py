@@ -1,4 +1,5 @@
 import pyecharts
+
 bar1 = pyecharts.charts.Bar()
 bar1.add_xaxis(["China", "America", "US"])
 bar1.add_yaxis("GDP", [30, 20, 10], label_opts=pyecharts.options.LabelOpts(position="right"))

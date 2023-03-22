@@ -1,4 +1,5 @@
 import socket
+
 socket_client = socket.socket()
 socket_client.connect(("localhost", 8000))
 while True:

@@ -1,7 +1,8 @@
-import sys
-import pygame
-import time
 import random
+import sys
+import time
+
+import pygame
 
 result = sys.path
 for temppath in result:

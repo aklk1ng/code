@@ -1,4 +1,5 @@
 import pyecharts
+
 map = pyecharts.charts.Map()
 data = [
   ("北京市", 99),

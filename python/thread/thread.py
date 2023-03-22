@@ -1,4 +1,5 @@
-import threading, time
+import threading
+import time
 
 
 def sing(msg):

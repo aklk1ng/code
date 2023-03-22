@@ -1,4 +1,5 @@
 import pyecharts
+
 line = pyecharts.charts.Line()
 line.add_xaxis(["1", "2", "3"])
 line.add_yaxis("GDP", [30, 20, 10])
