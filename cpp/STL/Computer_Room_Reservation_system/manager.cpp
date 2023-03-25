@@ -139,23 +139,20 @@ void Manager::showPerson() {
   cin >> select;
   if (select == 1) {
     for (vector<Student>::iterator it = vStu.begin(); it != vStu.end(); it++) {
-      cout << "ID: " << it->m_Id << "\tName: " << it->m_name
-           << "\tPassword:" << it->m_pwd << endl;
+      cout << "ID: " << it->m_Id << "\tName: " << it->m_name << "\tPassword:" << it->m_pwd << endl;
     }
   } else {
     for (vector<Teacher>::iterator it = vTea.begin(); it != vTea.end(); it++) {
-      cout << "ID: " << it->m_EmpId << "\tName: " << it->m_name
-           << "\tPassword:" << it->m_pwd << endl;
+      cout << "ID: " << it->m_EmpId << "\tName: " << it->m_name << "\tPassword:" << it->m_pwd
+           << endl;
     }
   }
 }
 
 void Manager::showComputer() {
   cout << "The computer room information:" << endl;
-  for (vector<ComputerRoom>::iterator it = vCom.begin(); it != vCom.end();
-       it++) {
-    cout << "ComputerID: " << it->m_ComId
-         << "\tComputerCapacuty: " << it->m_MaxNum << endl;
+  for (vector<ComputerRoom>::iterator it = vCom.begin(); it != vCom.end(); it++) {
+    cout << "ComputerID: " << it->m_ComId << "\tComputerCapacuty: " << it->m_MaxNum << endl;
   }
 }
 

@@ -29,9 +29,7 @@ void Teacher::showAllOrder() {
   }
   for (int i = 0; i < of.m_Size; i++) {
     cout << "Order date:" << of.m_orderData[i]["date"] << "\t";
-    cout << "Order time:"
-         << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening")
-         << "\t";
+    cout << "Order time:" << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening") << "\t";
     cout << "stuID:" << of.m_orderData[i]["stuID"] << "\t";
     cout << "StuName:" << of.m_orderData[i]["stuName"] << "\t";
     cout << "Order room:" << of.m_orderData[i]["room"] << "\t";
@@ -61,8 +59,7 @@ void Teacher::validOrder() {
       v.push_back(i);
       cout << index++ << ". ";
       cout << "Order date:" << of.m_orderData[i]["date"] << "\t";
-      cout << "Order time:"
-           << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening")
+      cout << "Order time:" << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening")
            << "\t";
       cout << "Order room:" << of.m_orderData[i]["room"] << "\t";
       string status = "Status:under review";

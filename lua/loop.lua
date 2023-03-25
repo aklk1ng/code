@@ -7,11 +7,11 @@ local f = function(x)
 end
 print(f(10))
 -- _G is a special table of all globals
-print(_G["a"][1])
-print(_G["_G"] == _G)
+print(_G['a'][1])
+print(_G['_G'] == _G)
 -- #a is the siez of a for lists(actually table)
 print(#a)
 
 local a = nil
 print(not nil)
-print(os.getenv("HOME"))
+print(os.getenv('HOME'))

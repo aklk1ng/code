@@ -12,8 +12,8 @@ OrderFile::OrderFile() {
   string roomID;
   string status;
   this->m_Size = 0;
-  while (ifs >> date && ifs >> interval && ifs >> stuID && ifs >> stuName &&
-         ifs >> roomID && ifs >> status) {
+  while (ifs >> date && ifs >> interval && ifs >> stuID && ifs >> stuName && ifs >> roomID &&
+         ifs >> status) {
     string key;
     string value;
     map<string, string> m;

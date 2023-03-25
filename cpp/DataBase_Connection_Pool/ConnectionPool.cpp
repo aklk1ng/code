@@ -22,8 +22,7 @@ ConnectionPool *ConnectionPool::getConnectPool() {
 shared_ptr<MysqlConn> ConnectionPool::getConnection() {
   unique_lock<mutex> locker(m_mutexQ);
   while (m_connectionQ.empty()) {
-    if (cv_status::timeout ==
-        m_cond.wait_for(locker, chrono::milliseconds(m_timeout))) {
+    if (cv_status::timeout == m_cond.wait_for(locker, chrono::milliseconds(m_timeout))) {
       if (m_connectionQ.empty()) {
         continue;
       }

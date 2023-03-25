@@ -8,7 +8,8 @@
 #include <unistd.h>
 using namespace std;
 namespace yazi {
-template <typename T> class ThreadPool {
+template <typename T>
+class ThreadPool {
 public:
   // 创建线程池并初始化
   ThreadPool(int max, int min);

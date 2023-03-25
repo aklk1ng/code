@@ -9,14 +9,13 @@ typedef struct TNode {
   int height;
 } TNode;
 
-int Max(int left, int right) {
-  return left > right ? left : right;
-}
+int Max(int left, int right) { return left > right ? left : right; }
 
 int Get_Node_Height(TNode *node) {
   if (node == NULL) {
     return 0;
-  } else return node->height;
+  } else
+    return node->height;
 }
 
 int TotalHeight(TNode *root) {
@@ -77,17 +76,19 @@ TNode *Insert(TNode *root, ElementType x) {
     root = CreateNode(x);
   } else if (x < root->data) {
     root->left = Insert(root->left, x);
-    if (TotalHeight(root->left)  - TotalHeight(root->right) == 2) {
+    if (TotalHeight(root->left) - TotalHeight(root->right) == 2) {
       if (x < root->left->data) {
         root = SingleRotateWithLeft(root);
-      } else root = DoubleRotateWithLeft(root);
+      } else
+        root = DoubleRotateWithLeft(root);
     }
   } else if (x > root->data) {
     root->right = Insert(root->right, x);
-    if (TotalHeight(root->right)  - TotalHeight(root->left) == 2) {
+    if (TotalHeight(root->right) - TotalHeight(root->left) == 2) {
       if (x > root->right->data) {
         root = SingleRotateWithRight(root);
-      } else root = DoubleRotateWithRight(root);
+      } else
+        root = DoubleRotateWithRight(root);
     }
   }
 
@@ -101,7 +102,8 @@ TNode *FindMin(TNode *root) {
     return NULL;
   } else if (root->left) {
     return FindMin(root->left);
-  } else return root;
+  } else
+    return root;
 }
 
 TNode *FindMax(TNode *root) {
@@ -110,7 +112,8 @@ TNode *FindMax(TNode *root) {
     return NULL;
   } else if (root->right) {
     return FindMax(root->right);
-  } else return root;
+  } else
+    return root;
 }
 
 void InOrderTree(TNode *root) {

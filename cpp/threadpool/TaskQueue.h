@@ -4,7 +4,8 @@
 #include <queue>
 using callback = void (*)(void *arg);
 namespace yazi {
-template <typename T> struct Task {
+template <typename T>
+struct Task {
   Task() {
     function = nullptr;
     arg = nullptr;
@@ -17,7 +18,8 @@ template <typename T> struct Task {
   T *arg;
 };
 
-template <typename T> class TaskQueue {
+template <typename T>
+class TaskQueue {
 public:
   TaskQueue();
   ~TaskQueue();

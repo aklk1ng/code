@@ -47,18 +47,15 @@ int main(int argc, char *argv[]) {
     printf("\x1b[H");
     for (int r = 0; r < ROWS; r++) {
       for (int c = 0; c < COLS; c++) {
-        if (r - 3 > matrix[c].cycle - matrix[c].lifespan &&
-            r < matrix[c].cycle - 2) {
+        if (r - 3 > matrix[c].cycle - matrix[c].lifespan && r < matrix[c].cycle - 2) {
           // GREEN
           printf("\e[38;2;10;220;10m");
           printf("%c", matrix[c].rsi[r]);
-        } else if (r - 1 > matrix[c].cycle - matrix[c].lifespan &&
-                   r < matrix[c].cycle - 2) {
+        } else if (r - 1 > matrix[c].cycle - matrix[c].lifespan && r < matrix[c].cycle - 2) {
           // DK GREEN 1
           printf("\e[38;2;10;150;10m");
           printf("%c", matrix[c].rsi[r]);
-        } else if (r > matrix[c].cycle - matrix[c].lifespan &&
-                   r < matrix[c].cycle - 2) {
+        } else if (r > matrix[c].cycle - matrix[c].lifespan && r < matrix[c].cycle - 2) {
           // DK GREEN 2
           printf("\e[38;2;10;90;10m");
           printf("%c", matrix[c].rsi[r]);

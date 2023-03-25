@@ -69,8 +69,7 @@ void Student::applyOrder() {
   }
   cout << "Please enter the computer room:" << endl;
   for (int i = 0; i < vCom.size(); i++) {
-    cout << "ComputerID: " << vCom[i].m_ComId
-         << "\tComputerCapacity: " << vCom[i].m_MaxNum << endl;
+    cout << "ComputerID: " << vCom[i].m_ComId << "\tComputerCapacity: " << vCom[i].m_MaxNum << endl;
   }
   while (1) {
     cin >> room;
@@ -101,8 +100,7 @@ void Student::showOrder() {
   for (int i = 0; i < of.m_Size; i++) {
     if (atoi(of.m_orderData[i]["stuID"].c_str()) == this->m_Id) {
       cout << "Order date:" << of.m_orderData[i]["date"] << "\t";
-      cout << "Order time:"
-           << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening")
+      cout << "Order time:" << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening")
            << "\t";
       cout << "Order room:" << of.m_orderData[i]["room"] << "\t";
       string status = "Status:";
@@ -129,8 +127,7 @@ void Student::showAllOrder() {
     cout << i + 1 << ", ";
     if (atoi(of.m_orderData[i]["stuID"].c_str()) == this->m_Id) {
       cout << "Order date:" << of.m_orderData[i]["date"] << "\t";
-      cout << "Order time:"
-           << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening")
+      cout << "Order time:" << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening")
            << "\t";
       cout << "stuID:" << of.m_orderData[i]["stuID"] << "\t";
       cout << "StuName:" << of.m_orderData[i]["stuName"] << "\t";
@@ -160,13 +157,11 @@ void Student::cancelOrder() {
   int index = 1;
   for (int i = 0; i < of.m_Size; i++) {
     if (atoi(of.m_orderData[i]["stuID"].c_str()) == this->m_Id) {
-      if (of.m_orderData[i]["status"] == "1" ||
-          of.m_orderData[i]["status"] == "2") {
+      if (of.m_orderData[i]["status"] == "1" || of.m_orderData[i]["status"] == "2") {
         v.push_back(i);
         cout << index++ << ". ";
         cout << "Order date:" << of.m_orderData[i]["date"] << "\t";
-        cout << "Order time:"
-             << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening")
+        cout << "Order time:" << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening")
              << "\t";
         cout << "Order room:" << of.m_orderData[i]["room"] << "\t";
         string status = "Status:";

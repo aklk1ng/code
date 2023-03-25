@@ -12,12 +12,8 @@ class TaskQueue {
 public:
   TaskQueue(const TaskQueue &t) = delete;
   TaskQueue &operator=(const TaskQueue &t) = delete;
-  static TaskQueue *getInstance() {
-    return m_taskQ;
-  }
-  void print() {
-    cout << "I am a member function..." << endl;
-  }
+  static TaskQueue *getInstance() { return m_taskQ; }
+  void print() { cout << "I am a member function..." << endl; }
 
   bool isEmpty() {
     lock_guard<mutex> locker(m_mutex);
