@@ -68,7 +68,7 @@ void Print(ElementType arr[], int size) {
   printf("\n");
 }
 
-int main(int argc, char *argv[]) {
+void test() {
   srand((unsigned)time(NULL));
   int size = 15;
   ElementType arr[size];
@@ -79,5 +79,9 @@ int main(int argc, char *argv[]) {
   printf("---------------\n");
   MergeSort(arr, size);
   Print(arr, size);
+}
+
+int main(int argc, char *argv[]) {
+  test();
   return 0;
 }

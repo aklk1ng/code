@@ -9,6 +9,7 @@
 #include <strings.h>
 #include <sys/socket.h>
 #include <unistd.h>
+
 // the information structure
 struct SockInfo {
   struct sockaddr_in addr;
@@ -32,9 +33,8 @@ int main(int argc, char *argv[]) {
   struct sockaddr_in saddr;
   saddr.sin_family = AF_INET;
   saddr.sin_port = htons(9999);
-  saddr.sin_addr.s_addr =
-      INADDR_ANY; // 0 = 0,0,0,0 this macro automatically read the IP address
-                  // of the local network card
+  saddr.sin_addr.s_addr = INADDR_ANY; // 0 = 0,0,0,0 this macro automatically read the IP address of
+                                      // the local network card
   int ret = bind(fd, (struct sockaddr *)&saddr, sizeof(saddr));
   if (ret == -1) {
     perror("bind");
@@ -78,8 +78,7 @@ void working(void *arg) {
   // connecting successfully, print the client IP and port information
   char ip[32];
   printf("the client's IP: %s. port: %d\n",
-         inet_ntop(AF_INET, &pinfo->addr.sin_addr, ip, sizeof(ip)),
-         ntohs(pinfo->addr.sin_port));
+         inet_ntop(AF_INET, &pinfo->addr.sin_addr, ip, sizeof(ip)), ntohs(pinfo->addr.sin_port));
   // 5. communicate
   while (1) {
     // receive data

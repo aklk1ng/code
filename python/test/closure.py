@@ -4,9 +4,9 @@ import time
 
 def outer(func):
   def inner():
-      print("Go")
-      func()
-      print("Over")
+    print("Go")
+    func()
+    print("Over")
   return inner
 
 # decorator

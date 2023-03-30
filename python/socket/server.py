@@ -8,10 +8,11 @@ conn, address = socket_server.accept()
 print(address)
 
 while True:
-    data: str = conn.recv(1024).decode("UTF-8")
-    print(data)
-    if data == 'exit':
-        break
-    conn.send("receive over".encode("UTF-8"))
+  data: str = conn.recv(1024).decode("UTF-8")
+  print(data)
+  if data == 'exit':
+    conn.send("close".encode("UTF-8"))
+    break
+  conn.send("receive over".encode("UTF-8"))
 conn.close()
 socket_server.close()
