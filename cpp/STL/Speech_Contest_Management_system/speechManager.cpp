@@ -76,15 +76,13 @@ void SpeechManager::speechDraw() {
 
   if (this->Index == 1) {
     random_shuffle(first_round.begin(), first_round.end());
-    for (vector<int>::iterator it = first_round.begin();
-         it != first_round.end(); it++) {
+    for (vector<int>::iterator it = first_round.begin(); it != first_round.end(); it++) {
       cout << *it << " ";
     }
     cout << endl;
   } else {
     random_shuffle(first_victory.begin(), first_victory.end());
-    for (vector<int>::iterator it = first_victory.begin();
-         it != first_victory.end(); it++) {
+    for (vector<int>::iterator it = first_victory.begin(); it != first_victory.end(); it++) {
       cout << *it << " ";
     }
     cout << endl;
@@ -126,16 +124,13 @@ void SpeechManager::speechContest() {
     groupScore.insert(make_pair(avg, *it));
     if (num % 6 == 0) {
       cout << "The " << num / 6 << " group:" << endl;
-      for (multimap<double, int, greater<double>>::iterator it =
-               groupScore.begin();
+      for (multimap<double, int, greater<double>>::iterator it = groupScore.begin();
            it != groupScore.end(); it++) {
-        cout << "Speaker:" << it->second
-             << " Name:" << this->m_Speaker[it->second].m_name << " Score:"
-             << this->m_Speaker[it->second].m_score[this->Index - 1] << endl;
+        cout << "Speaker:" << it->second << " Name:" << this->m_Speaker[it->second].m_name
+             << " Score:" << this->m_Speaker[it->second].m_score[this->Index - 1] << endl;
       }
       int count = 0;
-      for (multimap<double, int, greater<double>>::iterator it =
-               groupScore.begin();
+      for (multimap<double, int, greater<double>>::iterator it = groupScore.begin();
            it != groupScore.end() && count < 3; it++, count++) {
         if (this->Index == 1) {
           first_victory.push_back((*it).second);
@@ -150,8 +145,7 @@ void SpeechManager::speechContest() {
 }
 
 void SpeechManager::showScore() {
-  cout << "------The " << this->Index << " round advancement speaker------"
-       << endl;
+  cout << "------The " << this->Index << " round advancement speaker------" << endl;
   vector<int> v;
   if (this->Index == 1) {
     v = first_victory;
@@ -167,8 +161,7 @@ void SpeechManager::showScore() {
 void SpeechManager::saveRecord() {
   ofstream ofs;
   ofs.open("speech.csv", ios::out | ios::app);
-  for (vector<int>::iterator it = top_three.begin(); it != top_three.end();
-       it++) {
+  for (vector<int>::iterator it = top_three.begin(); it != top_three.end(); it++) {
     ofs << *it << "," << this->m_Speaker[*it].m_score[1] << ",";
   }
   ofs << endl;
@@ -223,12 +216,9 @@ void SpeechManager::showRecord() {
   } else {
     for (int i = 0; i < this->m_Record.size(); i++) {
       cout << "The " << i + 1 << " match:" << endl
-           << "Champion:" << this->m_Record[i][0]
-           << " Score:" << this->m_Record[i][1] << endl
-           << "runner up:" << this->m_Record[i][2]
-           << " Score:" << this->m_Record[i][3] << endl
-           << "runner-up:" << this->m_Record[i][4]
-           << " Score:" << this->m_Record[i][5] << endl;
+           << "Champion:" << this->m_Record[i][0] << " Score:" << this->m_Record[i][1] << endl
+           << "runner up:" << this->m_Record[i][2] << " Score:" << this->m_Record[i][3] << endl
+           << "runner-up:" << this->m_Record[i][4] << " Score:" << this->m_Record[i][5] << endl;
     }
   }
 }
