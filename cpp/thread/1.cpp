@@ -16,6 +16,7 @@ void func1() {
 }
 
 int main(int argc, char *argv[]) {
+  // main thread | thread t1 | thread t2
   cout << this_thread::get_id() << endl;
   thread t1(func, 520, "i love you");
   thread t2(func1);
