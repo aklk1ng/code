@@ -7,7 +7,7 @@ serverSocket.bind(('127.0.0.1', serverPort))
 print("The server is ready to receive")
 
 while True:
-  message, clientAddress = serverSocket.recvfrom(2048)
-  print(message.decode())
-  modifiedMessage = message.decode().upper()
-  serverSocket.sendto(modifiedMessage.encode(), clientAddress)
+    message, clientAddress = serverSocket.recvfrom(2048)
+    print(message.decode())
+    modifiedMessage = message.decode().upper()
+    serverSocket.sendto(modifiedMessage.encode(), clientAddress)
