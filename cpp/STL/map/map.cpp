@@ -55,7 +55,7 @@ void test1() {
   }
 }
 int main(int argc, char *argv[]) {
-  /* test(); */
-  test1();
+  test();
+  // test1();
   return 0;
 }
