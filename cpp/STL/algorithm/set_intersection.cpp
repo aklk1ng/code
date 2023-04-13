@@ -15,8 +15,8 @@ void test() {
   }
   vector<int> target;
   target.resize(v.size() >= v1.size() ? v1.size() : v.size());
-  vector<int>::iterator pos = set_intersection(v.begin(), v.end(), v1.begin(),
-                                               v1.end(), target.begin());
+  vector<int>::iterator pos =
+      set_intersection(v.begin(), v.end(), v1.begin(), v1.end(), target.begin());
   for (vector<int>::iterator it = target.begin(); it != pos; it++) {
     cout << *it << " ";
   }

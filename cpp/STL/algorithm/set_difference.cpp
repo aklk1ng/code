@@ -23,8 +23,7 @@ void test() {
   }
   cout << endl;
   target.resize(v.size() >= v1.size() ? v.size() : v1.size());
-  pos =
-      set_difference(v1.begin(), v1.end(), v.begin(), v.end(), target.begin());
+  pos = set_difference(v1.begin(), v1.end(), v.begin(), v.end(), target.begin());
   for (vector<int>::iterator it = target.begin(); it != pos; it++) {
     cout << *it << " ";
   }

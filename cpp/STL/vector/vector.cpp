@@ -2,9 +2,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-void myPrint(int val) {
-  cout << val << endl;
-}
+void myPrint(int val) { cout << val << endl; }
 
 void PrintVector(vector<int> &v) {
   for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
@@ -191,8 +189,7 @@ void test7() {
   } else
     cout << "false" << endl;
 
-  v.resize(
-      20); // the compile will use the defaults value to filling the new space
+  v.resize(20); // the compile will use the defaults value to filling the new space
   PrintVector(v);
 
   v.resize(30, 6);

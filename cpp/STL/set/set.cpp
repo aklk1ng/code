@@ -112,9 +112,7 @@ void test3() {
 
 class comparePerson {
 public:
-  bool operator()(const Person &p1, const Person &p2) {
-    return p1.m_age > p2.m_age;
-  }
+  bool operator()(const Person &p1, const Person &p2) { return p1.m_age > p2.m_age; }
 };
 void test4() {
   set<Person, comparePerson> s;
@@ -126,8 +124,7 @@ void test4() {
   s.insert(p2);
   s.insert(p3);
   s.insert(p4);
-  for (set<Person, comparePerson>::iterator it = s.begin(); it != s.end();
-       it++) {
+  for (set<Person, comparePerson>::iterator it = s.begin(); it != s.end(); it++) {
     cout << it->m_name << " " << it->m_age << endl;
   }
 }
