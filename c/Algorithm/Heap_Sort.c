@@ -77,9 +77,9 @@ void heapify(ElementType arr[], int n, int i) {
     largest = r;
   }
   if (largest != i) {
-    arr[i] = arr[i] ^= arr[largest];
-    arr[largest] = arr[i] ^= arr[largest];
-    arr[i] = arr[i] ^= arr[largest];
+    ElementType tmp = arr[i];
+    arr[i] = arr[largest];
+    arr[largest] = tmp;
     heapify(arr, n, largest);
   }
 }
@@ -90,9 +90,9 @@ void heapSort(ElementType arr[], int size) {
   }
 
   for (int i = size - 1; i >= 0; i--) {
-    arr[0] = arr[0] ^= arr[i];
-    arr[i] = arr[0] ^= arr[i];
-    arr[0] = arr[0] ^= arr[i];
+    ElementType tmp = arr[0];
+    arr[0] = arr[i];
+    arr[i] = tmp;
     heapify(arr, i, 0);
   }
 }
