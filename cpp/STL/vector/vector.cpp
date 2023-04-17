@@ -154,14 +154,14 @@ void test6() {
   }
   vector<int> v2;
   v2 = v1;
-  for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++) {
+  for (vector<int>::iterator it = v2.begin(); it != v2.end(); it++) {
     cout << *it << endl;
   }
   cout << endl;
 
   vector<int> v3;
   v3.assign(v1.begin(), v1.end());
-  for (vector<int>::iterator it = v2.begin(); it != v2.end(); it++) {
+  for (vector<int>::iterator it = v3.begin(); it != v3.end(); it++) {
     cout << *it << endl;
   }
   cout << endl;
@@ -282,7 +282,7 @@ int main(int argc, char *argv[]) {
   /* test3(); */
   /* test4(); */
   /* test5(); */
-  /* test6(); */
+  test6();
   /* test7(); */
   /* test8(); */
   /* test9(); */

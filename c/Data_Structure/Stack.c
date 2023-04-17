@@ -62,6 +62,13 @@ StackDataType StackTop(ST *ps) {
   return ps->a[ps->top - 1];
 }
 
+void Print(ST *ps) {
+  for (int i = 0; i < ps->top; i++) {
+    printf("%d ", ps->a[i]);
+  }
+  printf("\n");
+}
+
 void test() {
   ST ps;
   StackInit(&ps);
@@ -73,6 +80,7 @@ void test() {
   StackPush(&ps, 5);
   StackPop(&ps);
   printf("%d\n", StackTop(&ps));
+  Print(&ps);
   StackDestroy(&ps);
 }
 
