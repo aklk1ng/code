@@ -15,6 +15,8 @@ public:
   ListNode() {
     dummy = new Node(-1);
     size = 0;
+    Min_Index = 0;
+    Max_Index = 0;
   }
 
   ElementType get(int index) {
@@ -23,6 +25,24 @@ public:
     }
     Node *cur = dummy->next;
     while (index--) {
+      cur = cur->next;
+    }
+    return cur->val;
+  }
+
+  ElementType Get_Max() {
+    Parse_Most_Value();
+    Node *cur = dummy->next;
+    while (Max_Index--) {
+      cur = cur->next;
+    }
+    return cur->val;
+  }
+
+  ElementType Get_Min() {
+    Parse_Most_Value();
+    Node *cur = dummy->next;
+    while (Min_Index--) {
       cur = cur->next;
     }
     return cur->val;
@@ -91,6 +111,17 @@ public:
 private:
   int size;
   Node *dummy;
+  int Max_Index;
+  int Min_Index;
+
+  void Parse_Most_Value() {
+    Node *cur = dummy->next;
+    for (int i = 0; i < size; i++) {
+      Max_Index = max(Max_Index, cur->val);
+      Min_Index = min(Min_Index, cur->val);
+      cur = cur->next;
+    }
+  }
 };
 
 void test() {
@@ -101,6 +132,8 @@ void test() {
   l.ListNodeErase(2);
   l.Print();
   cout << l.get(1) << endl;
+  cout << l.Get_Max() << endl;
+  cout << l.Get_Min() << endl;
 }
 
 int main(int argc, char *argv[]) {
