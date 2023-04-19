@@ -37,7 +37,7 @@ public:
       ps->tail->next = newnode;
       ps->tail = newnode;
     }
-    size++;
+    this->size++;
   }
 
   void QueuePop() {
@@ -47,7 +47,7 @@ public:
     if (ps->head == nullptr) {
       ps->tail = nullptr;
     }
-    size--;
+    this->size--;
   }
 
   void Print() {

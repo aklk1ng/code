@@ -13,17 +13,17 @@ public:
   };
 
   ListNode() {
-    dummy = new Node(-1);
-    size = 0;
-    Min_Index = 0;
-    Max_Index = 0;
+    this->dummy = new Node(-1);
+    this->size = 0;
+    this->Min_Index = 0;
+    this->Max_Index = 0;
   }
 
   ElementType get(int index) {
-    if (index < 0 || index > (size - 1)) {
+    if (index < 0 || index > (this->size - 1)) {
       return -1;
     }
-    Node *cur = dummy->next;
+    Node *cur = this->dummy->next;
     while (index--) {
       cur = cur->next;
     }
@@ -32,8 +32,8 @@ public:
 
   ElementType Get_Max() {
     Parse_Most_Value();
-    Node *cur = dummy->next;
-    while (Max_Index--) {
+    Node *cur = this->dummy->next;
+    while (this->Max_Index--) {
       cur = cur->next;
     }
     return cur->val;
@@ -41,18 +41,18 @@ public:
 
   ElementType Get_Min() {
     Parse_Most_Value();
-    Node *cur = dummy->next;
-    while (Min_Index--) {
+    Node *cur = this->dummy->next;
+    while (this->Min_Index--) {
       cur = cur->next;
     }
     return cur->val;
   }
 
   void ListNodeInsert(int index, ElementType val) {
-    if (index < 0 || index > size) {
+    if (index < 0 || index > this->size) {
       return;
     }
-    Node *cur = dummy;
+    Node *cur = this->dummy;
     Node *newnode = new Node(val);
     while (index--) {
       cur = cur->next;
@@ -60,14 +60,14 @@ public:
     newnode->next = cur->next;
     cur->next = newnode;
 
-    size++;
+    this->size++;
   }
 
   void ListNodeErase(int index) {
-    if (index < 0 || index > (size - 1)) {
+    if (index < 0 || index > (this->size - 1)) {
       return;
     }
-    Node *cur = dummy;
+    Node *cur = this->dummy;
     while (index--) {
       cur = cur->next;
     }
@@ -75,20 +75,20 @@ public:
     cur->next = tmp->next;
     delete tmp;
 
-    size--;
+    this->size--;
   }
 
   void HeadInsert(ElementType val) {
     Node *newnode = new Node(val);
-    Node *head = dummy->next;
-    dummy->next = newnode;
+    Node *head = this->dummy->next;
+    this->dummy->next = newnode;
     newnode->next = head;
 
-    size++;
+    this->size++;
   }
 
   void TailInsert(ElementType val) {
-    Node *cur = dummy->next;
+    Node *cur = this->dummy->next;
     while (cur) {
       cur = cur->next;
     }
@@ -96,11 +96,11 @@ public:
     newnode->next = cur->next;
     cur->next = newnode;
 
-    size++;
+    this->size++;
   }
 
   void Print() {
-    Node *cur = dummy->next;
+    Node *cur = this->dummy->next;
     while (cur) {
       cout << cur->val << "->";
       cur = cur->next;
@@ -115,10 +115,10 @@ private:
   int Min_Index;
 
   void Parse_Most_Value() {
-    Node *cur = dummy->next;
-    for (int i = 0; i < size; i++) {
-      Max_Index = max(Max_Index, cur->val);
-      Min_Index = min(Min_Index, cur->val);
+    Node *cur = this->dummy->next;
+    for (int i = 0; i < this->size; i++) {
+      this->Max_Index = max(Max_Index, cur->val);
+      this->Min_Index = min(Min_Index, cur->val);
       cur = cur->next;
     }
   }
