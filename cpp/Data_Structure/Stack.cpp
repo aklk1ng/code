@@ -9,26 +9,17 @@ class Stack {
 public:
   struct StackList {
     vector<ElementType> v;
-    int size;
-    StackList() : v(-1) {}
+    StackList(ElementType x) : v(x) {}
   };
 
-  Stack() { s = new StackList(); }
+  Stack(ElementType x) { s = new StackList(x); }
   ~Stack() { s->v.clear(); }
 
-  void StackPush(ElementType x) {
-    s->v.push_back(x);
-    s->size++;
-  }
+  void StackPush(ElementType x) { s->v.push_back(x); }
 
-  void StackPop() {
-    s->v.pop_back();
-    s->size--;
-  }
+  void StackPop() { s->v.pop_back(); }
 
-  int StackSize() { return s->size; }
-
-  ElementType StackTop() { return *(s->v.end()); }
+  int StackSize() { return s->v.size(); }
 
   void Print() {
     auto it = s->v.begin();
@@ -38,12 +29,16 @@ public:
     cout << endl;
   }
 
+  ElementType Get_Pos(int index) { return s->v.at(index); }
+
+  ElementType Top() { return s->v.back(); }
+
 private:
   StackList *s;
 };
 
 void test() {
-  Stack s;
+  Stack s(0);
   s.StackPush(0);
   s.StackPush(1);
   s.StackPush(2);
@@ -54,8 +49,9 @@ void test() {
   s.StackPop();
   s.Print();
   cout << "---------------" << endl;
-  cout << s.StackTop() << endl;
+  cout << s.Top() << endl;
   cout << s.StackSize() << endl;
+  cout << s.Get_Pos(5) << endl;
 }
 int main(int argc, char *argv[]) {
   test();
