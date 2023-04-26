@@ -37,8 +37,10 @@ def init_vars():
     direction = "right"
     head_pos = [120, 60]
     snake_body = [[120, 60]]
-    food_pos = [random.randrange(1, (frame_size_x // square_size)) * square_size,
-                random.randrange(1, (frame_size_y // square_size)) * square_size]
+    food_pos = [
+        random.randrange(1, (frame_size_x // square_size)) * square_size,
+        random.randrange(1, (frame_size_y // square_size)) * square_size,
+    ]
     food_spawn = True
     score = 0
 
@@ -58,8 +60,7 @@ def show_score(choice, color, font, size):
     game_window.blit(score_surface, score_rect)
 
 
-class Music():
-
+class Music:
     def __init__(self, fileName):
         self.fileName = fileName
         pygame.mixer.init()
@@ -69,7 +70,7 @@ class Music():
         pygame.mixer.music.play(loops=-1)
 
 
-music = Music('music/startup.mp3')
+music = Music("music/startup.mp3")
 music.play()
 
 # game loop
@@ -79,13 +80,13 @@ while True:
             pygame.quit()
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            if (event.key == pygame.K_UP and direction != "down"):
+            if event.key == pygame.K_UP and direction != "down":
                 direction = "up"
-            elif (event.key == pygame.K_DOWN and direction != "up"):
+            elif event.key == pygame.K_DOWN and direction != "up":
                 direction = "down"
-            elif (event.key == pygame.K_LEFT and direction != "right"):
+            elif event.key == pygame.K_LEFT and direction != "right":
                 direction = "left"
-            elif (event.key == pygame.K_RIGHT and direction != "left"):
+            elif event.key == pygame.K_RIGHT and direction != "left":
                 direction = "right"
 
     if direction == "up":
@@ -97,7 +98,7 @@ while True:
     elif direction == "right":
         head_pos[0] += square_size
 
-# boundary processing
+    # boundary processing
     if head_pos[0] < 0:
         head_pos[0] = frame_size_x - square_size
     elif head_pos[0] > frame_size_x - square_size:
@@ -114,29 +115,34 @@ while True:
     else:
         snake_body.pop()
 
-# spawn food
+    # spawn food
     if not food_spawn:
         food_pos = [
-          random.randrange(1, (frame_size_x // square_size)) * square_size,
-          random.randrange(1, (frame_size_y // square_size)) * square_size
+            random.randrange(1, (frame_size_x // square_size)) * square_size,
+            random.randrange(1, (frame_size_y // square_size)) * square_size,
         ]
         food_spawn = True
 
-# GFX
+    # GFX
     game_window.fill(black)
     for pos in snake_body:
         pygame.draw.rect(
-          game_window, green,
-          pygame.Rect(pos[0] + 2, pos[1] + 2, square_size - 2, square_size - 2))
+            game_window,
+            green,
+            pygame.Rect(pos[0] + 2, pos[1] + 2, square_size - 2, square_size - 2),
+        )
 
-        pygame.draw.rect(game_window, red,
-                         pygame.Rect(food_pos[0], food_pos[1], square_size, square_size))
+        pygame.draw.rect(
+            game_window,
+            red,
+            pygame.Rect(food_pos[0], food_pos[1], square_size, square_size),
+        )
 
-# game over conditions
+    # game over conditions
     for block in snake_body[1:]:
         if head_pos[0] == block[0] and head_pos[1] == block[1]:
             init_vars()
 
-    show_score(1, white, 'cousine', 25)
+    show_score(1, white, "cousine", 25)
     pygame.display.update()
     fps_controller.tick(speed)

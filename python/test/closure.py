@@ -7,7 +7,9 @@ def outer(func):
         print("Go")
         func()
         print("Over")
+
     return inner
+
 
 # decorator
 @outer

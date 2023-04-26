@@ -1,20 +1,20 @@
 class Animal:
-  def speak(self):
-    pass
+    def speak(self):
+        pass
 
 
 class Dog(Animal):
-  def speak(self):
-    print("Dog")
+    def speak(self):
+        print("Dog")
 
 
 class Cat(Animal):
-  def speak(self):
-    print("Cat")
+    def speak(self):
+        print("Cat")
 
 
 def make_noise(animal: Animal):
-  animal.speak()
+    animal.speak()
 
 
 dog = Dog()

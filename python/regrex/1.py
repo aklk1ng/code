@@ -9,7 +9,7 @@ print(result.group())
 
 c = "test python python test regrex"
 # find a correct result
-search = re.search('python', c)
+search = re.search("python", c)
 print(search)
 print(search.span())
 print(search.group())

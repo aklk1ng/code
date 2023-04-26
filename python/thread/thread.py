@@ -15,7 +15,7 @@ def dance(msg):
 
 
 if __name__ == "__main__":
-    sing_thread = threading.Thread(target=sing, args=("sing", ))
-    dance_thread = threading.Thread(target=dance, args=("dance", ))
+    sing_thread = threading.Thread(target=sing, args=("sing",))
+    dance_thread = threading.Thread(target=dance, args=("dance",))
     sing_thread.start()
     dance_thread.start()

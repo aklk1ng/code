@@ -2,7 +2,7 @@ import os
 
 import pyspark
 
-os.environ['PYSPARK_PYTHON'] = "/usr/bin/python3"
+os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3"
 conf = pyspark.SparkConf()
 conf.setMaster("local[*]")
 conf.setAppName("test_pyspark")
@@ -10,12 +10,12 @@ sc = pyspark.SparkContext(conf=conf)
 
 
 def add(data):
-  return 10 * data
+    return 10 * data
 
 
 # rdd = sc.parallelize("abcd")
 rdd2 = sc.parallelize([1, 2, 3, 4, 5, 5])
-rdd3 = sc.parallelize([('a', 1), ('a', 3), ('b', 1), ('b', 1)])
+rdd3 = sc.parallelize([("a", 1), ("a", 3), ("b", 1), ("b", 1)])
 # rdd3 = sc.parallelize({"xxx": "fsdfasd", "ooo": "fasdf"})
 # print(sc.version)
 # print(rdd.collect())
