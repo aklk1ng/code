@@ -4,7 +4,8 @@ from functools import wraps
 
 buffer = {"aa": 12, "bb": 32}
 
-with open("test.txt", "w+") as file:
+# with keyword autoclose the file when ending the call
+with open("test.txt", "w+", encoding="utf-8") as file:
     file.write(json.dumps(buffer))
 
 with open("test.txt", "r+") as file:
@@ -47,6 +48,35 @@ print(math.sqrt(16))
 # and local folder has priority oever Python's built-in libraries
 print(dir(math))
 
+knights = {"gallahad": "the pure", "robin": "the brave"}
+# get the key and value
+for k, v in knights.items():
+    print(k, v)
+
+# get the index and key
+for i, v in enumerate(knights):
+    print(i, v)
+
+table = {"Sjoerd": 4127, "Jack": 4098, "Dcab": 8637678}
+print("Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; " "Dcab: {0[Dcab]:d}".format(table))
+print("Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}".format(**table))
+print(vars(table))
+
+questions = ["name", "quest", "favorite color"]
+answers = ["lancelot", "the holy grail", "blue"]
+# loop over two or more sequences at the same time
+for q, a in zip(questions, answers):
+    print(f"What is your {q}? It is {a}")
+
+basket = ["apple", "orange", "apple", "pear", "orange", "banana"]
+# sort and set a sequence eliminates duplicate elements
+for f in sorted(set(basket)):
+    print(f)
+
+string1, string2, string3 = "", "Trondheim", "Hammer Dance"
+# the result of a comparison or other Boolean expression to a variable
+non_null = string1 or string2 and string3
+print(non_null)
 
 # Generators
 def double_numbers(iterable):
