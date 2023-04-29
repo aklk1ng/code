@@ -5,6 +5,7 @@ from functools import wraps
 buffer = {"aa": 12, "bb": 32}
 
 # with keyword autoclose the file when ending the call
+# predefined clean-up actions
 with open("test.txt", "w+", encoding="utf-8") as file:
     file.write(json.dumps(buffer))
 
@@ -77,6 +78,7 @@ string1, string2, string3 = "", "Trondheim", "Hammer Dance"
 # the result of a comparison or other Boolean expression to a variable
 non_null = string1 or string2 and string3
 print(non_null)
+
 
 # Generators
 def double_numbers(iterable):
@@ -202,6 +204,7 @@ class Batman(Superhero, Bat):
         return "nan nan nan nan batman!"
 
 
+# the entry of the program
 if __name__ == "__main__":
     i = Human(name="cjh")
     i.say("hi")

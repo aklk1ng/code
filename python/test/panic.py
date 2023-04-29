@@ -49,3 +49,38 @@ for arg in sys.argv[1:]:
         f.close()
 
 print(sys.argv)
+
+
+def bool_return():
+    try:
+        return True
+    finally:
+        return False
+
+
+print(bool_return())
+
+
+def divide(x, y):
+    try:
+        res = x / y
+    except ZeroDivisionError:
+        print("division by zero!")
+    except TypeError:
+        print("error type in arguments")
+    else:
+        print("res is", res)
+    finally:
+        print("executing finally clause")
+
+
+divide(2, 1)
+divide(2, 0)
+divide("2", "1")
+
+try:
+    raise TypeError("bad type")
+except Exception as e:
+    e.add_note("Add some information")
+    e.add_note("Add some more information")
+    raise
