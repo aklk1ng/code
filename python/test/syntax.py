@@ -170,7 +170,7 @@ class Bat:
         return msg
 
     def sonar(self):
-        return "))) ... ((("
+        return "(((())))"
 
 
 class Superhero(Human):
@@ -198,6 +198,7 @@ class Batman(Superhero, Bat):
             self, "anonymous", movie=True, superpowers=["Wealthy"], *args, **kwargs
         )
         Bat.__init__(self, *args, can_fly=False, **kwargs)
+
         self.name = "Sad Affleck"
 
     def sing(self):

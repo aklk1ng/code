@@ -1,9 +1,7 @@
-dict1 = {1: 2, "white": "fsdf"}
-print(dict1[1])
+dict1 = {"black": "fasdf", "white": "fsdf"}
 print(dict1["white"])
 
-for k, v in range(dict1):
-    if v == 2:
-        del dict1[k]
+for k, v in dict1.items():
+    print(dict1[k])
 
 print(dict1)
