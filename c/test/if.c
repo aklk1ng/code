@@ -7,10 +7,9 @@
 //     if (choice == 1)
 //       printf("OK!Welcome!\n");
 //     else
-//       printf("Thanks!\n");  
+//       printf("Thanks!\n");
 //     return 0;
 // }
-
 
 // #include <stdio.h>
 // int main ()
@@ -26,13 +25,11 @@
 //   return 0;
 // }
 #include <stdio.h>
-int main ()
-{
+int main() {
   int i = 0;
-  while (i <= 100)
-  {
+  while (i <= 100) {
     printf("%d\n", i);
-    i+=2;
+    i += 2;
   }
   return 0;
 }

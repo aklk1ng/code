@@ -10,7 +10,7 @@
 //   if (line == 30000)
 //    {
 //     printf("offer!\n");
-//    }   
+//    }
 //   return 0;
 // }
 // #include <stdio.h>
@@ -25,25 +25,20 @@
 //}
 
 #include <stdio.h>
-int main ()
-{
+int main() {
   int password[40] = {0};
-    printf("Please enter your password:\n");
-    scanf("%s", password);
-    printf("Please confirm your choice:(Y/N)\n");
-    int abc = 0;
-    while ((abc = getchar()) != '\n')
-        {
-          ;
-        }
-    int ch = getchar();
-    if (ch == 'Y')
-        {
-         printf("OK!\n");
-        }
-    else
-        {
-          printf("Sorry!\n");
-        } 
+  printf("Please enter your password:\n");
+  scanf("%s", password);
+  printf("Please confirm your choice:(Y/N)\n");
+  int abc = 0;
+  while ((abc = getchar()) != '\n') {
+    ;
+  }
+  int ch = getchar();
+  if (ch == 'Y') {
+    printf("OK!\n");
+  } else {
+    printf("Sorry!\n");
+  }
   return 0;
 }

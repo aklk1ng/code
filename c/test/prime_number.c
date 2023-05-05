@@ -3,7 +3,8 @@
 void test(int num) {
   int i;
   for (i = 2; i <= num - 1; i++) {
-    if (num % i == 0) break;
+    if (num % i == 0)
+      break;
   }
   if (i == num) {
     printf("yes\n");

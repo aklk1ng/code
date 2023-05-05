@@ -1,4 +1,7 @@
+#include <algorithm>
 #include <iostream>
+#include <stack>
+#include <vector>
 using namespace std;
 
 typedef int ElementType;
@@ -69,6 +72,7 @@ public:
       PreOrderTree(root->right);
     }
   }
+
   void InOrderTree(Node *root) {
     if (root == nullptr) {
       cout << "nullptr" << endl;
@@ -77,6 +81,89 @@ public:
       cout << root->val << endl;
       InOrderTree(root->right);
     }
+  }
+
+  // iteration
+  vector<int> preorderTraversal(Node *root) {
+    stack<Node *> st;
+    vector<int> res;
+    if (root)
+      st.push(root);
+    while (!st.empty()) {
+      Node *node = st.top();
+      if (node) {
+        st.pop();
+        if (node->right)
+          st.push(node->right);
+        if (node->left)
+          st.push(node->left);
+
+        st.push(node);
+        st.push(nullptr);
+
+      } else {
+        st.pop();
+        node = st.top();
+        st.pop();
+        res.push_back(node->val);
+      }
+    }
+    return res;
+  }
+
+  // iteration
+  vector<int> inorderTraversal(Node *root) {
+    vector<int> res;
+    stack<Node *> st;
+    if (root)
+      st.push(root);
+    while (!st.empty()) {
+      Node *node = st.top();
+      if (node) {
+        st.pop();
+        if (node->right)
+          st.push(node->right);
+
+        st.push(node);
+        st.push(nullptr);
+
+        if (node->left)
+          st.push(node->left);
+      } else {
+        st.pop();
+        node = st.top();
+        st.pop();
+        res.push_back(node->val);
+      }
+    }
+    return res;
+  }
+
+  // iteration
+  vector<int> postorderTraversal(Node *root) {
+    stack<Node *> st;
+    vector<int> res;
+    if (root)
+      st.push(root);
+    while (!st.empty()) {
+      Node *node = st.top();
+      if (node) {
+        st.pop();
+        st.push(node);
+        st.push(nullptr);
+
+        if (node->right)
+          st.push(node->right);
+        if (node->left)
+          st.push(node->left);
+      } else {
+        st.pop();
+        node = st.top();
+        st.pop();
+        res.push_back(node->val);
+      }
+    }
+    return res;
   }
 
   Node *TreeDelete(Node *root, ElementType x) {
@@ -107,6 +194,13 @@ public:
     return root;
   }
 
+  void Print(vector<int> res) {
+    for (vector<int>::iterator it = res.begin(); it != res.end(); it++) {
+      cout << *it << " ";
+    }
+    cout << endl;
+  }
+
   Node *root;
 };
 
@@ -120,6 +214,13 @@ void test() {
   cout << max->val << endl;
   Binary_Tree::Node *min = b.Find_Min(b.root);
   cout << min->val << endl;
+  cout << "-------------------" << endl;
+  auto in_res = b.inorderTraversal(b.root);
+  b.Print(in_res);
+  auto pre_res = b.preorderTraversal(b.root);
+  b.Print(pre_res);
+  auto post_res = b.postorderTraversal(b.root);
+  b.Print(post_res);
 }
 
 int main(int argc, char *argv[]) {

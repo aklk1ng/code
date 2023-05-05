@@ -8,12 +8,10 @@
 #include <stdio.h>
 #define A "a"
 #define B "b"
-int main()
-{
-  if(A<B){
+int main() {
+  if (A < B) {
     printf("<\n");
-  }
-  else{
+  } else {
     printf(">\n");
   }
   return 0;

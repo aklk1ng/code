@@ -45,7 +45,6 @@
 //     return 0;
 // }
 
-
 // #include <stdio.h>
 // int main()
 // {
@@ -111,7 +110,6 @@
 //     return 0;
 // }
 
-
 // #include <stdio.h>
 // int main()
 // {
@@ -148,7 +146,6 @@
 //     return 0;
 // }
 
-
 // #include <stdio.h>
 // int main()
 // {
@@ -170,7 +167,6 @@
 //     printf("Done\n");
 //     return 0;
 // }
-
 
 // #include <stdio.h>
 // int main()
@@ -239,7 +235,6 @@
 //     printf("%.2f   %.2f", evensum/(oldcount+evencount), oldsum/(oldcount+evencount));
 // }
 
-
 // #include <stdio.h>
 // int main()
 // {
@@ -271,21 +266,20 @@
 //     return 0;
 // }
 
-
-//指针的运算
-// #include <stdio.h>
-// int main()
-// {
-//     int data[2]={100,200};
-//     int moredata[2]={300,400};
-//     int *p1,*p2,*p3;
-//     p1=p2=data;
-//     p3=moredata;
-//     printf("*p1 = %d, *p2 = %d, *p3 = %d\n", *p1,*p2,*p3);
-//     printf("*p++ = %d, *++p2 = %d, (*p3)++ = %d\n", *p1++,*++p2,(*p3)++);
-//     printf("*p1 = %d, *p2 = %d, *p3 = %d\n", *p1,*p2,*p3);
-//     return 0;
-// }
+// 指针的运算
+//  #include <stdio.h>
+//  int main()
+//  {
+//      int data[2]={100,200};
+//      int moredata[2]={300,400};
+//      int *p1,*p2,*p3;
+//      p1=p2=data;
+//      p3=moredata;
+//      printf("*p1 = %d, *p2 = %d, *p3 = %d\n", *p1,*p2,*p3);
+//      printf("*p++ = %d, *++p2 = %d, (*p3)++ = %d\n", *p1++,*++p2,(*p3)++);
+//      printf("*p1 = %d, *p2 = %d, *p3 = %d\n", *p1,*p2,*p3);
+//      return 0;
+//  }
 
 // #include<stdio.h>
 // char* pr(char* str)
@@ -329,89 +323,88 @@
 //     return 0;
 // }
 
+// c primer plus字符串函数的练习
+//  #include<stdio.h>
+//  #include<string.h>
+//  void menu()
+//  {
+//      printf("*****************************\n");
+//      printf("*  1.print  2.print_ASCII  **\n");
+//      printf("*  3.print_lh  4.print_fstlh \n");
+//      printf("**         0.quit    ********\n");
+//      printf("*****************************\n");
+//      printf("*****************************\n");
+//  }
+//  void Print(char* str)
+//  {
+//      while(*str!='\0'){
+//          printf("%c", *str);
+//          str++;
+//      }
+//  }
+//  void Print_ASCII(char* str,int n)
+//  {
+//      int i=0;
+//      int j=0;
+//      for(i=0;i<n;i++){
+//          for(j=i;j<=n-1;j++){
+//              if(*str>*(str+1)){
+//                  char* tmp=str;
+//                  *str=*(str+1);
+//                  *(str+1)=*tmp;
+//              }
+//          }
+//          puts(*(str+i));
+//      }
+//  }
+//  int main()
+//  {
+//      int choice = 0;
+//      do{
+//          menu();
+//          char str[]={0};
+//          int count = 0;
+//          printf("请输入字符串:>");
+//          while (scanf("%s", str)==1&&count<=10){
+//              if (*str==EOF){
+//                  break;
+//              }
+//              else{
+//                  count++;
+//              }
+//          }
+//          printf("请输入数字功能:>");
+//          scanf("%d", &choice);
+//          switch (choice)
+//          {
+//          case 1:
+//          Print(str);
+//              break;
+//          case 2:
+//          Print_ASCII(str,count);
+//              break;
+//          case 3:
+//              break;
+//          case 4:
+//              break;
+//          default:
+//          printf("请重新输入数字:>");
+//              break;
+//          }
+//      }while(choice);
+//      return 0;
+//  }
 
-//c primer plus字符串函数的练习
-// #include<stdio.h>
-// #include<string.h>
-// void menu()
-// {
-//     printf("*****************************\n");
-//     printf("*  1.print  2.print_ASCII  **\n");
-//     printf("*  3.print_lh  4.print_fstlh \n");
-//     printf("**         0.quit    ********\n");
-//     printf("*****************************\n");
-//     printf("*****************************\n");
-// }
-// void Print(char* str)
-// {
-//     while(*str!='\0'){
-//         printf("%c", *str);
-//         str++;
-//     }
-// }
-// void Print_ASCII(char* str,int n)
-// {
-//     int i=0;
-//     int j=0;
-//     for(i=0;i<n;i++){
-//         for(j=i;j<=n-1;j++){
-//             if(*str>*(str+1)){
-//                 char* tmp=str;
-//                 *str=*(str+1);
-//                 *(str+1)=*tmp;
-//             }
-//         }
-//         puts(*(str+i));
-//     }
-// }
-// int main()
-// {
-//     int choice = 0;
-//     do{
-//         menu();
-//         char str[]={0};
-//         int count = 0;
-//         printf("请输入字符串:>");
-//         while (scanf("%s", str)==1&&count<=10){
-//             if (*str==EOF){
-//                 break;
-//             }
-//             else{
-//                 count++;
-//             }
-//         }
-//         printf("请输入数字功能:>");
-//         scanf("%d", &choice);
-//         switch (choice)
-//         {
-//         case 1:
-//         Print(str);
-//             break;
-//         case 2:
-//         Print_ASCII(str,count);
-//             break;
-//         case 3:
-//             break;
-//         case 4:
-//             break;
-//         default:
-//         printf("请重新输入数字:>");
-//             break;
-//         }
-//     }while(choice);
-//     return 0;
-// }
-
-//continue的陷阱
-// #include<stdio.h>
-// enum {false,true};
-// int main()
-// {
-//     int i=1;
-//     do
-//     {
-//         printf("%d\n",i);
-//         i++;
+// continue的陷阱
+//  #include<stdio.h>
+//  enum {false,true};
+//  int main()
+//  {
+//      int i=1;
+//      do
+//      {
+//          printf("%d\n",i);
+//          i++;
 
 //         if(i < 15)
 //             continue;
@@ -449,8 +442,5 @@
 //     return 0;
 // }
 
-#include<stdio.h>
-int main()
-{
-    return 0;
-}
+#include <stdio.h>
+int main() { return 0; }

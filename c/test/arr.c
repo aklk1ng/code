@@ -52,61 +52,59 @@
 //     }
 // }
 
+// 模拟实现strcat函数
+//  #include<stdio.h>
+//  char* Mystrcat(char* arr,char* arr2)
+//  {
+//      char* dest=arr;
+//      while(*arr)
+//      {
+//          arr++;
+//      }
+//      while(*arr++=*arr2++){
+//          ;
+//      }
+//      return dest;
+//  }
+//  int main()
+//  {
+//      int i=0;
+//      char arr[20]="adc";
+//      char arr2[]="xcf";
+//      char* str=Mystrcat(arr,arr2);
+//      for(i=0;i<6;i++){
+//          printf("%c ", *(str+i));
+//      }
+//  }
 
-//模拟实现strcat函数
-// #include<stdio.h>
-// char* Mystrcat(char* arr,char* arr2)
-// {
-//     char* dest=arr;
-//     while(*arr)
-//     {
-//         arr++;
-//     }
-//     while(*arr++=*arr2++){
-//         ;
-//     }
-//     return dest;
-// }
-// int main()
-// {
-//     int i=0;
-//     char arr[20]="adc";
-//     char arr2[]="xcf";
-//     char* str=Mystrcat(arr,arr2);
-//     for(i=0;i<6;i++){
-//         printf("%c ", *(str+i));
-//     }
-// }
-
-
-//模拟实现strcmp函数
-// #include<stdio.h>
-// int Mystrcmp(char* arr,char* arr2)
-// {
-//     while(*arr==*arr2){
-//         arr++;
-//         arr2++;
-//     }
-//     return *arr-*arr2;
-// }
-// int main()
-// {
-//     char arr[]={0};
-//     char arr2[]={0};
-//     scanf("%s",arr);
-//     scanf("%s",arr2);
-//     int ret=Mystrcmp(arr,arr2);
-//     if(ret>0){
-//         printf(">\n");
-//     }
-//     else if(ret<0){
-//         printf("<\n");
-//     }
-//     else{
-//         printf("=\n");
-//     }
-//     return 0;
-// }
+// 模拟实现strcmp函数
+//  #include<stdio.h>
+//  int Mystrcmp(char* arr,char* arr2)
+//  {
+//      while(*arr==*arr2){
+//          arr++;
+//          arr2++;
+//      }
+//      return *arr-*arr2;
+//  }
+//  int main()
+//  {
+//      char arr[]={0};
+//      char arr2[]={0};
+//      scanf("%s",arr);
+//      scanf("%s",arr2);
+//      int ret=Mystrcmp(arr,arr2);
+//      if(ret>0){
+//          printf(">\n");
+//      }
+//      else if(ret<0){
+//          printf("<\n");
+//      }
+//      else{
+//          printf("=\n");
+//      }
+//      return 0;
+//  }
 
 // #include<stdio.h>
 // #include<stdlib.h>
@@ -144,44 +142,42 @@
 //     return 0;
 // }
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-void game()
-{
-    int goal=rand()%100+1;
-    int choice=0;
-    while(1){
-        printf("请输入数字:>");
-        scanf("%d", &choice);
-        if(choice<goal)
-        printf("猜小了!\n");
-        else if(choice>goal)
-        printf("猜大了!\n");
-        else{
-        printf("猜对了!\n");
-        break;
-        }
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void game() {
+  int goal = rand() % 100 + 1;
+  int choice = 0;
+  while (1) {
+    printf("请输入数字:>");
+    scanf("%d", &choice);
+    if (choice < goal)
+      printf("猜小了!\n");
+    else if (choice > goal)
+      printf("猜大了!\n");
+    else {
+      printf("猜对了!\n");
+      break;
     }
+  }
 }
-int main()
-{
-    int input;
-    srand((unsigned int)time(NULL));
-    do{
-        printf("请输入1开始游戏,0退出游戏:>");
-        scanf("%d", &input);
-        switch(input){
-            case 1:
-            game();
-            break;
-            case 0:
-            printf("See you soon!\n");
-            break;
-            default:
-            printf("请重新输入数字!\n");
-            break;
-        }
-    }while(input);
-    return 0;
+int main() {
+  int input;
+  srand((unsigned int)time(NULL));
+  do {
+    printf("请输入1开始游戏,0退出游戏:>");
+    scanf("%d", &input);
+    switch (input) {
+    case 1:
+      game();
+      break;
+    case 0:
+      printf("See you soon!\n");
+      break;
+    default:
+      printf("请重新输入数字!\n");
+      break;
+    }
+  } while (input);
+  return 0;
 }

@@ -8,8 +8,7 @@
 //     return 0;
 // }
 #include <stdio.h>
-int main()
-{
-    printf("\"hello wprld!\"\n");
-    return 0;
+int main() {
+  printf("\"hello wprld!\"\n");
+  return 0;
 }
