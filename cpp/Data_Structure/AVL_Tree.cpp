@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cmath>
 #include <iostream>
 using namespace std;
 
@@ -82,11 +83,19 @@ public:
   }
 
   int Tree_Height(Node *root) {
-    if (root == nullptr)
+    if (!root)
+      return 0;
+    int leftHeight = Tree_Height(root->left);
+    if (leftHeight == -1)
       return -1;
-    else
-      return 1 + max(Tree_Height(root->left), Tree_Height(root->right));
+    int rightHeight = Tree_Height(root->right);
+    if (rightHeight == -1)
+      return -1;
+
+    return abs(leftHeight - rightHeight) > 1 ? -1 : max(leftHeight, rightHeight) + 1;
   }
+
+  bool isBalanced(Node *root) { return this->Tree_Height(root) == -1 ? false : true; }
 
   Node *FindMax(Node *root) {
     if (root == nullptr) {
@@ -129,6 +138,8 @@ void test() {
 
   cout << "---------------------" << endl;
   cout << t.FindMax(t.root)->val << endl;
+  cout << t.Tree_Height(t.root) << endl;
+  cout << t.isBalanced(t.root) << endl;
 }
 
 int main(int argc, char *argv[]) {
