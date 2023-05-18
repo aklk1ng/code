@@ -27,7 +27,7 @@ public:
         continue;
       }
       if (!(s[r] >= 'a' && s[r] <= 'z' || s[r] >= '0' && s[r] <= '9')) {
-        r++;
+        r--;
         continue;
       }
       if (s[l] != s[r])
