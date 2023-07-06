@@ -66,7 +66,7 @@ public:
       }
     }
 
-    root->height = !+max(Tree_Height(root->left), Tree_Height(root->right));
+    root->height = 1 + max(Tree_Height(root->left), Tree_Height(root->right));
     return root;
   }
 
