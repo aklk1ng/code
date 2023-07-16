@@ -1,15 +1,4 @@
-#include <algorithm>
-#include <cmath>
-#include <deque>
-#include <limits.h>
-#include <map>
-#include <queue>
-#include <set>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -28,6 +17,25 @@ public:
       res += num % 7 + '0';
       num /= 7;
     }
+    reverse(res.begin(), res.end());
+    return flag + res;
+  }
+};
+
+class Soluton2 {
+public:
+  string convertToBase7(int num) {
+    if (num == 0)
+      return "0";
+    string res;
+    bool negative = num < 0;
+    num = abs(num);
+    while (num > 0) {
+      res.push_back(num % 7 + '0');
+      num /= 7;
+    }
+    if (negative)
+      res.push_back('-');
     reverse(res.begin(), res.end());
     return res;
   }
