@@ -12,7 +12,8 @@ public:
     Node *left;
     Node *right;
     int height;
-    Node(ElementType val) : val(val), left(nullptr), right(nullptr), height(0) {}
+    Node(ElementType val)
+        : val(val), left(nullptr), right(nullptr), height(0) {}
   };
 
   AVL_Tree(ElementType x) { root = new Node(x); }
@@ -92,10 +93,13 @@ public:
     if (rightHeight == -1)
       return -1;
 
-    return abs(leftHeight - rightHeight) > 1 ? -1 : max(leftHeight, rightHeight) + 1;
+    return abs(leftHeight - rightHeight) > 1 ? -1
+                                             : max(leftHeight, rightHeight) + 1;
   }
 
-  bool isBalanced(Node *root) { return this->Tree_Height(root) == -1 ? false : true; }
+  bool isBalanced(Node *root) {
+    return this->Tree_Height(root) == -1 ? false : true;
+  }
 
   Node *FindMax(Node *root) {
     if (root == nullptr) {

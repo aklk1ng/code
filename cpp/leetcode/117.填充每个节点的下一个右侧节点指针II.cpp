@@ -21,7 +21,7 @@ public:
   Node() : val(0), left(NULL), right(NULL), next(NULL) {}
 };
 
-class Solution {
+class Solution1 {
 public:
   Node *connect(Node *root) {
     queue<Node *> que;
@@ -48,6 +48,30 @@ public:
           que.push(node->right);
       }
       pre->next = NULL;
+    }
+    return root;
+  }
+};
+
+class Solution2 {
+public:
+  Node *connect(Node *root) {
+    queue<Node *> que;
+    if (root)
+      que.push(root);
+    while (!que.empty()) {
+      int size = que.size();
+      while (size--) {
+        Node *node = que.front();
+        que.pop();
+        if (size)
+          node->next = que.front();
+        que.pop();
+        if (node->left)
+          que.push(node->left);
+        if (node->right)
+          que.push(node->right);
+      }
     }
     return root;
   }
