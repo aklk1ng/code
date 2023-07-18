@@ -1,5 +1,5 @@
-#include "student.h"
 #include "globalFile.h"
+#include "student.h"
 #include <cstdlib>
 #include <fstream>
 #include <vector>

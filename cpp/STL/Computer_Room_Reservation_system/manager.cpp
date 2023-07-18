@@ -1,6 +1,6 @@
-#include "manager.h"
 #include "computerRoom.h"
 #include "globalFile.h"
+#include "manager.h"
 #include "student.h"
 #include "teacher.h"
 #include <fstream>
