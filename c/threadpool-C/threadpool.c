@@ -20,12 +20,12 @@ typedef struct ThreadPool {
   int queueFront;    // head of queue
   int queueBack;     // end of queue
 
-  pthread_t managerID;  // manager id
-  pthread_t *threadIDs; // thread id
+  pthread_t managerID;  // manager id pointer
+  pthread_t *threadIDs; // thread id pointer
   int maxnum;           // the max thread quantity
   int minnum;           // the min thread quantity
   int busynum;          // the number of threads currently working
-  int livenum;          // the number of idle threads
+  int livenum;          // the number of live threads
   int destroynum;       // the number of threads to destroy
 
   pthread_mutex_t mutexPool; // lock the entire thread pool
@@ -61,7 +61,7 @@ ThreadPool *ThreadPoolCreate(int max, int min, int queueSize) {
         pthread_mutex_init(&pool->mutexBusy, NULL) != 0 ||
         pthread_cond_init(&pool->IsEmpty, NULL) != 0 ||
         pthread_cond_init(&pool->IsFull, NULL) != 0) {
-      printf("mutex or conditon int faield!\n");
+      printf("mutex or conditon init faield!\n");
       break;
     }
 
@@ -132,7 +132,7 @@ void *worker(void *arg) {
 
     printf("thread %ld begin working ...\n", pthread_self());
     pthread_mutex_lock(&pool->mutexBusy);
-    // the working thread's task
+    // begin the task
     pool->busynum++;
     pthread_mutex_unlock(&pool->mutexBusy);
     task.function(task.arg);
@@ -170,7 +170,7 @@ void *manager(void *arg) {
     if (queueSize > livenum && livenum < pool->maxnum) {
       pthread_mutex_lock(&pool->mutexPool);
       int counter = 0;
-      for (int i = 0; i < pool->maxnum && counter << NUMBER && pool->livenum << pool->maxnum; i++) {
+      for (int i = 0; i < pool->maxnum && counter <= NUMBER && pool->livenum <= pool->maxnum; i++) {
         if (pool->threadIDs[i] == 0) {
           pthread_create(&pool->threadIDs[i], NULL, worker, NULL);
           counter++;
@@ -180,9 +180,7 @@ void *manager(void *arg) {
       pthread_mutex_unlock(&pool->mutexPool);
     }
 
-    // destroy thread(the busynum * 2 < livenum && livenum >
-    // minnum)销毁线程--忙的线程*2 < 存活的线程数 && 存活的线程数 <
-    // 最小线程数
+    // destroy thread(the busynum * 2 < livenum && livenum > minnum)
     if (busynum * 2 < livenum && livenum > pool->minnum) {
       pthread_mutex_lock(&pool->mutexPool);
       pool->destroynum = NUMBER;

@@ -170,7 +170,7 @@ void *manager(void *arg) {
     if (queueSize > livenum && livenum < pool->maxnum) {
       pthread_mutex_lock(&pool->mutexPool);
       int counter = 0;
-      for (int i = 0; i < pool->maxnum && counter << NUMBER && pool->livenum << pool->maxnum; i++) {
+      for (int i = 0; i < pool->maxnum && counter <= NUMBER && pool->livenum <= pool->maxnum; i++) {
         if (pool->threadIDs[i] == 0) {
           pthread_create(&pool->threadIDs[i], NULL, worker, NULL);
           counter++;
@@ -181,8 +181,6 @@ void *manager(void *arg) {
     }
 
     // destroy thread(the busynum * 2 < livenum && livenum >
-    // minnum)销毁线程--忙的线程*2 < 存活的线程数 && 存活的线程数 <
-    // 最小线程数
     if (busynum * 2 < livenum && livenum > pool->minnum) {
       pthread_mutex_lock(&pool->mutexPool);
       pool->destroynum = NUMBER;
