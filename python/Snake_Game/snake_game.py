@@ -12,8 +12,6 @@ frame_size_y = 720
 check_errors = pygame.init()
 if check_errors[1] > 0:
     print("Error: " + check_errors[1])
-else:
-    print("Game Successfully Initialized!")
 
 # initialise game window
 pygame.display.set_caption("Snake Game")
@@ -107,7 +105,8 @@ while True:
         head_pos[1] = frame_size_y - square_size
     elif head_pos[1] > frame_size_x - square_size:
         head_pos[1] = 0
-
+    
+    # move the snake
     snake_body.insert(0, list(head_pos))
     if head_pos[0] == food_pos[0] and head_pos[1] == food_pos[1]:
         score += 1
@@ -132,17 +131,17 @@ while True:
             pygame.Rect(pos[0] + 2, pos[1] + 2, square_size - 2, square_size - 2),
         )
 
-        pygame.draw.rect(
-            game_window,
-            red,
-            pygame.Rect(food_pos[0], food_pos[1], square_size, square_size),
-        )
+    pygame.draw.rect(
+        game_window,
+        red,
+        pygame.Rect(food_pos[0], food_pos[1], square_size, square_size),
+    )
 
     # game over conditions
     for block in snake_body[1:]:
         if head_pos[0] == block[0] and head_pos[1] == block[1]:
             init_vars()
 
-    show_score(1, white, "cousine", 25)
+    show_score(1, white, "JetBrainsMono Nerd Font", 25)
     pygame.display.update()
     fps_controller.tick(speed)
