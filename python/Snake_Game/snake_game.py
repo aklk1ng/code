@@ -128,7 +128,7 @@ while True:
         pygame.draw.rect(
             game_window,
             green,
-            pygame.Rect(pos[0] + 2, pos[1] + 2, square_size - 2, square_size - 2),
+            pygame.Rect(pos[0], pos[1], square_size - 2, square_size - 2),
         )
 
     pygame.draw.rect(
