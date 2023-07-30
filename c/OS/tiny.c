@@ -54,7 +54,6 @@ void doit(int fd) {
   }
   read_requesthdrs(&rio);
 
-
   is_static = parse_uri(uri, filename, cgiargs);
   if (stat(filename, &sbuf) < 0) {
     clienterror(fd, filename, "404", "Not found", "Tiny couldn't find this file");
@@ -77,25 +76,27 @@ void doit(int fd) {
 }
 
 void clienterror(int fd, char *cause, char *errnum, char *shortmsg, char *longmsg) {
-    char buf[MAXLINE];
+  char buf[MAXLINE];
 
-    /* Print the HTTP response headers */
-    sprintf(buf, "HTTP/1.0 %s %s\r\n", errnum, shortmsg);
-    Rio_writen(fd, buf, strlen(buf));
-    sprintf(buf, "Content-type: text/html\r\n\r\n");
-    Rio_writen(fd, buf, strlen(buf));
+  /* Print the HTTP response headers */
+  sprintf(buf, "HTTP/1.0 %s %s\r\n", errnum, shortmsg);
+  Rio_writen(fd, buf, strlen(buf));
+  sprintf(buf, "Content-type: text/html\r\n\r\n");
+  Rio_writen(fd, buf, strlen(buf));
 
-    /* Print the HTTP response body */
-    sprintf(buf, "<html><title>Tiny Error</title>");
-    Rio_writen(fd, buf, strlen(buf));
-    sprintf(buf, "<body bgcolor=""ffffff"">\r\n");
-    Rio_writen(fd, buf, strlen(buf));
-    sprintf(buf, "%s: %s\r\n", errnum, shortmsg);
-    Rio_writen(fd, buf, strlen(buf));
-    sprintf(buf, "<p>%s: %s\r\n", longmsg, cause);
-    Rio_writen(fd, buf, strlen(buf));
-    sprintf(buf, "<hr><em>The Tiny Web server</em>\r\n");
-    Rio_writen(fd, buf, strlen(buf));
+  /* Print the HTTP response body */
+  sprintf(buf, "<html><title>Tiny Error</title>");
+  Rio_writen(fd, buf, strlen(buf));
+  sprintf(buf, "<body bgcolor="
+               "ffffff"
+               ">\r\n");
+  Rio_writen(fd, buf, strlen(buf));
+  sprintf(buf, "%s: %s\r\n", errnum, shortmsg);
+  Rio_writen(fd, buf, strlen(buf));
+  sprintf(buf, "<p>%s: %s\r\n", longmsg, cause);
+  Rio_writen(fd, buf, strlen(buf));
+  sprintf(buf, "<hr><em>The Tiny Web server</em>\r\n");
+  Rio_writen(fd, buf, strlen(buf));
 }
 
 void read_requesthdrs(rio_t *rp) {
@@ -122,7 +123,8 @@ int parse_uri(char *uri, char *filename, char *cgiargs) {
     if (ptr) {
       strcpy(cgiargs, ptr + 1);
       *ptr = '\0';
-    } else strcpy(cgiargs, "");
+    } else
+      strcpy(cgiargs, "");
 
     strcpy(filename, ".");
     strcpy(filename, uri);
@@ -135,14 +137,14 @@ void serve_static(int fd, char *filename, int filesize) {
   char *srcp, filetype[MAXLINE], buf[MAXLINE];
 
   get_filetype(filename, filetype);
-  sprintf(buf, "HTTP/1.0 200 OK\r\n"); //line:netp:servestatic:beginserve
+  sprintf(buf, "HTTP/1.0 200 OK\r\n"); // line:netp:servestatic:beginserve
   Rio_writen(fd, buf, strlen(buf));
   sprintf(buf, "Server: Tiny Web Server\r\n");
   Rio_writen(fd, buf, strlen(buf));
   sprintf(buf, "Content-length: %d\r\n", filesize);
   Rio_writen(fd, buf, strlen(buf));
   sprintf(buf, "Content-type: %s\r\n\r\n", filetype);
-  Rio_writen(fd, buf, strlen(buf));    //line:netp:servestatic:endserve
+  Rio_writen(fd, buf, strlen(buf)); // line:netp:servestatic:endserve
   printf("Response headers:\n");
   printf("%s", buf);
 
@@ -162,11 +164,12 @@ void get_filetype(char *filename, char *filetype) {
     strcpy(filetype, "text/png");
   else if (strstr(filename, ".jpg"))
     strcpy(filetype, "text/jpeg");
-  else strcpy(filetype, "text/plain");
+  else
+    strcpy(filetype, "text/plain");
 }
 
 void serve_dynamic(int fd, char *filename, char *cgiargs) {
-  char buf[MAXLINE], *emptylist[] = { NULL };
+  char buf[MAXLINE], *emptylist[] = {NULL};
 
   sprintf(buf, "HTTP/1.0 200 OK\r\n");
   Rio_writen(fd, buf, strlen(buf));
