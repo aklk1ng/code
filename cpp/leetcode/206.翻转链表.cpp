@@ -18,7 +18,7 @@ public:
       tmp = cur->next;
       cur->next = pre;
       pre = cur;
-      cur = cur->next;
+      cur = tmp;
     }
     return pre;
   }

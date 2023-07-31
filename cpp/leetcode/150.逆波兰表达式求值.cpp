@@ -7,31 +7,27 @@ using namespace std;
 class Solution {
 public:
   int evalRPN(vector<string> &tokens) {
-    stack<int> st;
-    for (int i = 0; i < tokens.size(); i++) {
-      if (tokens[i] == "+" || tokens[i] == "-" || tokens[i] == "*" || tokens[i] == "/") {
-        int num1 = st.top();
-        st.pop();
-        int num2 = st.top();
-        st.pop();
-        if (tokens[i] == "+")
-          st.push(num2 + num1);
-        else if (tokens[i] == "-")
-          st.push(num2 - num1);
-        else if (tokens[i] == "*")
-          st.push(num2 * num1);
-        else if (tokens[i] == "/")
-          st.push(num2 / num1);
+    stack<string> st;
+    auto operation = [&](string op) -> int {
+      int rhs = stoi(st.top());
+      st.pop();
+      int lhs = stoi(st.top());
+      st.pop();
+      if (op == "+")
+        return lhs + rhs;
+      else if (op == "-")
+        return lhs - rhs;
+      else if (op == "*")
+        return lhs * rhs;
+      else
+        return lhs / rhs;
+    };
+    for (auto &token : tokens) {
+      if (token == "+" || token == "-" || token == "*" || token == "/") {
+        st.push(to_string(operation(token)));
       } else
-        st.push(stoi(tokens[i]));
+        st.push(token);
     }
-    int res = st.top();
-    st.pop();
-    return res;
+    return stoi(st.top());
   }
 };
-
-int main(int argc, char *argv[]) {
-  cout << "hello world" << endl;
-  return 0;
-}
