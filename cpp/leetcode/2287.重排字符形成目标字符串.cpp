@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int rearrangerCharacters(string s, string target) {
     unordered_map<char, int> scnt, targetcnt;

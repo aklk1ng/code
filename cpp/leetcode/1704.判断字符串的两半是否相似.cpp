@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool halvesAreALike(string s) {
     string a = s.substr(0, s.size() / 2);

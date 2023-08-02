@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   vector<int> runningsum(vector<int> &nums) {
     for (int i = 1; i < nums.size(); i++) {

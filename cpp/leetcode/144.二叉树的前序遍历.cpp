@@ -22,7 +22,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Soluton1 {
+class Solution1 {
 public:
   vector<int> res;
   vector<int> preorderTraversal(TreeNode *root) {
@@ -35,7 +35,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   vector<int> preorderTraversal(TreeNode *root) {
     vector<int> res;

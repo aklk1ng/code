@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool detectCapitalUse(string word) {
     if (word.size() >= 2 && isupper(word[1]) && islower(word[0]))

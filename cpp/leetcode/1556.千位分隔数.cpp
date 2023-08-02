@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   string thousandSeperator(int n) {
     string res;

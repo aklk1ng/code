@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool isPalindrome(string s) {
     for (int i = 0; i < s.size(); i++) {

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int equalSubstring(string s, string t, int maxCost) {
     int res = 0;

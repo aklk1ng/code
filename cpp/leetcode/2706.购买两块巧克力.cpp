@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int buyChoro(vector<int> prices, int money) {
     int a = INT_MAX, b = INT_MAX;

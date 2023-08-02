@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int game(vector<int> &guess, vector<int> &answer) {
     int ans = 0;

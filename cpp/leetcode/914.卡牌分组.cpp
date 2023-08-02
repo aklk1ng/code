@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool hasGroupsSize(vector<int> &deck) {
     int cnt[10000] = {0};

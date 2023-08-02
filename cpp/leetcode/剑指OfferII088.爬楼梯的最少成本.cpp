@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int minCostClimbingStairs(vector<int> &cost) {
     int dp[1010];

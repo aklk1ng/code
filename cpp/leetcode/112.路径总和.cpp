@@ -11,7 +11,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Soluton1 {
+class Solution1 {
 public:
   bool traversal(TreeNode *root, int count) {
     if (!root->left && !root->right && count == 0)
@@ -36,7 +36,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   bool haspathSum(TreeNode *root, int targetSum) {
     if (!root)

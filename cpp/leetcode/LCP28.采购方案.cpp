@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int purchasePlans(vector<int> &nums, int target) {
     long long res = 0;

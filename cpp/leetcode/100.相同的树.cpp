@@ -21,7 +21,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Soluton {
+class Solution {
 public:
   bool compare(TreeNode *left, TreeNode *right) {
     if (left == NULL && right != NULL)

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int countPrefixes(vector<string> &words, string s) {
     int res = 0;

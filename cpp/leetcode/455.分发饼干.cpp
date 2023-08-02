@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton1 {
+class Solution1 {
 public:
   int findContentChildren(vector<int> &g, vector<int> &s) {
     sort(g.begin(), g.end());
@@ -20,7 +20,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   int findContentChildren(vector<int> &g, vector<int> &s) {
     sort(g.begin(), g.end());

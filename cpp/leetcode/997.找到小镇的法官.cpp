@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int findJudge(int n, vector<vector<int>> &trust) {
     vector<int> inDegrees(n + 1);

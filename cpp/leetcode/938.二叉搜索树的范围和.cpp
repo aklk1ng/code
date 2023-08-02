@@ -11,7 +11,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Soluton1 {
+class Solution1 {
 public:
   int sum = 0;
   int rangeSumBST(TreeNode *root, int low, int high) {
@@ -25,7 +25,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   int sum = 0;
   int rangeSumBST(TreeNode *root, int low, int high) {

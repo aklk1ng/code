@@ -11,7 +11,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Soluton {
+class Solution {
 public:
   vector<int> levelOrder(TreeNode *root) {
     vector<int> res;
@@ -24,8 +24,10 @@ public:
         TreeNode *node = que.front();
         que.pop();
         res.push_back(node->val);
-        if (node->left) que.push(node->left);
-        if (node->right) que.push(node->right);
+        if (node->left)
+          que.push(node->left);
+        if (node->right)
+          que.push(node->right);
       }
     }
     return res;

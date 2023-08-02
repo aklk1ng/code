@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int nthUglyNumber(int n) {
     vector<int> dp(n + 1);

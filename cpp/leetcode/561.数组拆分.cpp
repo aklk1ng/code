@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int arrayPairSum(vector<int> &nums) {
     int ans = 0;

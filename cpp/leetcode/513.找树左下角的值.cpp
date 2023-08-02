@@ -14,7 +14,7 @@ struct TreeNode {
 /*
  * 回溯
  */
-class Soluton1 {
+class Solution1 {
 public:
   int res;
   int maxDepth = INT_MIN;
@@ -52,7 +52,7 @@ public:
  * 在遍历一个节点时，需要先把它的非空右子节点放入队列，然后再把它的非空左子节点放入队列，这样才能保证从右到左遍历每一层的节点。
  * 广度优先搜索所遍历的最后一个节点的值就是最底层最左边节点的值。
  */
-class Soluton2 {
+class Solution2 {
 public:
   int findBottomLeftLeaves(TreeNode *root) {
     if (!root)

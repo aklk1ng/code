@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton1 {
+class Solution1 {
 public:
   vector<int> intersect(vector<int> &nums1, vector<int> &nums2) {
     unordered_map<int, int> m;
@@ -22,7 +22,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   vector<int> intersect(vector<int> &nums1, vector<int> &nums2) {
     int len1 = nums1.size(), len2 = nums2.size();

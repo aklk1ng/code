@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool containDuplicate(vector<int> &nums) {
     unordered_set<int> res;

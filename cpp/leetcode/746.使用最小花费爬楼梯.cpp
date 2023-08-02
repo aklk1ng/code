@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton1 {
+class Solution1 {
 public:
   int minConstClimbingStairs(vector<int> &cost) {
     vector<int> dp(cost.size() + 1);
@@ -15,7 +15,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   int minConstClimbingStairs(vector<int> &cost) {
     int dp0 = 0;

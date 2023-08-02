@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int countNegatives(vector<vector<int>> &grid) {
     int n = grid.size();

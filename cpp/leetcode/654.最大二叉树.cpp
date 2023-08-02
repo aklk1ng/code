@@ -10,7 +10,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Soluton1 {
+class Solution1 {
 public:
   TreeNode *constructMaxinumBinaryTree(vector<int> &nums) {
     TreeNode *node = new TreeNode(0);
@@ -42,7 +42,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   TreeNode *traversal(vector<int> &nums, int left, int right) {
     if (left > right)

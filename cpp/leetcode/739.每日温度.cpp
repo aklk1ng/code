@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton1 {
+class Solution1 {
 public:
   vector<int> dailyTemperatures(vector<int> &temperatures) {
     stack<int> st;
@@ -23,7 +23,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   vector<int> dailyTemperatures(vector<int> &temperatures) {
     stack<int> st;

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int maximizeGreatness(vector<int> &nums) {
     int mx = 0;

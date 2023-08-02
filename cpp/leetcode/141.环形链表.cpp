@@ -8,7 +8,7 @@ struct ListNode {
   ListNode(int x) : val(x), next(nullptr) {}
 };
 
-class Soluton {
+class Solution {
 public:
   bool hasCycle(ListNode *head) {
     unordered_set<ListNode *> set;

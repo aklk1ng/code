@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   vector<int> divingBoard(int shorter, int longer, int k) {
     if (k == 0)

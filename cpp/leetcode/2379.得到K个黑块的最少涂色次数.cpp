@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int minimumRecolors(string blocks, int k) {
     int l, r, cnt = 0, n = blocks.size();

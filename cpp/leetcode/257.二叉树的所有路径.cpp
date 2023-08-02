@@ -21,7 +21,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Soluton {
+class Solution {
 public:
   void traversal(TreeNode *cur, vector<int> &path, vector<string> &res) {
     path.push_back(cur->val); // 中

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   vector<int> corpFlightBookings(vector<vector<int>> &bookings, int n) {
     vector<int> res(n);

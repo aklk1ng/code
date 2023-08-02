@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool canBeIncreasing(vector<int> &nums) {
     int n = nums.size();

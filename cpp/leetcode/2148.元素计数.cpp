@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int countElement(vector<int> &nums) {
     sort(nums.begin(), nums.end());

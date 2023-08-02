@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   vector<string> res;
   void backtracking(string &s, int startIndex, int pointNum) {

@@ -11,7 +11,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Soluton {
+class Solution {
 public:
   int maxCount = 0;
   int count = 0;

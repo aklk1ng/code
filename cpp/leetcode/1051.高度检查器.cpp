@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int heightChecker(vector<int> &heights) {
     vector<int> expected = heights;

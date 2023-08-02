@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int gcd(int a, int b) {
     for (int i = a; i >= 1; i--) {

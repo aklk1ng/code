@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   vector<int> arrayRankTransform(vector<int> &arr) {
     vector<int> sorted = arr;

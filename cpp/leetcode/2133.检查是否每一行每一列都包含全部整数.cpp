@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool checkValid(vector<vector<int>> &matrix) {
     unordered_set<int> cnt;

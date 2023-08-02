@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int numberOfBoomerangs(vector<vector<int>> &points) {
     int ans = 0;

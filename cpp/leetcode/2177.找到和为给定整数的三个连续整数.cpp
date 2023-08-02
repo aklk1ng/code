@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   vector<long long> sumOfThree(long long num) {
     if (num % 3)

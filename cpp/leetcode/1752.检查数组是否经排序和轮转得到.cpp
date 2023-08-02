@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool check(vector<int> &nums) {
     int n = nums.size(), x = 0;

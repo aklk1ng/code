@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   vector<int> decode(vector<int> &decoded, int first) {
     int n = decoded.size() + 1;

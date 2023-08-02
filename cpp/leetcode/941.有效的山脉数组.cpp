@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool validMountainArray(vector<int> &arr) {
     int left = 0;

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton1 {
+class Solution1 {
 public:
   vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2) {
     stack<int> st;
@@ -34,7 +34,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2) {
     stack<int> st;

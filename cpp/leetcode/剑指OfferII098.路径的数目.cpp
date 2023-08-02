@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int uniquePaths(int m, int n) {
     int i, j;

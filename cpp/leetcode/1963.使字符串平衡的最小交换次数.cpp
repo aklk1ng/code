@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int minSwaps(string s) {
     int cnt, mincnt = 0;

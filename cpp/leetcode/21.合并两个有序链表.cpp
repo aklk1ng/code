@@ -7,7 +7,7 @@ struct ListNode {
   ListNode *next;
   ListNode(int x) : val(x), next(NULL) {}
 };
-class Soluton {
+class Solution {
 public:
   ListNode *mergeTwoLists(ListNode *list1, ListNode *list2) {
     ListNode *preHead = new ListNode(-1);

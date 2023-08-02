@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   string destCity(vector<vector<string>> &paths) {
     unordered_set<string> set;

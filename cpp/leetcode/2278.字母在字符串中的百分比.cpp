@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int percentageLetter(string s, char letter) {
     int cnt = 0;

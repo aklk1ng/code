@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool checkDistances(string s, vector<int> distance) {
     vector<int> Index(26);

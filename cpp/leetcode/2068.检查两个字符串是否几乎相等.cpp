@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool checkAlmostEquivalment(string word1, string word2) {
     int hash1[26] = {0};

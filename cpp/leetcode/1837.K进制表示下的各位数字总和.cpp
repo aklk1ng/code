@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int sumBase(int n, int k) {
     int res = 0;

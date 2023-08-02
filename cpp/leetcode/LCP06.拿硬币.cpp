@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int minCount(vector<int> &coins) {
     int s = 0;

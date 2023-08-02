@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool isPrefix(const string &sentence, int start, int end, const string &searchWord) {
     for (int i = 0; i < searchWord.size(); i++) {

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int lengthOfLIS(vector<int> &nums) {
     int n = nums.size();

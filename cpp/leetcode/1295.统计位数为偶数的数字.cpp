@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton1 {
+class Solution1 {
 public:
   int g(int num) {
     int cnt = 0;
@@ -21,7 +21,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   int findNumbers(vector<int> &nums) {
     int res = 0;
@@ -32,7 +32,7 @@ public:
   }
 };
 
-class Soluton3 {
+class Solution3 {
 public:
   int findNumbers(vector<int> &nums) {
     int res = 0;

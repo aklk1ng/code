@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool wordPattern(string pattern, string s) {
     unordered_map<string, char> str2ch;

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   string convertToBase7(int num) {
     if (num == 0)
@@ -22,7 +22,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   string convertToBase7(int num) {
     if (num == 0)

@@ -28,7 +28,7 @@ public:
   }
 };
 
-class Soluton {
+class Solution {
 public:
   vector<int> postorder(Node *root) {
     vector<int> res;

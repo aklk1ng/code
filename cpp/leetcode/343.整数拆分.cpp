@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int integerBreak(int n) {
     vector<int> dp(n + 1);

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int numRabbits(vector<int> &answer) {
     unordered_map<int, int> map;

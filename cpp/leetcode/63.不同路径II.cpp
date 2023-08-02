@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int uniquePathsWithPbstacles(vector<vector<int>> &obstacleGrid) {
     int m = obstacleGrid.size();

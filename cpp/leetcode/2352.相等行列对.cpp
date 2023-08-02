@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int equalPairs(vector<vector<int>> &grid) {
     int n = grid.size();

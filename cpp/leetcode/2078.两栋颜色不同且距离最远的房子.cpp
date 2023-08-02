@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int maxDistance(vector<int> &colors) {
     int n = colors.size();

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int minStartValue(vector<int> &nums) {
     int sum = 0;

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   vector<bool> prefixDivBy5(vector<int> &nums) {
     int sum = 0;

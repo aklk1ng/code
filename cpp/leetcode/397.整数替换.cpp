@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   unordered_map<int, int> map;
   int integerReplacement(int n) {

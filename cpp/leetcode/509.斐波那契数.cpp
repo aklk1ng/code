@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton1 {
+class Solution1 {
 public:
   int fib(int n) {
     if (n == 0)
@@ -14,7 +14,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   int fib(int n) {
     if (n == 1)
@@ -29,7 +29,7 @@ public:
   }
 };
 
-class Soluton3 {
+class Solution3 {
 public:
   int fib(int n) {
     if (n == 1)

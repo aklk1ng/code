@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int countBinarySubStrings(string s) {
     int ptr = 0, n = s.size(), last = 0, ans = 0;

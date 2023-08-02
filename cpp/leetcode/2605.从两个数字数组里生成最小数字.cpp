@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int minumber(vector<int> &nums1, vector<int> &nums2) {
     int res = 99;

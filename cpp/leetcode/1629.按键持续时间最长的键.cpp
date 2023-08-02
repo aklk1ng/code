@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   char slowestKey(vector<int> &releaseTimes, string keysPressed) {
     char res = keysPressed[0];

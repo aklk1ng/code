@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int minOperations(vector<string> &logs) {
     int depth = 0;

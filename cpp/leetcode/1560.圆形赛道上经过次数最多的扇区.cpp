@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   vector<int> mostVisited(int n, vector<int> &rounds) {
     vector<int> res;

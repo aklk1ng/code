@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int prefixCount(vector<string> &words, string pref) {
     int res = 0;

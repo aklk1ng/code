@@ -11,7 +11,7 @@ struct Node {
   Node(int x, Node *left, Node *right) : val(x), left(left), right(right) {}
 };
 
-class Soluton {
+class Solution {
 private:
   Node *pre;
   Node *head;

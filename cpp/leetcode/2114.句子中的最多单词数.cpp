@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int mostWordsFound(vector<string> &sentences) {
     int res = 0;

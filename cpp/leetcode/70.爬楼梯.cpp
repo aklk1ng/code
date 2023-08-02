@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton1 {
+class Solution1 {
 public:
   int climbStairs(int n) {
     if (n <= 1)
@@ -17,7 +17,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   int climbStairs(int n) {
     if (n <= 1)

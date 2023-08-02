@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   vector<int> sumEvenAfterQueries(vector<int> &nums, vector<vector<int>> &queries) {
     int n = queries.size(), sum = 0;

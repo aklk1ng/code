@@ -8,7 +8,7 @@ struct ListNode {
   ListNode(int x) : val(x), next(NULL) {}
   ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
-class Soluton {
+class Solution {
 public:
   ListNode *removeZeroSumSublists(ListNode *head) {
     ListNode *dummy = new ListNode(0, head);

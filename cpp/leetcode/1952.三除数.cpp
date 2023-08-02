@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool isThree(int n) {
     int s = sqrt(n + 1e-6);

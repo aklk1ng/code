@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 private:
   const string lettermap[10] = {
       "",     // 0

@@ -10,7 +10,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Soluton1 {
+class Solution1 {
 public:
   int sumOfLeftLeaves(TreeNode *root) {
     if (!root)
@@ -29,7 +29,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   int sumOfLeftLeaves(TreeNode *root) {
     stack<TreeNode *> st;

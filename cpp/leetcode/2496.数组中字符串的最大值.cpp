@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int maxmiumValue(vector<string> &strs) {
     int res = 0;

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   int minMovesToSeat(vector<int> &seats, vector<int> &students) {
     sort(seats.begin(), seats.end());

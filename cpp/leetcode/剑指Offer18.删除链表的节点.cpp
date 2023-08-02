@@ -7,7 +7,7 @@ struct ListNode {
   ListNode(int x) : val(x), next(NULL) {}
 };
 
-class Soluton1 {
+class Solution1 {
 public:
   ListNode *deleteNode(ListNode *head, int val) {
     if (head->val == val)
@@ -24,7 +24,7 @@ public:
   }
 };
 
-class Soluton2 {
+class Solution2 {
 public:
   ListNode *deleteNode(ListNode *head, int val) {
     if (head == nullptr)

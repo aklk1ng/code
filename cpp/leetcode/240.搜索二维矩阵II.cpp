@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Soluton {
+class Solution {
 public:
   bool searchMatrix(vector<vector<int>> &matrix, int target) {
     int m = matrix.size();
