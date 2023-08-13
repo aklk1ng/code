@@ -35,12 +35,12 @@ public:
       res.push_back(spath);
     }
 
-    // 左
+    // left
     if (cur->left) {
       traversal(cur->left, path, res);
       path.pop_back();
     }
-    // 右
+    // right
     if (cur->right) {
       traversal(cur->right, path, res);
       path.pop_back();
