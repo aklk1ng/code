@@ -23,23 +23,11 @@ struct TreeNode {
 class Solution {
 public:
   bool compare(TreeNode *left, TreeNode *right) {
-    if (left != NULL && right == NULL)
+    if (!left && !right)
       return false;
-    else if (left == NULL && right != NULL)
+    if (!left || !right || left->val != right->val)
       return false;
-    else if (left == NULL && right == NULL)
-      return true;
-    else if (left->val != right->val)
-      return false;
-
-    bool outside = compare(left->left, right->right);
-    bool inside = compare(left->right, right->left);
-    bool issame = outside && inside;
-    return issame;
+    return compare(left->left, right->right) && compare(left->right, right->left);
   }
-  bool isSymetric(TreeNode *root) {
-    if (!root)
-      return true;
-    return compare(root->left, root->right);
-  }
+  bool isSymetric(TreeNode *root) { return compare(root->left, root->right); }
 };
