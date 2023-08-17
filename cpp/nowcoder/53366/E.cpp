@@ -4,15 +4,39 @@
 #define rall(a) a.rbegin(), a.rend()
 #define ll long long
 
-int check(int x) {
-  if (x <= 2)
+int sg(int x, int y) {
+  if (x > y)
+    std::swap(x, y);
+  if (x == y)
     return 0;
-  return check((x + 1) / 2 - 1) + 1;
+  if (y > 2 * x)
+    return 1;
+
+  return !sg(x, (y - 1) / 2);
 }
+
+void solve2() {
+  int n, m;
+  std::cin >> n >> m;
+  if (n > m)
+    std::swap(n, m);
+  std::cout << (sg(n, m) ? "Alice" : "Bob") << std::endl;
+}
+
 void solve() {
   int n, m;
   std::cin >> n >> m;
-  std::cout << (check(n) ^ check(m) ? "Alice" : "Bob") << std::endl;
+  int ans = 1;
+  while (1) {
+    if (n > 2 * m || m > 2 * n)
+      break;
+    if (n > m)
+      n = (n - 1) / 2;
+    else
+      m = (m - 1) / 2;
+    ans ^= 1;
+  }
+  std::cout << (ans ? "Alice" : "Bob") << std::endl;
 }
 
 int main() {
