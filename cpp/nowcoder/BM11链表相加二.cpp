@@ -32,6 +32,12 @@ public:
       tmp = val / 10;
       cur->next = new ListNode(val % 10);
       cur = cur->next;
+
+      if (head1)
+        head1 = head1->next;
+
+      if (head2)
+        head2 = head2->next;
     }
 
     if (tmp > 0)
