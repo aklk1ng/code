@@ -58,3 +58,15 @@ public:
     return false;
   }
 };
+
+class Solution3 {
+public:
+  bool haspathSum(TreeNode *root, int targetSum) {
+    if (!root)
+      return false;
+    if (!root->left && !root->right)
+      return root->val == targetSum;
+    return haspathSum(root, targetSum - root->val) ||
+           haspathSum(root->right, targetSum - root->val);
+  }
+};
