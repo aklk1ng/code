@@ -24,8 +24,6 @@ public:
   }
 
   vector<vector<int>> permute(vector<int> &nums) {
-    res.clear();
-    path.clear();
     vector<bool> used(nums.size(), false);
     backtracking(nums, used);
     return res;

@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+
 
 using namespace std;
 
@@ -26,8 +26,6 @@ public:
   }
 
   vector<vector<int>> permuteUnique(vector<int> &nums) {
-    res.clear();
-    path.clear();
     sort(nums.begin(), nums.end());
     vector<bool> used(nums.size(), false);
     backtracking(nums, used);
