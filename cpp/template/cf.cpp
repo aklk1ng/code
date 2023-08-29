@@ -1,6 +1,7 @@
 // #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #define ll long long
+const int N = 1e5 + 5;
 
 void solve() {
   
