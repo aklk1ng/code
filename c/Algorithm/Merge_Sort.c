@@ -14,29 +14,19 @@ typedef int ElementType;
  * @param rend end of right half also the end of array
  */
 void Merge(ElementType arr[], ElementType tmp[], int lpos, int rpos, int rend) {
-  int i, lend, size, k;
-  lend = rpos - 1;
-  size = rend - lpos + 1;
-  while (lpos <= lend && rpos <= rend) {
-    if (arr[lpos] <= arr[rpos]) {
-      tmp[k++] = arr[lpos++];
-    } else {
-      tmp[k++] = arr[rpos++];
-    }
+  int i = lpos, j = rpos, k = 0;
+  while (i < rpos && j <= rend) {
+    if (arr[i] > arr[j])
+      tmp[k++] = arr[j++];
+    else
+      tmp[k++] = arr[i++];
   }
-
-  // copy rest of first half
-  while (lpos <= lend) {
-    tmp[k++] = arr[lpos++];
-  }
-  // copy rest of second half
-  while (rpos <= rend) {
-    tmp[k++] = arr[rpos++];
-  }
-
-  for (i = 0; i < size; i++, rend--) {
-    arr[rend] = tmp[rend];
-  }
+  while (i < rpos)
+    tmp[k++] = arr[i++];
+  while (j <= rend)
+    tmp[k++] = arr[j++];
+  for (k = 0, i = lpos; i <= rend; i++, k++)
+    arr[i] = tmp[k];
 }
 
 void Msort(ElementType arr[], ElementType Tmparr[], int left, int right) {

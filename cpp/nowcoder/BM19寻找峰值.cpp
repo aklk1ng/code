@@ -35,3 +35,20 @@ public:
     return s.top();
   }
 };
+
+class Solution3 {
+public:
+  int findPeekElement(vector<int> &nums) {
+    int l = -1, r = nums.size();
+    if (nums.size() == 1)
+      return 0;
+    while (l + 1 != r) {
+      int mid = l + (r - l) / 2;
+      if (nums[mid] <= nums[mid + 1])
+        l = mid;
+      else
+        r = mid;
+    }
+    return r == nums.size() ? r - 1 : r;
+  }
+};

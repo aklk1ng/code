@@ -29,3 +29,20 @@ public:
     return -1;
   }
 };
+
+class Solution2 {
+public:
+  int search(vector<int> &nums, int target) {
+    int l = -1, r = nums.size();
+    if (nums.size() == 0)
+      return -1;
+    while (l + 1 != r) {
+      int mid = l + (r - l) / 2;
+      if (nums[mid] < target)
+        l = mid;
+      else
+        r = mid;
+    }
+    return nums[r] == target ? r : -1;
+  }
+};
