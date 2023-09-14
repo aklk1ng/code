@@ -3,42 +3,56 @@
 using namespace std;
 const long long inf = 1e8;
 #define ll long long
-const int N = 1e5 + 5;
-int a[N];
+const int N = 1e6 + 5;
+
+vector<int> v;
+int n;
+int good_ans, bad_ans;
+vector<bool> vis(N);
+
+void backtrace(int x, int sz, bool flag) {
+  if (x > sz) {
+    if (flag)
+      good_ans++;
+    else
+      bad_ans++;
+  }
+  for (int i = x; i <= n; i++) {
+    vis[x] = true;
+    v.push_back(x);
+    backtrace(x + 1, sz, flag);
+    vis[x] = false;
+    v.pop_back();
+  }
+}
+
+void check(int sz, bool flag) {
+  for (int i = 1; i <= n; i++) {
+    backtrace(i, sz, flag);
+  }
+}
 
 void solve() {
-  int n, m, x;
-  cin >> n >> m >> x;
-  mt19937 rng(x);
+  cin >> n;
   for (int i = 1; i <= n; i++) {
-    a[i] = rng() % m;
-  }
-  map<int, int> cnt;
-  for (int i = 1; i <= n; i++) {
-    if (a[i]) {
-      while (a[i]) {
-        cnt[a[i] % 10]++;
-        a[i] /= 10;
-      }
+    vis.clear();
+    if (i % 2) {
+      check(i, true);
     } else {
-      cnt[a[i]]++;
+      check(i, false);
     }
   }
-  int ans = 0;
-  int sum = 0;
-  for (auto &[k, v] : cnt) {
-    if (v > sum) {
-      ans = k;
-      sum = v;
-    }
-  }
-  cout << ans << '\n';
+  cout << good_ans - bad_ans << '\n';
 }
 
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cout.tie(nullptr);
-  solve();
+  int tt;
+  cin >> tt;
+  while (tt--) {
+    solve();
+  }
   return 0;
 }
