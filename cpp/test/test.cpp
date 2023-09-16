@@ -1,58 +1,48 @@
-// #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 using namespace std;
-const long long inf = 1e8;
+const long long inf = 1e9 + 10;
 #define ll long long
-const int N = 1e6 + 5;
-
-vector<int> v;
-int n;
-int good_ans, bad_ans;
-vector<bool> vis(N);
-
-void backtrace(int x, int sz, bool flag) {
-  if (x > sz) {
-    if (flag)
-      good_ans++;
-    else
-      bad_ans++;
-  }
-  for (int i = x; i <= n; i++) {
-    vis[x] = true;
-    v.push_back(x);
-    backtrace(x + 1, sz, flag);
-    vis[x] = false;
-    v.pop_back();
-  }
-}
-
-void check(int sz, bool flag) {
-  for (int i = 1; i <= n; i++) {
-    backtrace(i, sz, flag);
-  }
-}
+const int N = 2e5 + 10;
 
 void solve() {
-  cin >> n;
-  for (int i = 1; i <= n; i++) {
-    vis.clear();
-    if (i % 2) {
-      check(i, true);
-    } else {
-      check(i, false);
+  int n, m;
+  cin >> n >> m;
+  map<int, pair<int, int>> mp;
+  mp[1] = {0, 0};
+  while (m--) {
+    int a, b, x, y;
+    cin >> a >> b >> x >> y;
+    if (mp.find(a) != mp.end() && mp.find(b) == mp.end()) {
+      mp[b].first = mp[a].first + x;
+      mp[b].second = mp[a].second + y;
+    } else if (mp.find(b) != mp.end() && mp.find(a) == mp.end()) {
+      mp[a].first = mp[b].first - x;
+      mp[a].second = mp[b].second - y;
+    } else if (mp.find(a) == mp.end() && mp.find(b) == mp.end()) {
+      mp[a].first = inf;
+      mp[a].second = inf;
+      mp[b].first = inf;
+      mp[b].second = inf;
     }
   }
-  cout << good_ans - bad_ans << '\n';
+  for (auto &[k, v] : mp) {
+    if (v.first == inf) {
+      cout << "undecidable\n";
+    } else {
+      cout << v.first << ' ' << v.second << '\n';
+    }
+  }
 }
 
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cout.tie(nullptr);
-  int tt;
-  cin >> tt;
-  while (tt--) {
-    solve();
-  }
+  // int tt;
+  // cin >> tt;
+  // while (tt--) {
+  //   solve();
+  // }
+  solve();
   return 0;
 }
