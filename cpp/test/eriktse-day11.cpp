@@ -4,14 +4,14 @@ const long long inf = 1e9;
 #define ll long long
 const int N = 2e5 + 5;
 
-int a[N], dp[N], st[N], top;
+ll a[N], dp[N], st[N], top;
 
 void solve() {
   int n = 0;
   while (cin >> a[++n])
     ;
   n--;
-  int ans = 0;
+  ll ans = 0;
   for (int i = 1; i <= n; i++) {
     int pos =
         upper_bound(st + 1, st + 1 + top, a[i], [](const int &u, const int &v) { return u > v; }) -
