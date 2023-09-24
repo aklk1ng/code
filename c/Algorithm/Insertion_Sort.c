@@ -12,17 +12,18 @@ void Print(int arr[], int size) {
 void Insertion_Sort(int arr[], int size) {
   int j, p;
   int tmp;
-  for (p = 0; p < size; p++) {
+  for (p = 1; p < size; p++) {
     tmp = arr[p];
-    for (j = p; j > 0 && arr[j - 1] > tmp; j--)
+    for (j = p; j > 0 && arr[j - 1] > tmp; j--) {
       arr[j] = arr[j - 1];
+    }
     arr[j] = tmp;
   }
 }
 
 void test() {
   srand((unsigned)time(NULL));
-  int size = 100;
+  int size = 20;
   int arr[size];
   for (int i = 0; i < size; i++) {
     arr[i] = rand() % 100;

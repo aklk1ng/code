@@ -1,62 +1,65 @@
 #include <bits/stdc++.h>
 using namespace std;
-const long long inf = 1e9;
+const long long inf = 5e9;
 #define ll long long
-const int N = 1e7 + 5;
+const int N = 2e5 + 5;
 const int mod = 1e9 + 7;
 
-ll fac[N], invfac[N];
+int pre[N], cnt[N];
 
-ll qmi(ll a, ll b) {
-  ll res = 1;
-  while (b) {
-    if (b & 1) {
-      res = res * a % mod;
+int root(int x) { return pre[x] = (pre[x] == x ? x : root(pre[x])); }
+
+vector<ll> v;
+
+bool check(ll mid) {
+  ll tmp = 0;
+  ll cnt1 = 0;
+  for (auto &i : v) {
+    if (i == 1) {
+      cnt1++;
+    } else {
+      tmp += min(i, mid);
     }
-    a = a * a % mod;
-    b >>= 1;
   }
-  return res;
-}
-
-ll inv(ll x) { return qmi(x, mod - 2); }
-
-ll C(ll n, ll m) {
-  if (n < 0 || m < 0 || n < m) {
-    return 0;
-  }
-  return fac[n] * invfac[n - m] % mod * invfac[m] % mod;
-}
-
-void init(int n) {
-  fac[0] = 1;
-  for (int i = 1; i <= 1e7; i++) {
-    fac[i] = fac[i - 1] * i % mod;
-  }
-  invfac[n] = inv(fac[n]);
-  for (int i = n - 1; i >= 0; i--) {
-    invfac[i] = invfac[i + 1] * (i + 1) % mod;
-  }
+  tmp -= 2 * (v.size() - cnt1 - 1);
+  return tmp >= cnt1;
 }
 
 void solve() {
-  ll q, a, b, c, n, m;
-  cin >> q >> a >> b >> c;
+  int n, m;
   cin >> n >> m;
-  ll sum = 0;
-  for (int i = 1; i <= q; i++) {
-    sum = (sum + C(n, m)) % mod;
-    n = (n * a + b) % c;
-    m = (m * b + a) % c;
+  for (int i = 1; i <= n; i++) {
+    pre[i] = i;
   }
-  cout << sum << '\n';
+  for (int i = 1; i <= m; i++) {
+    int u, v;
+    cin >> u >> v;
+    pre[root(u)] = root(v);
+  }
+  for (int i = 1; i <= n; i++) {
+    cnt[root(i)]++;
+  }
+  for (int i = 1; i <= n; i++) {
+    if (root(i) == i) {
+      v.push_back(cnt[i]);
+    }
+  }
+  ll l = -1, r = 1e9;
+  while (l + 1 != r) {
+    ll mid = l + (r - l) / 2;
+    if (check(mid)) {
+      r = mid;
+    } else {
+      l = mid;
+    }
+  }
+  cout << (check(r) ? r : -1) << '\n';
 }
 
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cout.tie(nullptr);
-  init(1e7);
   // int tt;
   // cin >> tt;
   // while (tt--) {

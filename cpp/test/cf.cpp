@@ -2,35 +2,65 @@
 using namespace std;
 const long long inf = 1e9 + 10;
 #define ll long long
-const int N = 2e5 + 10;
+const int N = 1e3 + 10;
 
-int a[N], tmp[N];
+char mp[N][N];
+int n, h, w;
 
-ll lcm(ll a, ll b) { return a / __gcd(a, b) * b; }
+bool valid(int x, int y) { return x >= 1 && y >= 1 && x <= h && y <= w; }
+
+void modify(int x, int y, int r) {
+  int sx = x, sy = y - r;
+  for (; sx > x - r && sy < y; sx--, sy++) {
+    if (valid(sx, sy)) {
+      mp[sx][sy] = '*';
+    }
+  }
+  for (; sx < x && sy < y + r; sx++, sy++) {
+    if (valid(sx, sy)) {
+      mp[sx][sy] = '*';
+    }
+  }
+  for (; sx < x + r && sy > y; sx++, sy--) {
+    if (valid(sx, sy)) {
+      mp[sx][sy] = '*';
+    }
+  }
+  for (; sx > x && sy > y - r; sx--, sy--) {
+    if (valid(sx, sy)) {
+      mp[sx][sy] = '*';
+    }
+  }
+}
 
 void solve() {
-  int n, k;
-  cin >> n >> k;
+  cin >> n >> h >> w;
+  for (int i = 1; i <= h; i++) {
+    for (int j = 1; j <= w; j++) {
+      mp[i][j] = '_';
+    }
+  }
   for (int i = 1; i <= n; i++) {
-    cin >> a[i];
-    cin >> tmp[i];
+    int x, y, r;
+    cin >> x >> y >> r;
+    modify(x, y, r);
   }
-  ll ans = 0;
-  for (int i = 1; i <= n - k + 1; i++) {
-    sort(tmp + 1 + i, tmp + 1 + n - k + 1);
+  for (int i = 1; i <= h; i++) {
+    for (int j = 1; j <= w; j++) {
+      cout << mp[i][j];
+    }
+    cout << '\n';
   }
-  cout << ans << '\n';
 }
 
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cout.tie(nullptr);
-  // int tt;
-  // cin >> tt;
-  // while (tt--) {
-  //   solve();
-  // }
-  solve();
+  int tt;
+  cin >> tt;
+  while (tt--) {
+    solve();
+  }
   return 0;
 }

@@ -25,7 +25,7 @@ void solve() {
     dp2[i] = 1;
     for (int j = n; j > i; j--) {
       if (a[j] <= a[i]) {
-        dp1[i] = max(dp1[i], dp1[j] + 1);
+        dp2[i] = max(dp2[i], dp2[j] + 1);
       }
     }
   }
