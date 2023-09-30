@@ -73,7 +73,7 @@ void *malloc(unsigned size) {
 static int brk(void *end_data_segmen) {
   int ret = 0;
   asm("movl $45, %%eax \n\t"
-      "movel %1, %%ebx \n\t"
+      "movl %1, %%ebx \n\t"
       "int $0x80 \n\t"
       "movl %%eax, %0 \n\t"
       : "=r"(ret)

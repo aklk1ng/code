@@ -4,10 +4,10 @@ int mini_crt_init_io() { return 1; }
 
 static int open(const char *pathname, int flags, int mode) {
   int fd = 0;
-  asm("movl $5, %%eax \n\t"
-      "movl %1  %%ebx \n\t"
-      "movl %2  %%ecx \n\t"
-      "movl %3  %%edx \n\t"
+  asm("movl $5,  %%eax \n\t"
+      "movl %1,  %%ebx \n\t"
+      "movl %2,  %%ecx \n\t"
+      "movl %3,  %%edx \n\t"
       "int $0x80 \n\t"
       "movl %%eax, %0 \n\t"
       : "=m"(fd)
@@ -16,10 +16,10 @@ static int open(const char *pathname, int flags, int mode) {
 
 static int read(int fd, void *buffer, unsigned size) {
   int ret = 0;
-  asm("movl $3, %%eax \n\t"
-      "movl %1  %%ebx \n\t"
-      "movl %2  %%ecx \n\t"
-      "movl %3  %%edx \n\t"
+  asm("movl $3,  %%eax \n\t"
+      "movl %1,  %%ebx \n\t"
+      "movl %2,  %%ecx \n\t"
+      "movl %3,  %%edx \n\t"
       "int $0x80 \n\t"
       "movl %%eax, %0 \n\t"
       : "=m"(ret)
@@ -29,10 +29,10 @@ static int read(int fd, void *buffer, unsigned size) {
 
 static int write(int fd, const void *buffer, unsigned size) {
   int ret = 0;
-  asm("movl $4, %%eax \n\t"
-      "movl %1  %%ebx \n\t"
-      "movl %2  %%ecx \n\t"
-      "movl %3  %%edx \n\t"
+  asm("movl $4,  %%eax \n\t"
+      "movl %1,  %%ebx \n\t"
+      "movl %2,  %%ecx \n\t"
+      "movl %3,  %%edx \n\t"
       "int $0x80 \n\t"
       "movl %%eax, %0 \n\t"
       : "=m"(ret)
@@ -42,8 +42,8 @@ static int write(int fd, const void *buffer, unsigned size) {
 
 static int close(int fd) {
   int ret = 0;
-  asm("movl $6, %%eax \n\t"
-      "movl %1  %%ebx \n\t"
+  asm("movl $6,  %%eax \n\t"
+      "movl %1,  %%ebx \n\t"
       "int $0x80 \n\t"
       "movl %%eax, %0 \n\t"
       : "=m"(ret)
@@ -53,9 +53,9 @@ static int close(int fd) {
 static int seek(int fd, int offset, int mode) {
   int ret = 0;
   asm("movl $19, %%eax \n\t"
-      "movl %1  %%ebx \n\t"
-      "movl %2  %%ecx \n\t"
-      "movl %3  %%edx \n\t"
+      "movl %1,  %%ebx \n\t"
+      "movl %2,  %%ecx \n\t"
+      "movl %3,  %%edx \n\t"
       "int $0x80 \n\t"
       "movl %%eax, %0 \n\t"
       : "=m"(ret)

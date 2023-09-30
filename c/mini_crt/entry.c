@@ -9,9 +9,11 @@ static void crt_fatal_error(const char *msg) {
 }
 
 void mini_crt_entry(void) {
+  int ret;
   int argc;
   char **argv;
   char *ebp_reg = 0;
+  // ebp_reg  = %ebp
   asm("movl %%ebp, %0 \n" : "=r"(ebp_reg));
 
   argc = *(int *)(ebp_reg + 4);
@@ -24,7 +26,7 @@ void mini_crt_entry(void) {
     crt_fatal_error("io initialize failed");
   }
 
-  int ret = main(argc, argv);
+  ret = main(argc, argv);
   exit(ret);
 }
 
