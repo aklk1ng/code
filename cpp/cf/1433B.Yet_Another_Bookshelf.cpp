@@ -5,9 +5,20 @@ const int INF = 1e9 + 7;
 const int N = 1e5 + 5;
 
 void solve() {
-  int n, m, i, j;
-  cin >> n >> m >> i >> j;
-  cout << 1 << ' ' << 1 << ' ' << n << ' ' << m << '\n';
+  int n;
+  cin >> n;
+  vector<int> a(n);
+  for (int i = 0; i < n; i++) {
+    cin >> a[i];
+  }
+  while (a.back() == 0) {
+    a.pop_back();
+  }
+  reverse(a.begin(), a.end());
+  while (a.back() == 0) {
+    a.pop_back();
+  }
+  cout << count(a.begin(), a.end(), 0) << '\n';
 }
 
 int main() {
