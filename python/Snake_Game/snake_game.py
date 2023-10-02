@@ -105,7 +105,7 @@ while True:
         head_pos[1] = frame_size_y - square_size
     elif head_pos[1] > frame_size_x - square_size:
         head_pos[1] = 0
-    
+
     # move the snake
     snake_body.insert(0, list(head_pos))
     if head_pos[0] == food_pos[0] and head_pos[1] == food_pos[1]:
