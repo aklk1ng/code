@@ -7,22 +7,17 @@ const int N = 1e5 + 5;
 void solve() {
   int n;
   cin >> n;
-  vector<vector<int>> cnt(12, vector<int>(12));
-  ll ans = 0;
-  string x;
+  vector<int> a(n);
   for (int i = 0; i < n; i++) {
-    cin >> x;
-    for (int j = 0; j < 2; j++) {
-      for (char c = 'a'; c <= 'k'; c++) {
-        if (c == x[j]) {
-          continue;
-        }
-        string a = x;
-        a[j] = c;
-        ans += cnt[a[0] - 'a'][a[1] - 'a'];
-      }
-    }
-    cnt[x[0] - 'a'][x[1] - 'a']++;
+    cin >> a[i];
+  }
+  int ans = 2;
+  if (is_sorted(a.begin(), a.end())) {
+    ans = 0;
+  } else if (a[0] == 1 || a[n - 1] == n) {
+    ans = 1;
+  } else if (a[0] == n && a[n - 1] == 1) {
+    ans = 3;
   }
   cout << ans << '\n';
 }
