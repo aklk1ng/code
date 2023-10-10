@@ -63,7 +63,7 @@ static int seek(int fd, int offset, int mode) {
   return ret;
 }
 
-FILE *fopen(const char *filename, const char *mode) {
+int *fopen(const char *filename, const char *mode) {
   int fd = -1;
   int flags = 0;
   int access = 00700;
@@ -85,17 +85,17 @@ FILE *fopen(const char *filename, const char *mode) {
   }
 
   fd = open(filename, flags, access);
-  return (FILE *)fd;
+  return (int *)fd;
 }
 
-int fread(void *buffer, int size, int count, FILE *stream) {
+int fread(void *buffer, int size, int count, int *stream) {
   return read((int)stream, buffer, size * count);
 }
 
-int frite(const void *buffer, int size, int count, FILE *stream) {
+int frite(const void *buffer, int size, int count, int *stream) {
   return write((int)stream, buffer, size * count);
 }
 
-int fclose(FILE *fp) { return close((int)fp); }
+int fclose(int *fp) { return close((int)fp); }
 
-int fseek(FILE *fp, int offset, int set) { return seek((int)fp, offset, set); }
+int fseek(int *fp, int offset, int set) { return seek((int)fp, offset, set); }

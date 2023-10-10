@@ -1,6 +1,6 @@
 #include "minicrt.h"
 
-int fputc(int c, FILE *stream) {
+int fputc(int c, int *stream) {
   if (fwrite(&c, 1, 1, stream) != 1) {
     return EOF;
   } else {
@@ -8,7 +8,7 @@ int fputc(int c, FILE *stream) {
   }
 }
 
-int fputs(const char *str, FILE *stream) {
+int fputs(const char *str, int *stream) {
   int len = strlen(str);
   if (fwrite(str, 1, 1, stream) != 1) {
     return EOF;
@@ -22,7 +22,7 @@ int fputs(const char *str, FILE *stream) {
 #define va_arg(ap, t) (*(t *)((ap += sizeof(t)) - sizeof(t)))
 #define va_end(ap) (ap = (va_list)0)
 
-int vprintf(FILE *stream, const char *format, va_list arglist) {
+int vprintf(int *stream, const char *format, va_list arglist) {
   int translating = 0;
   int ret = 0;
   const char *p = 0;
@@ -84,8 +84,8 @@ int printf(const char *format, ...) {
   return vfprintf(stdout, format, arglist);
 }
 
-int fprintf(FILE *stream, const char *format, ...) {
+int vfprintf(int *stream, const char *format, ...) {
   va_list(arglist);
   va_start(arglist, format);
-  return vfprintf(stream, format, arglist);
+  return vprintf(stream, format, arglist);
 }

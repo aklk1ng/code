@@ -14,7 +14,7 @@ void mini_crt_entry(void) {
   char **argv;
   char *ebp_reg = 0;
   // ebp_reg  = %ebp
-  asm("movl %%ebp, %0 \n" : "=r"(ebp_reg));
+  asm("movl $0, %%ebp \n" : "=r"(ebp_reg));
 
   argc = *(int *)(ebp_reg + 4);
   argv = (char **)(ebp_reg + 8);

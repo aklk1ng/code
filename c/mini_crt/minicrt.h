@@ -15,24 +15,22 @@ int strcmp(const char *src, const char *dst);
 char *strcpy(char *dest, const char *src);
 unsigned strlen(const char *str);
 
-typedef int FILE;
-
 #define EOF (-1)
-#define stdin ((FILE *)0)
-#define stdout ((FILE *)1)
-#define stderr ((FILE *)2)
+#define stdin ((int *)0)
+#define stdout ((int *)1)
+#define stderr ((int *)2)
 
 int mini_crt_init_io();
-FILE *fopen(const char *filename, const char *mode);
-int fread(void *buffer, int size, int count, FILE *stream);
-int frite(const void *buffer, int size, int count, FILE *stream);
-int fclose(FILE *fp);
-int fseek(FILE *fp, int offset, int set);
+int *fopen(const char *filename, const char *mode);
+int fread(void *buffer, int size, int count, int *stream);
+int fwrite(const void *buffer, int size, int count, int *stream);
+int fclose(int *fp);
+int fseek(int *fp, int offset, int set);
 
-int fputc(int c, FILE *stream);
-int fputs(const char *str, FILE *stream);
+int fputc(int c, int *stream);
+int fputs(const char *str, int *stream);
 int printf(const char *format, ...);
-int fprintf(FILE *stream, const char *format, ...);
+int vfprintf(int *stream, const char *format, ...);
 
 void do_global_ctors();
 void mini_crt_call_exit_routine();
