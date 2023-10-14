@@ -50,6 +50,7 @@ static int close(int fd) {
       : "m"(fd));
   return ret;
 }
+
 static int seek(int fd, int offset, int mode) {
   int ret = 0;
   asm("movl $19, %%eax \n\t"
@@ -92,7 +93,7 @@ int fread(void *buffer, int size, int count, int *stream) {
   return read((int)stream, buffer, size * count);
 }
 
-int frite(const void *buffer, int size, int count, int *stream) {
+int fwrite(const void *buffer, int size, int count, int *stream) {
   return write((int)stream, buffer, size * count);
 }
 
