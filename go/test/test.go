@@ -1,5 +1,17 @@
 package main
 
+import "fmt"
+
+type Phone interface {
+	Call()
+}
+
+type Apple string
+
+func (a Apple) Call() {
+	fmt.Println("test")	
+}
+
 func main() {
 	map1 := make(map[int]int)
 	map1[1] = 1
