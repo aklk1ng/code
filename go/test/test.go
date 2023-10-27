@@ -9,7 +9,7 @@ type Phone interface {
 type Apple string
 
 func (a Apple) Call() {
-	fmt.Println("test")	
+	fmt.Println("test")
 }
 
 func main() {
