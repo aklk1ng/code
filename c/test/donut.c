@@ -13,9 +13,10 @@
 
 int8_t b[1760], z[1760];
 
-void main() {
+int main() {
+  printf("\e[1;1H\e[2J");
   int sA = 1024, cA = 0, sB = 1024, cB = 0, _;
-  for (;;) {
+  for (int i = 0; i < 1e3; i++) {
     memset(b, 32, 1760);  // text buffer
     memset(z, 127, 1760); // z buffer
     int sj = 0, cj = 1024;
@@ -40,11 +41,14 @@ void main() {
       }
       R(9, 7, cj, sj) // rotate j
     }
-    for (int k = 0; 1761 > k; k++)
+    for (int k = 0; 1761 > k; k++) {
       putchar(k % 80 ? b[k] : 10);
+    }
     R(5, 7, cA, sA);
     R(5, 8, cB, sB);
     usleep(15000);
     printf("\x1b[23A");
   }
+  printf("\e[1;1H\e[2J");
+  return 0;
 }

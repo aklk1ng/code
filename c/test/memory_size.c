@@ -3,9 +3,6 @@
 
 unsigned long long memory_size = 0;
 void calc() {
-  /**
-   * @brief a simple way to calc the memory size roughly
-   */
   unsigned int arr[3] = {1024 * 1024, 1024, 1};
   int i, count;
   for (i = 0; i < 3; i++) {
