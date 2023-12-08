@@ -1,2 +1,2 @@
 run:
-	gcc tree.c -o tree
+	gcc -ggdb tree.c -o tree

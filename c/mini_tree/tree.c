@@ -12,36 +12,40 @@
 #define BLUE "\x1b[34;1m"
 #define CYAN "\x1b[36;1m"
 
-void tree(char *path, int dashes, int spaces, int level) {
-  DIR *dir = opendir(path);
-  struct dirent *dp;
-  while ((dp = readdir(dir)) != NULL) {
-    if ((strcmp(dp->d_name, ".") == 0) || (strcmp(dp->d_name, "..") == 0)) {
+#define MID "├── "
+#define END "└── "
+
+char *last_path = NULL;
+
+void tree_print(const char *path, int level) {
+  struct dirent **entries;
+  int size = scandir(path, &entries, NULL, alphasort);
+  for (int i = 0; i < size; i++) {
+    struct dirent *dp = entries[i];
+    if (strcmp(dp->d_name, ".") == 0 || strcmp(dp->d_name, "..") == 0) {
       continue;
     }
-
+    if (level == 0 && i == size - 1) {
+      last_path = (char *)malloc(sizeof(path) + sizeof(dp->d_name) + 2);
+      sprintf(last_path, "%s/%s", path, dp->d_name);
+    }
+    char *prefix = "";
+    if (i == size - 1) {
+      prefix = END;
+    } else {
+      prefix = MID;
+    }
     char *newpath = (char *)malloc(sizeof(path) + sizeof(dp->d_name) + 2);
     sprintf(newpath, "%s/%s", path, dp->d_name);
-    printf("\n");
-
-    if (spaces > 0) {
-      for (int l = 0; l < level; l++) {
-        printf("│");
-        for (int sp = 0; sp < spaces; sp++) {
-          printf(" ");
-        }
-      }
+    for (int i = 0; i < level; i++) {
+      printf("│   ");
     }
-    printf("│");
-    for (int i = 0; i < dashes; i++) {
-      printf("-");
-    }
-    printf(" ");
+    printf("%s", prefix);
 
     // dir
     if ((dp->d_type == DT_DIR) && (access(newpath, R_OK) == 0)) {
-      printf("%s%s%s", BLUE, dp->d_name, DEFAULT);
-      tree(newpath, dashes, spaces, level + 1);
+      printf("%s%s%s\n", BLUE, dp->d_name, DEFAULT);
+      tree_print(newpath, level + 1);
       free(newpath);
       continue;
     }
@@ -50,34 +54,32 @@ void tree(char *path, int dashes, int spaces, int level) {
     struct stat buf;
     int r = lstat(newpath, &buf);
     if (S_ISLNK(buf.st_mode)) {
-      printf("%s%s%s", CYAN, dp->d_name, DEFAULT);
+      printf("%s%s -> %s%s\n", CYAN, dp->d_name, realpath(newpath, NULL), DEFAULT);
       free(newpath);
       continue;
     }
     if (S_ISFIFO(buf.st_mode)) {
-      printf("%s%s%s", YELLOW, dp->d_name, DEFAULT);
+      printf("%s%s%s\n", YELLOW, dp->d_name, DEFAULT);
       free(newpath);
       continue;
     }
     if (access(newpath, X_OK) == 0) {
-      printf("%s%s%s", GREEN, dp->d_name, DEFAULT);
+      printf("%s%s%s\n", GREEN, dp->d_name, DEFAULT);
       free(newpath);
       continue;
     }
     if (access(newpath, R_OK) == -1) {
-      printf("%s%s%s", RED, dp->d_name, DEFAULT);
+      printf("%s%s%s\n", RED, dp->d_name, DEFAULT);
       free(newpath);
       continue;
     }
     if (S_ISREG(buf.st_mode)) {
-      printf("%s", dp->d_name);
+      printf("%s\n", dp->d_name);
       free(newpath);
       continue;
     }
     free(newpath);
   }
-
-  closedir(dir);
 }
 
 int main(int argc, char *argv[]) {
@@ -94,8 +96,8 @@ int main(int argc, char *argv[]) {
   }
 
   char *path = realpath(argv[1], NULL);
-  printf("%s%s%s", CYAN, path, DEFAULT);
-  tree(path, 4, 4, 0);
+  printf("%s%s%s\n", CYAN, path, DEFAULT);
+  tree_print(path, 0);
   printf("\n");
   free(path);
 
