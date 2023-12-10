@@ -14,21 +14,18 @@
 
 #define MID "├── "
 #define END "└── "
+#define BAR "│   "
+#define SPACES "    "
 
-char *last_path = NULL;
-
-void tree_print(const char *path, int level) {
+void tree_print(const char *path, int level, int recur) {
   struct dirent **entries;
   int size = scandir(path, &entries, NULL, alphasort);
   for (int i = 0; i < size; i++) {
     struct dirent *dp = entries[i];
-    if (strcmp(dp->d_name, ".") == 0 || strcmp(dp->d_name, "..") == 0) {
+    if (dp->d_name[0] == '.') {
       continue;
     }
-    if (level == 0 && i == size - 1) {
-      last_path = (char *)malloc(sizeof(path) + sizeof(dp->d_name) + 2);
-      sprintf(last_path, "%s/%s", path, dp->d_name);
-    }
+
     char *prefix = "";
     if (i == size - 1) {
       prefix = END;
@@ -37,15 +34,21 @@ void tree_print(const char *path, int level) {
     }
     char *newpath = (char *)malloc(sizeof(path) + sizeof(dp->d_name) + 2);
     sprintf(newpath, "%s/%s", path, dp->d_name);
-    for (int i = 0; i < level; i++) {
-      printf("│   ");
+    for (int i = 0; i < level - recur; i++) {
+      printf(BAR);
+    }
+    for (int i = 0; i < recur; i++) {
+      printf(SPACES);
     }
     printf("%s", prefix);
+    if (dp->d_type == DT_DIR && i == size - 1) {
+      recur++;
+    }
 
     // dir
     if ((dp->d_type == DT_DIR) && (access(newpath, R_OK) == 0)) {
       printf("%s%s%s\n", BLUE, dp->d_name, DEFAULT);
-      tree_print(newpath, level + 1);
+      tree_print(newpath, level + 1, recur);
       free(newpath);
       continue;
     }
@@ -97,7 +100,7 @@ int main(int argc, char *argv[]) {
 
   char *path = realpath(argv[1], NULL);
   printf("%s%s%s\n", CYAN, path, DEFAULT);
-  tree_print(path, 0);
+  tree_print(path, 0, 0);
   printf("\n");
   free(path);
 
