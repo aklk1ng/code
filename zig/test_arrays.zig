@@ -30,8 +30,8 @@ test "iterate over an array" {
 var some_integers: [100]i32 = undefined;
 
 test "modify an array" {
-    for (&some_integers) |*item, i| {
-        item.* = @intCast(i32, i);
+    for (&some_integers, 0..) |*item, i| {
+        item.* = @as(i32, @intCast(i));
     }
     try expect(some_integers[10] == 10);
     try expect(some_integers[99] == 99);
@@ -71,8 +71,8 @@ const Point = struct { x: i32, y: i32 };
 
 var fancy_array = init: {
     var initial_value: [10]Point = undefined;
-    for (&initial_value) |*pt, i| {
-        pt.* = Point{ .x = @intCast(i32, i), .y = @intCast(i32, i) * 2 };
+    for (&initial_value, 0..) |*pt, i| {
+        pt.* = Point{ .x = @as(i32, @intCast(i)), .y = @as(i32, @intCast(i)) * 2 };
     }
     break :init initial_value;
 };
