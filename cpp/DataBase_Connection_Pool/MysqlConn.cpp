@@ -16,8 +16,9 @@ MysqlConn::~MysqlConn() {
 
 bool MysqlConn::connect(string user, string passwd, string dbName, string ip,
                         unsigned short int port) {
-  MYSQL *ptr = mysql_real_connect(m_conn, ip.c_str(), user.c_str(), passwd.c_str(), dbName.c_str(),
-                                  port, nullptr, 0);
+  MYSQL *ptr =
+      mysql_real_connect(m_conn, ip.c_str(), user.c_str(), passwd.c_str(),
+                         dbName.c_str(), port, nullptr, 0);
   return ptr != nullptr;
 }
 

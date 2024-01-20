@@ -57,7 +57,8 @@ void tree_print(const char *path, int level, int recur) {
     struct stat buf;
     int r = lstat(newpath, &buf);
     if (S_ISLNK(buf.st_mode)) {
-      printf("%s%s -> %s%s\n", CYAN, dp->d_name, realpath(newpath, NULL), DEFAULT);
+      printf("%s%s -> %s%s\n", CYAN, dp->d_name, realpath(newpath, NULL),
+             DEFAULT);
       free(newpath);
       continue;
     }

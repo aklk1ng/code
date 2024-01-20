@@ -27,7 +27,8 @@ yazi::ThreadPool<T>::ThreadPool(int max, int min) {
     livenum = min; // 与最小的线程相等
     destroynum = 0;
 
-    if (pthread_mutex_init(&mutexPool, NULL) != 0 || pthread_cond_init(&IsEmpty, NULL) != 0) {
+    if (pthread_mutex_init(&mutexPool, NULL) != 0 ||
+        pthread_cond_init(&IsEmpty, NULL) != 0) {
       cout << "mutex or conditon int faield!" << endl;
       break;
     }
@@ -137,7 +138,9 @@ void *yazi::ThreadPool<T>::manager(void *arg) {
     if (queueSize > livenum && livenum < pool->maxnum) {
       pthread_mutex_lock(&pool->mutexPool);
       int counter = 0;
-      for (int i = 0; i < pool->maxnum && counter <= NUMBER && pool->livenum <= pool->maxnum; i++) {
+      for (int i = 0; i < pool->maxnum && counter <= NUMBER &&
+                      pool->livenum <= pool->maxnum;
+           i++) {
         if (pool->threadIDs[i] == 0) {
           pthread_create(&pool->threadIDs[i], NULL, worker, NULL);
           counter++;

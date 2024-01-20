@@ -28,7 +28,8 @@ void StackPush(ST *ps, StackDataType x) {
   assert(ps);
   if (ps->top == ps->capacity) {
     int newcapacity = ps->capacity == 0 ? 4 : ps->capacity * 2;
-    StackDataType *tmp = (StackDataType *)realloc(ps->a, sizeof(StackDataType) * newcapacity);
+    StackDataType *tmp =
+        (StackDataType *)realloc(ps->a, sizeof(StackDataType) * newcapacity);
     if (tmp == NULL) {
       printf("realloc failed!\n");
       exit(-1);
