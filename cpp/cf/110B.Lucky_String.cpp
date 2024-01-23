@@ -16,7 +16,6 @@ void solve() {
     ans += prefix[i];
   }
   cout << ans << '\n';
-
 }
 
 int main() {
