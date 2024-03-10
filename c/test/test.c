@@ -1,89 +1,66 @@
 #include <stdio.h>
-#include <sys/time.h>
+#include <stdlib.h>
 #include <unistd.h>
 
-#define NUM_EXCHANGES 1000000
-
-int f() {
-  int pipe1[2], pipe2[2];
-  char buf;
-  struct timeval start, end;
-  double elapsed_time;
-
-  // Create two pipes
-  if (pipe(pipe1) < 0 || pipe(pipe2) < 0) {
-    perror("pipe");
-    return 1;
-  }
-
-  // Fork a child process
-  pid_t pid = fork();
-  if (pid < 0) {
-    perror("fork");
-    return 1;
-  }
-
-  if (pid == 0) {    // Child process
-    close(pipe1[1]); // Close write end of pipe1
-    close(pipe2[0]); // Close read end of pipe2
-
-    for (int i = 0; i < NUM_EXCHANGES; ++i) {
-      read(pipe1[0], &buf, 1);  // Read from pipe1
-      write(pipe2[1], &buf, 1); // Write to pipe2
-    }
-
-    close(pipe1[0]);
-    close(pipe2[1]);
-  } else {           // Parent process
-    close(pipe1[0]); // Close read end of pipe1
-    close(pipe2[1]); // Close write end of pipe2
-
-    gettimeofday(&start, NULL);
-
-    for (int i = 0; i < NUM_EXCHANGES; ++i) {
-      write(pipe1[1], &buf, 1); // Write to pipe1
-      read(pipe2[0], &buf, 1);  // Read from pipe2
-    }
-
-    gettimeofday(&end, NULL);
-
-    close(pipe1[1]);
-    close(pipe2[0]);
-
-    elapsed_time =
-        (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000000.0;
-    printf("Performance: %.2f exchanges per second\n",
-           NUM_EXCHANGES / elapsed_time);
-  }
-
-  return 0;
-}
-
-int main(int argc, char *argv[]) {
-  f();
-  int pid = fork();
+void exercise() {
   int p1[2], p2[2];
   pipe(p1);
   pipe(p2);
   char buf;
-  if (pid == 0) {
+  if (fork() == 0) { // Child process
+    // Close unused ends of the pipes
     close(p1[1]);
     close(p2[0]);
 
-    read(p1[0], &buf, 1);
-    write(p2[1], &buf, 1);
+    // Read from p1 and write to p2
+    while (read(p1[0], &buf, 1) > 0) {
+      write(p2[1], &buf, 1);
+    }
 
+    // Close remaining ends of the pipes
     close(p1[0]);
     close(p2[1]);
-  } else {
+  } else { // Parent process
+    // Close unused ends of the pipes
     close(p1[0]);
     close(p2[1]);
 
-    write(p1[1], &buf, 1);
-    read(p2[0], &buf, 1);
+    // Write to p1 and read from p2
+    for (char c = 'A'; c <= 'Z'; ++c) {
+      write(p1[1], &c, 1);
+      if (read(p2[0], &buf, 1) > 0) {
+        printf("Received: %c\n", buf);
+      }
+    }
 
+    // Close remaining ends of the pipes
     close(p1[1]);
     close(p2[0]);
   }
+}
+
+void f() {
+  int p[2];
+  pipe(p);
+  char *buf = malloc(sizeof(char) * 20);
+  if (fork() == 0) {
+    close(0);
+    // stdin(0) <------------> p[1]
+    dup(p[0]);
+    close(p[0]);
+    close(p[1]);
+
+    read(0, buf, 12);
+    printf("%s\n", buf);
+  } else {
+    write(p[1], "hello world\n", 12);
+
+    close(p[0]);
+    close(p[1]);
+  }
+}
+
+int main(int argc, char *argv[]) {
+  exercise();
   return 0;
 }

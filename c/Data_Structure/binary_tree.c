@@ -1,7 +1,7 @@
-#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 typedef int DataType;
+
 typedef struct TreeNode {
   DataType data;
   struct TreeNode *left;
@@ -34,7 +34,6 @@ TNode *TreeInsert(TNode *root, DataType data) {
   return root;
 }
 
-// 递归查找
 TNode *TreeRecursionFind(TNode *root, DataType data) {
   if (root == NULL) {
     printf("the tree is empty!\n");
@@ -43,11 +42,11 @@ TNode *TreeRecursionFind(TNode *root, DataType data) {
     return TreeRecursionFind(root->left, data);
   } else if (root->data < data) {
     return TreeRecursionFind(root->right, data);
-  } else
+  } else {
     return root;
+  }
 }
 
-// 非递归查找
 TNode *TreeIterationFind(TNode *root, DataType data) {
   TNode *node = root;
   while (node) {
@@ -55,8 +54,9 @@ TNode *TreeIterationFind(TNode *root, DataType data) {
       node = node->left;
     } else if (root->data < data) {
       node = node->right;
-    } else
+    } else {
       return node;
+    }
   }
 
   return NULL;
@@ -106,16 +106,16 @@ TNode *TreeDelete(TNode *root, DataType data) {
       } else {
         root = root->left;
       }
-      /* root = (root->left == NULL) ? root->right : root->left; */
+      // root = (root->left == NULL) ? root->right : root->left;
 
       free(tmp);
     }
-  } else
+  } else {
     printf("the element isn't existed!\n");
+  }
   return root;
 }
 
-// 先序遍历
 void PreOrderTree(TNode *root) {
   if (root == NULL) {
     printf("NULL\n");
@@ -126,7 +126,6 @@ void PreOrderTree(TNode *root) {
   }
 }
 
-// 中序遍历
 void InOrderTree(TNode *root) {
   if (root == NULL) {
     printf("NULL\n");
@@ -146,7 +145,7 @@ void test() {
   root = TreeInsert(root, 3);
   root = TreeInsert(root, 5);
   root = TreeInsert(root, 8);
-  /* root = TreeDelete(root, 4); */
+  // root = TreeDelete(root, 4);
   TNode *tmp = Find_Max(root);
   printf("max:%d\n", tmp->data);
   tmp = Find_Min(root);
