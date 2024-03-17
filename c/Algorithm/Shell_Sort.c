@@ -10,13 +10,12 @@ void Print(int arr[], int size) {
 }
 
 void Shellsort(int arr[], int size) {
-  for (int gap = size / 2; gap > 0; gap /= 2) {
-    for (int i = gap; i < size; i++) {
+  for (int d = size / 2; d > 0; d /= 2) {
+    for (int i = d; i < size; i++) {
       int tmp = arr[i];
       int j = i;
-      while (j >= gap && arr[j - gap] > tmp) {
-        arr[j] = arr[j - gap];
-        j -= gap;
+      for (; j >= d && arr[j - d] > tmp; j -= d) {
+        arr[j] = arr[j - d];
       }
       arr[j] = tmp;
     }
@@ -24,7 +23,6 @@ void Shellsort(int arr[], int size) {
 }
 
 void test() {
-
   srand((unsigned)time(NULL));
   int size = 10;
   int arr[size];
