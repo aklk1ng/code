@@ -4,30 +4,34 @@
 
 typedef int ElementType;
 
+// find the position to split the array
+// on the right half is not smaller the pivot
+// on the left half is smaller the pivot
+int partition(ElementType arr[], int low, int high) {
+  int pivot = arr[low];
+  while (low < high) {
+    while (low < high && arr[high] >= pivot) {
+      high--;
+    }
+    arr[low] = arr[high];
+    while (low < high && arr[low] < pivot) {
+      low++;
+    }
+    arr[high] = arr[low];
+  }
+  arr[low] = pivot;
+
+  return low;
+}
+
+// O(n * log(n)) ~ O(n * n)
 void QuickSort(ElementType arr[], int low, int high) {
   if (low >= high) {
     return;
-  } 
-  int l = low, r = high;
-  int pivot = arr[l];
-  while (l < r) {
-    while (l < r && arr[r] >= pivot) {
-      r--;
-    }
-    if (l < r) {
-      arr[l++] = arr[r];
-    }
-    while (l < r && arr[l] <= pivot) {
-      l++;
-    }
-    if (l < r) {
-      arr[r--] = arr[l];
-    }
   }
-
-  arr[l] = pivot;
-  QuickSort(arr, low, high - 1);
-  QuickSort(arr, low + 1, high);
+  int pos = partition(arr, low, high);
+  QuickSort(arr, low, pos - 1);
+  QuickSort(arr, pos + 1, high);
 }
 
 void Print(int arr[], int size) {

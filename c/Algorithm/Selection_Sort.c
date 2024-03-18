@@ -10,19 +10,20 @@ void Print(int arr[], int size) {
   printf("\n");
 }
 
+// O(n * n)
 void Selection_Sort(ElementType arr[], int size) {
-  int i, j;
-  for (i = 0; i < size - 1; i++) {
+  for (int i = 0; i < size - 1; i++) {
     int min = i;
-    for (j = i + 1; j < size; j++) {
+    // find the smallest element in the array after the i
+    for (int j = i + 1; j < size; j++) {
       if (arr[min] > arr[j]) {
         min = j;
       }
     }
     if (min != i) {
-      arr[i] ^= arr[min];
-      arr[min] ^= arr[i];
-      arr[i] ^= arr[min];
+      int tmp = arr[min];
+      arr[min] = arr[i];
+      arr[i] = tmp;
     }
   }
 }

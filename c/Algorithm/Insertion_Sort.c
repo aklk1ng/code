@@ -9,6 +9,7 @@ void Print(int arr[], int size) {
   printf("\n");
 }
 
+// O(n * n)
 void Insertion_Sort(int arr[], int size) {
   for (int i = 1; i < size; i++) {
     int tmp = arr[i];

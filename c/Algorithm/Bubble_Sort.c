@@ -4,6 +4,7 @@
 
 typedef int ElementType;
 
+// O(n * n)
 void Bubble_Sort(ElementType arr[], int size) {
   for (int i = 0; i < size - 1; i++) {
     for (int j = i + 1; j < size; j++) {
