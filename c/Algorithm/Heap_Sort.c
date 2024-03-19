@@ -14,7 +14,7 @@ void Print(int arr[], int size) {
 void heapify(int arr[], int k, int size) {
   int pivot = arr[k];
   // the array starts from 0
-  for (int i = 2 * k + 1; i < size; i *= 2) {
+  for (int i = 2 * k + 1; i < size; i = 2 * i + 1) {
     // move the i to the bigger child index
     if (i < size - 1 && arr[i] < arr[i + 1]) {
       i++;
@@ -31,6 +31,7 @@ void heapify(int arr[], int k, int size) {
   arr[k] = pivot;
 }
 
+// adjust all non-leaf node
 void BuildMaxHeap(int arr[], int size) {
   // adjust all non-leaf node
   for (int i = size / 2; i >= 0; i--) {
