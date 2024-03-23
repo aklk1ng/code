@@ -145,7 +145,7 @@ void test() {
   root = TreeInsert(root, 3);
   root = TreeInsert(root, 5);
   root = TreeInsert(root, 8);
-  // root = TreeDelete(root, 4);
+  root = TreeDelete(root, 5);
   TNode *tmp = Find_Max(root);
   printf("max:%d\n", tmp->data);
   tmp = Find_Min(root);

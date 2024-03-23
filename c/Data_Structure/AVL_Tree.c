@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 typedef int ElementType;
+
 typedef struct TNode {
   ElementType data;
   struct TNode *left;
@@ -79,16 +80,18 @@ TNode *Insert(TNode *root, ElementType x) {
     if (TotalHeight(root->left) - TotalHeight(root->right) == 2) {
       if (x < root->left->data) {
         root = SingleRotateWithLeft(root);
-      } else
+      } else {
         root = DoubleRotateWithLeft(root);
+      }
     }
   } else if (x > root->data) {
     root->right = Insert(root->right, x);
     if (TotalHeight(root->right) - TotalHeight(root->left) == 2) {
       if (x > root->right->data) {
         root = SingleRotateWithRight(root);
-      } else
+      } else {
         root = DoubleRotateWithRight(root);
+      }
     }
   }
 
@@ -102,8 +105,9 @@ TNode *FindMin(TNode *root) {
     return NULL;
   } else if (root->left) {
     return FindMin(root->left);
-  } else
+  } else {
     return root;
+  }
 }
 
 TNode *FindMax(TNode *root) {
@@ -136,6 +140,7 @@ void test() {
   printf("%d\n", TotalHeight(root));
   InOrderTree(root);
 }
+
 int main(int argc, char *argv[]) {
   test();
   return 0;
