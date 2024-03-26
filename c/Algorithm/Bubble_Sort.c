@@ -7,18 +7,6 @@ typedef int ElementType;
 // O(n * n)
 void Bubble_Sort(ElementType arr[], int size) {
   for (int i = 0; i < size - 1; i++) {
-    for (int j = i + 1; j < size; j++) {
-      if (arr[i] > arr[j]) {
-        int tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-      }
-    }
-  }
-}
-
-void Bubble_Sort_v2(ElementType arr[], int size) {
-  for (int i = 0; i < size - 1; i++) {
     int flag = 0;
     for (int j = 1; j < size - i; j++) {
       if (arr[j - 1] > arr[j]) {
@@ -50,8 +38,7 @@ void test() {
     arr[i] = rand() % 100;
   }
   Print(arr, size);
-  // Bubble_Sort(arr, size);
-  Bubble_Sort_v2(arr, size);
+  Bubble_Sort(arr, size);
   Print(arr, size);
 }
 
