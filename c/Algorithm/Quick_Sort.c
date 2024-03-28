@@ -4,39 +4,39 @@
 
 typedef int ElementType;
 
-// find the position to split the array
+// return the position to split the array
 // on the right half is not smaller the pivot
 // on the left half is smaller the pivot
-int partition(ElementType arr[], int low, int high) {
-  int pivot = arr[low];
+int partition(ElementType a[], int low, int high) {
+  int pivot = a[low];
   while (low < high) {
-    while (low < high && arr[high] >= pivot) {
+    while (low < high && a[high] >= pivot) {
       high--;
     }
-    arr[low] = arr[high];
-    while (low < high && arr[low] < pivot) {
+    a[low] = a[high];
+    while (low < high && a[low] < pivot) {
       low++;
     }
-    arr[high] = arr[low];
+    a[high] = a[low];
   }
-  arr[low] = pivot;
+  a[low] = pivot;
 
   return low;
 }
 
 // O(n * log(n)) ~ O(n * n)
-void QuickSort(ElementType arr[], int low, int high) {
+void QuickSort(ElementType a[], int low, int high) {
   if (low >= high) {
     return;
   }
-  int pos = partition(arr, low, high);
-  QuickSort(arr, low, pos - 1);
-  QuickSort(arr, pos + 1, high);
+  int pos = partition(a, low, high);
+  QuickSort(a, low, pos - 1);
+  QuickSort(a, pos + 1, high);
 }
 
-void Print(int arr[], int size) {
+void Print(int a[], int size) {
   for (int i = 0; i < size; i++) {
-    printf("%d ", arr[i]);
+    printf("%d ", a[i]);
   }
   printf("\n");
 }

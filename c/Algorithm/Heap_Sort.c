@@ -4,54 +4,54 @@
 
 typedef int ElementType;
 
-void Print(int arr[], int size) {
+void Print(int a[], int size) {
   for (int i = 0; i < size; i++) {
-    printf("%d ", arr[i]);
+    printf("%d ", a[i]);
   }
   printf("\n");
 }
 
-void heapify(int arr[], int k, int size) {
-  int pivot = arr[k];
+void heapify(int a[], int k, int size) {
+  int pivot = a[k];
   // the array starts from 0
   for (int i = 2 * k + 1; i < size; i = 2 * i + 1) {
     // move the i to the bigger child index
-    if (i < size - 1 && arr[i] < arr[i + 1]) {
+    if (i < size - 1 && a[i] < a[i + 1]) {
       i++;
     }
 
-    if (arr[i] <= pivot) { // the parent value is bigger than childs
+    if (a[i] <= pivot) { // the parent value is bigger than childs
       break;
     } else {
-      arr[k] = arr[i];
+      a[k] = a[i];
       k = i;
     }
   }
   // move the smallest node to the last position
-  arr[k] = pivot;
+  a[k] = pivot;
 }
 
 // adjust all non-leaf node
-void BuildMaxHeap(int arr[], int size) {
+void BuildMaxHeap(int a[], int size) {
   // adjust all non-leaf node
   for (int i = size / 2; i >= 0; i--) {
-    heapify(arr, i, size);
+    heapify(a, i, size);
   }
 }
 
 // O(n * log(n))
-void heapSort(ElementType arr[], int size) {
+void heapSort(ElementType a[], int size) {
   // O(n)
-  BuildMaxHeap(arr, size);
+  BuildMaxHeap(a, size);
 
   // O(n * log(n))
   for (int i = size - 1; i > 0; i--) {
-    ElementType tmp = arr[0];
-    arr[0] = arr[i];
-    arr[i] = tmp;
+    ElementType tmp = a[0];
+    a[0] = a[i];
+    a[i] = tmp;
 
     // adjust the heap
-    heapify(arr, 0, i);
+    heapify(a, 0, i);
   }
 }
 

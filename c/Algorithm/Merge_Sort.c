@@ -5,39 +5,41 @@
 typedef int ElementType;
 
 // O(n)
-void Merge(ElementType arr[], ElementType t[], int lpos, int rpos, int rend) {
-  int i = lpos, j = rpos, k = 0;
-  while (i < rpos && j <= rend) {
-    if (arr[i] > arr[j]) {
-      t[k++] = arr[j++];
+void Merge(ElementType a[], ElementType t[], int l, int mid, int r) {
+  int i = l, j = mid + 1, k = 0;
+  while (i <= mid && j <= r) {
+    if (a[i] > a[j]) {
+      t[k++] = a[j++];
     } else {
-      t[k++] = arr[i++];
+      t[k++] = a[i++];
     }
   }
-  while (i < rpos) {
-    t[k++] = arr[i++];
+
+  // copy the rest elements
+  while (i <= mid) {
+    t[k++] = a[i++];
   }
-  while (j <= rend) {
-    t[k++] = arr[j++];
+  while (j <= r) {
+    t[k++] = a[j++];
   }
 
   // copy whole tmp array to source array
-  for (k = 0, i = lpos; i <= rend; i++, k++) {
-    arr[i] = t[k];
+  for (k = 0, i = l; i <= r; i++, k++) {
+    a[i] = t[k];
   }
 }
 
 // O(n * log(n))
-void Msort(ElementType arr[], ElementType t[], int l, int r) {
+void Msort(ElementType a[], ElementType t[], int l, int r) {
   if (l < r) {
     int mid = l + (r - l) / 2;
-    Msort(arr, t, l, mid);
-    Msort(arr, t, mid + 1, r);
-    Merge(arr, t, l, mid + 1, r);
+    Msort(a, t, l, mid);
+    Msort(a, t, mid + 1, r);
+    Merge(a, t, l, mid, r);
   }
 }
 
-void MergeSort(ElementType arr[], int size) {
+void MergeSort(ElementType a[], int size) {
   if (size <= 1) {
     return;
   }
@@ -46,7 +48,7 @@ void MergeSort(ElementType arr[], int size) {
     printf("malloc failed!\n");
     exit(-1);
   }
-  Msort(arr, tmp, 0, size - 1);
+  Msort(a, tmp, 0, size - 1);
 }
 
 void Print(ElementType arr[], int size) {

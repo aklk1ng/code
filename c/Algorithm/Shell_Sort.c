@@ -12,6 +12,7 @@ void Print(int arr[], int size) {
 // O(n ^ (0.5e)) ~ O(n * n)
 void Shellsort(int arr[], int size) {
   for (int d = size / 2; d > 0; d /= 2) {
+    // start with the second element in all groups
     for (int i = d; i < size; i++) {
       int tmp = arr[i];
       int j = i;
