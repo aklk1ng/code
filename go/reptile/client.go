@@ -29,7 +29,9 @@ func HttpGet(url string) (result string, err error) {
 }
 
 func Reptile(i int, page chan<- int) {
-	url := "https://tieba.baidu.com/f?kw=lol&ie=utf-8&pn=" + strconv.Itoa((i-1)*50)
+	url := "https://tieba.baidu.com/f?kw=lol&ie=utf-8&pn=" + strconv.Itoa(
+		(i-1)*50,
+	)
 	fmt.Printf("The %d page:%s", i, url)
 	result, err := HttpGet(url)
 	if err != nil {

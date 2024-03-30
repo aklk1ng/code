@@ -68,7 +68,7 @@ void join() {
 }
 
 // Join all threads when main() returns.
-__attribute__((destructor)) 
+__attribute__((destructor))
 static void cleanup() {
     join();
 }

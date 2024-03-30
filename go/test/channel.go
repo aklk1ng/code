@@ -45,7 +45,12 @@ func test1() {
 	fmt.Println(len(ch), cap(ch))
 	go func() {
 		for i := 0; i < 10; i++ {
-			fmt.Printf("sub-coroutine:%d, size:%d, cap:%d\n", i, len(ch), cap(ch))
+			fmt.Printf(
+				"sub-coroutine:%d, size:%d, cap:%d\n",
+				i,
+				len(ch),
+				cap(ch),
+			)
 			ch <- i
 		}
 	}()
@@ -60,7 +65,12 @@ func test2() {
 	fmt.Println(len(ch), cap(ch))
 	go func() {
 		for i := 0; i < 10; i++ {
-			fmt.Printf("sub-coroutine:%d, size:%d, cap:%d\n", i, len(ch), cap(ch))
+			fmt.Printf(
+				"sub-coroutine:%d, size:%d, cap:%d\n",
+				i,
+				len(ch),
+				cap(ch),
+			)
 			ch <- i
 		}
 		close(ch)
