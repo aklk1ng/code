@@ -1,4 +1,3 @@
-
 src=$(wildcard *.cpp)
 obj=$(patsubst %.cpp, %.o, $(src))
 target=DataBase_Connection_Pool

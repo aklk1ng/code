@@ -8,6 +8,7 @@
 #include <mutex>
 #include <thread>
 using namespace Json;
+
 void ConnectionPool::addConnection() {
   MysqlConn *conn = new MysqlConn;
   conn->connect(m_user, m_passwd, m_dbName, m_ip, m_port);

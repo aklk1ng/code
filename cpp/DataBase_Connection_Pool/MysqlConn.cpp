@@ -2,6 +2,7 @@
 #include <bits/chrono.h>
 #include <chrono>
 #include <mysql/mysql.h>
+
 MysqlConn::MysqlConn() {
   m_conn = mysql_init(nullptr);
   mysql_set_character_set(m_conn, "utf8");
