@@ -8,7 +8,7 @@ using namespace std;
 
 template <typename T>
 yazi::ThreadPool<T>::ThreadPool(int max, int min) {
-  // 实例化任务队列
+  // instance the task queue
   do {
     taskQ = new TaskQueue<T>;
     if (taskQ == nullptr) {
@@ -24,7 +24,7 @@ yazi::ThreadPool<T>::ThreadPool(int max, int min) {
     maxnum = max;
     minnum = min;
     busynum = 0;
-    livenum = min; // 与最小的线程相等
+    livenum = min;
     destroynum = 0;
 
     if (pthread_mutex_init(&mutexPool, NULL) != 0 ||
@@ -35,7 +35,7 @@ yazi::ThreadPool<T>::ThreadPool(int max, int min) {
 
     shutdown = false;
 
-    // 创建线程
+    // create thread
     pthread_create(&managerID, NULL, manager, this);
     for (int i = 0; i < min; i++) {
       pthread_create(&threadIDs[i], NULL, worker, this);
@@ -43,7 +43,7 @@ yazi::ThreadPool<T>::ThreadPool(int max, int min) {
     return;
   } while (0);
 
-  // 释放资源
+  // free resource
   if (threadIDs) {
     delete[] (threadIDs);
   }
@@ -54,15 +54,11 @@ yazi::ThreadPool<T>::ThreadPool(int max, int min) {
 
 template <typename T>
 yazi::ThreadPool<T>::~ThreadPool() {
-  // 关闭线程池
   shutdown = true;
-  // 阻塞回收管理线程
   pthread_join(managerID, NULL);
-  // 唤醒阻塞的消费者线程
   for (int i = 0; i < livenum; i++) {
     pthread_cond_signal(&IsEmpty);
   }
-  // 释放堆内存
   if (taskQ) {
     delete taskQ;
   }
@@ -78,12 +74,10 @@ void *yazi::ThreadPool<T>::worker(void *arg) {
   ThreadPool *pool = static_cast<ThreadPool *>(arg);
   while (1) {
     pthread_mutex_lock(&pool->mutexPool);
-    // 当前任务队列是否为空
+    // check current task queue whether is empty
     while (pool->taskQ->taskNumber() == 0 && !pool->shutdown) {
-      // 阻塞工作线程
       pthread_cond_wait(&pool->IsEmpty, &pool->mutexPool);
 
-      // 判断是否要销毁线程
       if (pool->destroynum > 0) {
         pool->destroynum--;
         if (pool->livenum < pool->minnum) {
@@ -94,15 +88,14 @@ void *yazi::ThreadPool<T>::worker(void *arg) {
       }
     }
 
-    // 判断线程池u是否被关闭
     if (pool->shutdown) {
       pthread_mutex_unlock(&pool->mutexPool);
       pool->ThreadExit();
     }
 
-    // 从任务队列中取出一个任务
+    // take a task
     Task<T> task = pool->taskQ->takeTask();
-    // 解锁
+    // unlock
     pool->busynum++;
     pthread_mutex_unlock(&pool->mutexPool);
 
@@ -123,18 +116,14 @@ template <typename T>
 void *yazi::ThreadPool<T>::manager(void *arg) {
   ThreadPool *pool = static_cast<ThreadPool *>(arg);
   while (!pool->shutdown) {
-    // 每隔3s检测一次
     sleep(3);
 
-    // 取出线程中任务的数量和当前线程的数量
     pthread_mutex_lock(&pool->mutexPool);
     int queueSize = pool->taskQ->taskNumber();
     int livenum = pool->livenum;
-    // 取出忙的线程的数量
     int busynum = pool->busynum;
     pthread_mutex_unlock(&pool->mutexPool);
 
-    // 添加线程--任务的个数>存活的个数&&存活的线程数<最大线程数
     if (queueSize > livenum && livenum < pool->maxnum) {
       pthread_mutex_lock(&pool->mutexPool);
       int counter = 0;
@@ -150,15 +139,12 @@ void *yazi::ThreadPool<T>::manager(void *arg) {
       pthread_mutex_unlock(&pool->mutexPool);
     }
 
-    // 销毁线程--忙的线程*2 < 存活的线程数 && 存活的线程数 < 最小线程数
     if (busynum * 2 < livenum && livenum > pool->minnum) {
       pthread_mutex_lock(&pool->mutexPool);
       pool->destroynum = NUMBER;
       pthread_mutex_unlock(&pool->mutexPool);
 
-      // 让工作的线程自杀
       for (int i = 0; i < NUMBER; i++) {
-        // 对空闲的线程进行唤醒
         pthread_cond_signal(&pool->IsEmpty);
       }
     }
@@ -171,7 +157,7 @@ void yazi::ThreadPool<T>::addTask(Task<T> task) {
   if (shutdown) {
     return;
   }
-  // 添加任务
+  // add task
   taskQ->addTask(task);
   pthread_cond_signal(&IsEmpty);
 }

@@ -3,6 +3,7 @@
 #include <pthread.h>
 #include <queue>
 using callback = void (*)(void *arg);
+
 namespace yazi {
 template <typename T>
 struct Task {
@@ -10,10 +11,12 @@ struct Task {
     function = nullptr;
     arg = nullptr;
   }
+
   Task(callback f, void *arg) {
     this->arg = (T *)arg;
     function = f;
   }
+
   callback function;
   T *arg;
 };
@@ -24,12 +27,11 @@ public:
   TaskQueue();
   ~TaskQueue();
 
-  // 添加任务
   void addTask(Task<T> task);
   void addTask(callback f, void *arg);
-  // 取出任务
+
   Task<T> takeTask();
-  // 获取当前任务的个数
+
   inline size_t taskNumber() { return taskQ.size(); }
 
 private:

@@ -1,3 +1,6 @@
-src=$(wildcard *.cpp)
-obj-$(patsubstr %.cpp, %.o, $(src))
-tar=
+tar=thread
+run:
+	g++ *.cpp -o $(tar)
+
+clean:
+	rm $(tar)
