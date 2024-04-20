@@ -15,10 +15,12 @@ struct SockInfo {
   struct sockaddr_in addr;
   int fd;
 };
+
 typedef struct poolInfo {
   ThreadPool *p;
   int fd;
 } PoolInfo;
+
 void working(void *arg);
 void accptConn(void *arg);
 
@@ -33,8 +35,9 @@ int main(int argc, char *argv[]) {
   struct sockaddr_in saddr;
   saddr.sin_family = AF_INET;
   saddr.sin_port = htons(9999);
-  saddr.sin_addr.s_addr = INADDR_ANY; // 0 = 0,0,0,0 this macro automatically read the IP address of
-                                      // the local network card
+  saddr.sin_addr.s_addr =
+      INADDR_ANY; // 0 = 0,0,0,0 this macro automatically read the IP address of
+                  // the local network card
   int ret = bind(fd, (struct sockaddr *)&saddr, sizeof(saddr));
   if (ret == -1) {
     perror("bind");
@@ -55,6 +58,7 @@ int main(int argc, char *argv[]) {
   ThreadExit(NULL);
   return 0;
 }
+
 void accptConn(void *arg) {
   PoolInfo *poolInfo = (PoolInfo *)arg;
   // 4. block and wait for client connection
@@ -73,12 +77,14 @@ void accptConn(void *arg) {
 
   close(poolInfo->fd);
 }
+
 void working(void *arg) {
   struct SockInfo *pinfo = (struct SockInfo *)arg;
   // connecting successfully, print the client IP and port information
   char ip[32];
   printf("the client's IP: %s. port: %d\n",
-         inet_ntop(AF_INET, &pinfo->addr.sin_addr, ip, sizeof(ip)), ntohs(pinfo->addr.sin_port));
+         inet_ntop(AF_INET, &pinfo->addr.sin_addr, ip, sizeof(ip)),
+         ntohs(pinfo->addr.sin_port));
   // 5. communicate
   while (1) {
     // receive data

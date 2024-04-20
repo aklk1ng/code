@@ -6,6 +6,7 @@ __thread char *base, *cur; // thread-local variables
 __thread int id;
 
 __attribute__((noinline)) void set_cur(void *ptr) { cur = ptr; }
+
 __attribute__((noinline)) char *get_cur() { return cur; }
 
 void stackoverflow(int n) {
@@ -24,6 +25,7 @@ void Tprobe(int tid) {
 }
 
 int x = 0;
+
 void hello(int id) {
   printf("Thread id: %d\n", id);
   usleep(id * 1000);
@@ -31,6 +33,7 @@ void hello(int id) {
 }
 
 unsigned long balance = 100;
+
 void Alipay_withdraw(int amt) {
   if (balance >= amt) {
     usleep(1);

@@ -16,7 +16,9 @@ typedef struct Node {
   int number;
   struct Node *next;
 } Node;
+
 Node *head = NULL;
+
 void *producer(void *arg) {
   while (1) {
     sem_wait(&semp);
@@ -53,6 +55,7 @@ void *consumer(void *arg) {
   }
   return NULL;
 }
+
 int main(int argc, char *argv[]) {
   // 此时资源数为5,需要其他的锁进行保护
   sem_init(&semp, 0, 5);

@@ -12,7 +12,9 @@ typedef struct Node {
   int number;
   struct Node *next;
 } Node;
+
 Node *head = NULL;
+
 void *producer(void *arg) {
   while (1) {
     pthread_mutex_lock(&mutex);
@@ -48,6 +50,7 @@ void *consumer(void *arg) {
   }
   return NULL;
 }
+
 int main(int argc, char *argv[]) {
   pthread_mutex_init(&mutex, NULL);
   pthread_cond_init(&cond, NULL);

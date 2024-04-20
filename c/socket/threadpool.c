@@ -6,11 +6,13 @@
 #include <string.h>
 #include <unistd.h>
 const int NUMBER = 2;
+
 // task structure
 typedef struct Task {
   void (*function)(void *arg);
   void *arg;
 } Task;
+
 // thread pool structure
 typedef struct ThreadPool {
   // task queue / circular queue
@@ -170,7 +172,9 @@ void *manager(void *arg) {
     if (queueSize > livenum && livenum < pool->maxnum) {
       pthread_mutex_lock(&pool->mutexPool);
       int counter = 0;
-      for (int i = 0; i < pool->maxnum && counter <= NUMBER && pool->livenum <= pool->maxnum; i++) {
+      for (int i = 0; i < pool->maxnum && counter <= NUMBER &&
+                      pool->livenum <= pool->maxnum;
+           i++) {
         if (pool->threadIDs[i] == 0) {
           pthread_create(&pool->threadIDs[i], NULL, worker, NULL);
           counter++;
@@ -236,12 +240,14 @@ int TheadPoolBusyNum(ThreadPool *pool) {
   pthread_mutex_unlock(&pool->mutexPool);
   return busynum;
 }
+
 int ThreadPoolAliveNum(ThreadPool *pool) {
   pthread_mutex_lock(&pool->mutexPool);
   int alivenum = pool->livenum;
   pthread_mutex_unlock(&pool->mutexPool);
   return alivenum;
 }
+
 int ThreadPoolDestroy(ThreadPool *pool) {
   if (pool == NULL) {
     return -1;

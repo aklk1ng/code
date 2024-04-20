@@ -5,6 +5,7 @@
 __attribute__((constructor)) void build() {
   printf("call the constructor function brefore the main function\n");
 }
+
 __attribute__((destructor)) void cleanup() {
   printf("call the destructor function after the main function\n");
 }

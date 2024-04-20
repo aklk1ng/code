@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 unsigned long long memory_size = 0;
+
 void calc() {
   unsigned int arr[3] = {1024 * 1024, 1024, 1};
   int i, count;

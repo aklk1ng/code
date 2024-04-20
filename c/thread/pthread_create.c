@@ -65,6 +65,7 @@
 #define MAX 50
 int number;
 pthread_rwlock_t rwlock;
+
 void *readNum(void *arg) {
   for (int i = 0; i < MAX; ++i) {
     // 对公共资源加锁
@@ -76,6 +77,7 @@ void *readNum(void *arg) {
   }
   return NULL;
 }
+
 void *writeNum(void *arg) {
   for (int i = 0; i < MAX; ++i) {
     pthread_rwlock_wrlock(&rwlock);
@@ -89,6 +91,7 @@ void *writeNum(void *arg) {
   }
   return NULL;
 }
+
 int main(int argc, char *argv[]) {
   pthread_t p1[5], p2[3];
   pthread_rwlock_init(&rwlock, NULL);
