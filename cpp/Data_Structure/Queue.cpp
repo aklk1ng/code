@@ -1,21 +1,25 @@
 #include <iostream>
-using namespace std;
 
 typedef int ElementType;
+
 class Queue {
 public:
   struct Node {
     ElementType val;
     Node *next;
+
     Node(ElementType val) : val(val), next(nullptr) {}
   };
+
   struct QueuePtr {
     Node *head;
     Node *tail;
+
     QueuePtr() : head(nullptr), tail(nullptr) {}
   };
 
   Queue() { ps = new QueuePtr(); }
+
   ~Queue() {
     Node *cur = ps->head;
     while (cur) {
@@ -53,10 +57,10 @@ public:
   void Print() {
     Node *cur = ps->head;
     while (cur) {
-      cout << cur->val << "<-";
+      std::cout << cur->val << "<-";
       cur = cur->next;
     }
-    cout << "nullptr" << endl;
+    std::cout << "nullptr" << std::endl;
   }
 
   ElementType QueueFront() { return ps->head->val; }
@@ -77,8 +81,8 @@ void test() {
   q.QueuePush(2);
   q.QueuePop();
   q.Print();
-  cout << "-----------------" << endl;
-  cout << q.QueueGetSize() << endl;
+  std::cout << "-----------------" << std::endl;
+  std::cout << q.QueueGetSize() << std::endl;
 }
 
 int main(int argc, char *argv[]) {

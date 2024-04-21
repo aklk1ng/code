@@ -20,30 +20,31 @@ ConnectionPool *ConnectionPool::getConnectPool() {
   return &pool;
 }
 
-shared_ptr<MysqlConn> ConnectionPool::getConnection() {
-  unique_lock<mutex> locker(m_mutexQ);
+std::shared_ptr<MysqlConn> ConnectionPool::getConnection() {
+  std::unique_lock<std::mutex> locker(m_mutexQ);
   while (m_connectionQ.empty()) {
-    if (cv_status::timeout ==
-        m_cond.wait_for(locker, chrono::milliseconds(m_timeout))) {
+    if (std::cv_status::timeout ==
+        m_cond.wait_for(locker, std::chrono::milliseconds(m_timeout))) {
       if (m_connectionQ.empty()) {
         continue;
       }
     }
   }
-  shared_ptr<MysqlConn> connptr(m_connectionQ.front(), [this](MysqlConn *conn) {
-    /* m_mutexQ.lock(); */
-    lock_guard<mutex> locker(m_mutexQ);
-    conn->refreshAliveTime();
-    m_connectionQ.push(conn);
-    /* m_mutexQ.unlock(); */
-  });
+  std::shared_ptr<MysqlConn> connptr(
+      m_connectionQ.front(), [this](MysqlConn *conn) {
+        /* m_mutexQ.lock(); */
+        std::lock_guard<std::mutex> locker(m_mutexQ);
+        conn->refreshAliveTime();
+        m_connectionQ.push(conn);
+        /* m_mutexQ.unlock(); */
+      });
   m_connectionQ.pop();
   m_cond.notify_all();
   return connptr;
 }
 
 bool ConnectionPool::parseJsonFile() {
-  ifstream ifs("dbcout.json");
+  std::ifstream ifs("dbcout.json");
   Reader rd;
   Value root;
   rd.parse(ifs, root);
@@ -64,7 +65,7 @@ bool ConnectionPool::parseJsonFile() {
 
 void ConnectionPool::producerConnection() {
   while (true) {
-    unique_lock<mutex> locker(m_mutexQ);
+    std::unique_lock<std::mutex> locker(m_mutexQ);
     while (m_connectionQ.size() >= m_minSize) {
       m_cond.wait(locker);
     }
@@ -75,8 +76,8 @@ void ConnectionPool::producerConnection() {
 
 void ConnectionPool::recyclerConnection() {
   while (true) {
-    this_thread::sleep_for(chrono::milliseconds(500));
-    lock_guard<mutex> locker(m_mutexQ);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::lock_guard<std::mutex> locker(m_mutexQ);
     while (m_connectionQ.size() > m_minSize) {
       MysqlConn *conn = m_connectionQ.front();
       if (conn->getAliveTime() >= m_maxIdleTime) {
@@ -96,8 +97,8 @@ ConnectionPool::ConnectionPool() {
   for (int i = 0; i < m_minSize; i++) {
     addConnection();
   }
-  thread producer(&ConnectionPool::producerConnection, this);
-  thread recycler(&ConnectionPool::recyclerConnection, this);
+  std::thread producer(&ConnectionPool::producerConnection, this);
+  std::thread recycler(&ConnectionPool::recyclerConnection, this);
   producer.detach();
   recycler.detach();
 }

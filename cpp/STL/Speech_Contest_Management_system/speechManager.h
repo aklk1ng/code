@@ -10,7 +10,6 @@
 #include <numeric>
 #include <string>
 #include <vector>
-using namespace std;
 
 class SpeechManager {
 public:
@@ -29,11 +28,11 @@ public:
   void showRecord();
   void clearRecord();
 
-  vector<int> first_round;
-  vector<int> first_victory;
-  vector<int> top_three;
-  map<int, Speaker> m_Speaker;
-  map<int, vector<string>> m_Record;
+  std::vector<int> first_round;
+  std::vector<int> first_victory;
+  std::vector<int> top_three;
+  std::map<int, Speaker> m_Speaker;
+  std::map<int, std::vector<std::string>> m_Record;
   int Index;
   bool fileIsEmpty;
 };

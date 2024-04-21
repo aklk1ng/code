@@ -1,23 +1,23 @@
-#include <iostream>
 #include <random>
 #include <vector>
-using namespace std;
 
 constexpr int MAX_LEVEL = 32;
 constexpr double P_FACTOR = 0.25;
 
 struct Node {
   int val;
-  vector<Node *> forward;
-  Node(int _val, int _maxlevel = MAX_LEVEL) : val(_val), forward(_maxlevel, nullptr) {}
+  std::vector<Node *> forward;
+
+  Node(int _val, int _maxlevel = MAX_LEVEL)
+      : val(_val), forward(_maxlevel, nullptr) {}
 };
 
 class SkipList {
 private:
   Node *head;
   int level;
-  mt19937 gen{random_device{}()};
-  uniform_real_distribution<double> dis;
+  std::mt19937 gen{std::random_device{}()};
+  std::uniform_real_distribution<double> dis;
 
 public:
   SkipList() : head(new Node(-1)), level(0), dis(0, 1) {}
@@ -36,7 +36,7 @@ public:
   }
 
   void add(int num) {
-    vector<Node *> update(MAX_LEVEL, head);
+    std::vector<Node *> update(MAX_LEVEL, head);
     Node *cur = this->head;
     for (int i = level - 1; i >= 0; i--) {
       while (cur->forward[i] && cur->forward[i]->val < num)
@@ -45,7 +45,7 @@ public:
     }
 
     int lv = randomLevel();
-    level = max(level, lv);
+    level = std::max(level, lv);
     Node *newnode = new Node(num, lv);
     for (int i = 0; i < lv; i++) {
       newnode->forward[i] = update[i]->forward[i];
@@ -54,7 +54,7 @@ public:
   }
 
   bool erase(int num) {
-    vector<Node *> update(MAX_LEVEL, head);
+    std::vector<Node *> update(MAX_LEVEL, head);
     Node *cur = this->head;
     for (int i = level - 1; i >= 0; i--) {
       while (cur->forward[i] && cur->forward[i]->val < num)
@@ -93,6 +93,7 @@ void test() {
   s.add(3);
   s.add(4);
 }
+
 int main(int argc, char *argv[]) {
   return 0;
   test();

@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <iostream>
-using namespace std;
 
 typedef int ElementType;
 
@@ -10,6 +9,7 @@ public:
     ElementType val;
     Node *next;
     Node *pre;
+
     Node(ElementType x) : val(x), next(nullptr), pre(nullptr) {}
   };
 
@@ -21,6 +21,7 @@ public:
     Max_Index = 0;
     Min_Index = 0;
   }
+
   ~Double_ListNode() {
     Node *cur = head;
     for (int i = 0; i < size; i++) {
@@ -32,7 +33,7 @@ public:
 
   void Insert_Pos(int index, ElementType x) {
     if (index < 0 || index > size) {
-      cout << "error index" << endl;
+      std::cout << "error index" << std::endl;
       return;
     }
     Node *cur = head;
@@ -89,10 +90,10 @@ public:
   void Print() {
     Node *cur = head;
     for (int i = 0; i < size; i++) {
-      cout << cur->val << "->";
+      std::cout << cur->val << "->";
       cur = cur->next;
     }
-    cout << "nullptr" << endl;
+    std::cout << "nullptr" << std::endl;
   }
 
   ElementType Get(int index) {
@@ -133,8 +134,8 @@ private:
   void Parse_Most_Value() {
     Node *cur = head;
     for (int i = 0; i < size; i++) {
-      Max_Index = max(Max_Index, cur->val);
-      Min_Index = min(Min_Index, cur->val);
+      Max_Index = std::max(Max_Index, cur->val);
+      Min_Index = std::min(Min_Index, cur->val);
       cur = cur->next;
     }
   }
@@ -152,12 +153,12 @@ void test() {
   n.Print();
   n.Erase_Pos(1);
   n.Print();
-  cout << n.Get(2) << endl;
-  cout << n.Get_Max() << endl;
+  std::cout << n.Get(2) << std::endl;
+  std::cout << n.Get_Max() << std::endl;
   n.Inset_Tail(1);
   n.Print();
-  cout << n.Get_Max() << endl;
-  cout << n.Get_Min() << endl;
+  std::cout << n.Get_Max() << std::endl;
+  std::cout << n.Get_Min() << std::endl;
 }
 
 int main(int argc, char *argv[]) {

@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
-using namespace std;
 
 typedef int ElementType;
 
@@ -12,10 +11,13 @@ public:
     Node *left;
     Node *right;
     int height;
-    Node(ElementType val) : val(val), left(nullptr), right(nullptr), height(0) {}
+
+    Node(ElementType val)
+        : val(val), left(nullptr), right(nullptr), height(0) {}
   };
 
   AVL_Tree(ElementType x) { root = new Node(x); }
+
   ~AVL_Tree() { delete this->root; }
 
   Node *SingleRotateWithLeft(Node *k2) {
@@ -24,8 +26,8 @@ public:
     k2->left = k1->right;
     k1->right = k2;
 
-    k2->height = 1 + max(Tree_Height(k2->left), Tree_Height(k2->right));
-    k1->height = 1 + max(Tree_Height(k1->left), Tree_Height(k1->right));
+    k2->height = 1 + std::max(Tree_Height(k2->left), Tree_Height(k2->right));
+    k1->height = 1 + std::max(Tree_Height(k1->left), Tree_Height(k1->right));
     return k1;
   }
 
@@ -40,8 +42,8 @@ public:
     k1->right = k2->left;
     k2->left = k1;
 
-    k2->height = 1 + max(Tree_Height(k2->left), Tree_Height(k2->right));
-    k1->height = 1 + max(Tree_Height(k1->left), Tree_Height(k1->right));
+    k2->height = 1 + std::max(Tree_Height(k2->left), Tree_Height(k2->right));
+    k1->height = 1 + std::max(Tree_Height(k1->left), Tree_Height(k1->right));
     return k2;
   }
 
@@ -66,7 +68,8 @@ public:
       }
     }
 
-    root->height = 1 + max(Tree_Height(root->left), Tree_Height(root->right));
+    root->height =
+        1 + std::max(Tree_Height(root->left), Tree_Height(root->right));
     return root;
   }
 
@@ -92,14 +95,18 @@ public:
     if (rightHeight == -1)
       return -1;
 
-    return abs(leftHeight - rightHeight) > 1 ? -1 : max(leftHeight, rightHeight) + 1;
+    return abs(leftHeight - rightHeight) > 1
+               ? -1
+               : std::max(leftHeight, rightHeight) + 1;
   }
 
-  bool isBalanced(Node *root) { return this->Tree_Height(root) == -1 ? false : true; }
+  bool isBalanced(Node *root) {
+    return this->Tree_Height(root) == -1 ? false : true;
+  }
 
   Node *FindMax(Node *root) {
     if (root == nullptr) {
-      cout << "the tree is empty!" << endl;
+      std::cout << "the tree is empty!" << std::endl;
       return nullptr;
     } else if (root->right) {
       return FindMax(root->right);
@@ -109,7 +116,7 @@ public:
 
   Node *FindMin(Node *root) {
     if (root == nullptr) {
-      cout << "the tree is empty!" << endl;
+      std::cout << "the tree is empty!" << std::endl;
       return nullptr;
     } else if (root->left) {
       return FindMin(root->left);
@@ -120,7 +127,7 @@ public:
   void InOrderTree(Node *root) {
     if (root) {
       InOrderTree(root->left);
-      cout << root->val << endl;
+      std::cout << root->val << std::endl;
       InOrderTree(root->right);
     }
   }
@@ -136,10 +143,10 @@ void test() {
   t.Insert(t.root, -2);
   t.InOrderTree(t.root);
 
-  cout << "---------------------" << endl;
-  cout << t.FindMax(t.root)->val << endl;
-  cout << t.Tree_Height(t.root) << endl;
-  cout << t.isBalanced(t.root) << endl;
+  std::cout << "---------------------" << std::endl;
+  std::cout << t.FindMax(t.root)->val << std::endl;
+  std::cout << t.Tree_Height(t.root) << std::endl;
+  std::cout << t.isBalanced(t.root) << std::endl;
 }
 
 int main(int argc, char *argv[]) {

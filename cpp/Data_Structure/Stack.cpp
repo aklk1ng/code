@@ -1,14 +1,12 @@
-#include <cstdlib>
 #include <iostream>
 #include <ostream>
 #include <vector>
-using namespace std;
 
 typedef int ElementType;
 class Stack {
 public:
   struct StackList {
-    vector<ElementType> v;
+    std::vector<ElementType> v;
     StackList(ElementType x) : v(x) {}
   };
 
@@ -24,9 +22,9 @@ public:
   void Print() {
     auto it = s->v.begin();
     for (; it != s->v.end(); it++) {
-      cout << *it << ' ';
+      std::cout << *it << ' ';
     }
-    cout << endl;
+    std::cout << std::endl;
   }
 
   ElementType Get_Pos(int index) { return s->v.at(index); }
@@ -48,10 +46,10 @@ void test() {
   s.StackPush(6);
   s.StackPop();
   s.Print();
-  cout << "---------------" << endl;
-  cout << s.Top() << endl;
-  cout << s.StackSize() << endl;
-  cout << s.Get_Pos(5) << endl;
+  std::cout << "---------------" << std::endl;
+  std::cout << s.Top() << std::endl;
+  std::cout << s.StackSize() << std::endl;
+  std::cout << s.Get_Pos(5) << std::endl;
 }
 int main(int argc, char *argv[]) {
   test();

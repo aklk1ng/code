@@ -1,7 +1,6 @@
 #pragma once
 #include <map>
 #include <string>
-using namespace std;
 
 class Value {
 public:
@@ -10,46 +9,49 @@ public:
   Value(int value);
   Value(double value);
   Value(const char *value);
-  Value(const string &value);
+  Value(const std::string &value);
 
   Value &operator=(bool value);
   Value &operator=(int value);
   Value &operator=(double value);
   Value &operator=(const char *value);
-  Value &operator=(const string &value);
+  Value &operator=(const std::string &value);
 
   operator bool();
   operator int();
   operator double();
-  operator string();
+  operator std::string();
 
 private:
-  string m_value;
+  std::string m_value;
 };
 
-typedef map<string, Value> Section;
+typedef std::map<std::string, Value> Section;
 
 class IniFile {
 public:
   IniFile();
-  bool load(const string &filename);
+  bool load(const std::string &filename);
   void show();
-  Value &get(const string &section, const string &key);
-  void set(const string &section, const string &key, const Value &value);
-  bool has(const string &section, const string &key);
-  bool has(const string &section);
-  bool save(const string &filename);
-  string str();
+  Value &get(const std::string &section, const std::string &key);
+  void set(const std::string &section, const std::string &key,
+           const Value &value);
+  bool has(const std::string &section, const std::string &key);
+  bool has(const std::string &section);
+  bool save(const std::string &filename);
+  std::string str();
 
-  void remove(const string &section, const string &key);
-  void remove(const string &section);
+  void remove(const std::string &section, const std::string &key);
+  void remove(const std::string &section);
   void clear();
 
-  Section &operator[](const string &section) { return m_sections[section]; }
+  Section &operator[](const std::string &section) {
+    return m_sections[section];
+  }
 
 private:
-  string m_filename;
-  map<string, Section> m_sections;
+  std::string m_filename;
+  std::map<std::string, Section> m_sections;
 
-  string trim(string s);
+  std::string trim(std::string s);
 };

@@ -1,39 +1,43 @@
-#include "Computer_Room_Reservation.h"
 #include "orderFile.h"
 #include "teacher.h"
 
 Teacher::Teacher() {}
-Teacher::Teacher(int empId, string name, string pwd) {
+
+Teacher::Teacher(int empId, std::string name, std::string pwd) {
   this->m_EmpId = empId;
   this->m_name = name;
   this->m_pwd = pwd;
 }
+
 void Teacher::operMenu() {
-  cout << "Welcome! " << this->m_name << endl;
-  cout << "\t\t------------------------\n";
-  cout << "\t\t|                      |\n";
-  cout << "\t\t|  1.check all orders  |\n";
-  cout << "\t\t|                      |\n";
-  cout << "\t\t|    2.review orders   |\n";
-  cout << "\t\t|                      |\n";
-  cout << "\t\t|      0.logout        |\n";
-  cout << "\t\t|                      |\n";
-  cout << "\t\t------------------------\n";
-  cout << "Please enter your choice: ";
+  std::cout << "Welcome! " << this->m_name << std::endl;
+  std::cout << "\t\t------------------------\n";
+  std::cout << "\t\t|                      |\n";
+  std::cout << "\t\t|  1.check all orders  |\n";
+  std::cout << "\t\t|                      |\n";
+  std::cout << "\t\t|    2.review orders   |\n";
+  std::cout << "\t\t|                      |\n";
+  std::cout << "\t\t|      0.logout        |\n";
+  std::cout << "\t\t|                      |\n";
+  std::cout << "\t\t------------------------\n";
+  std::cout << "Please enter your choice: ";
 }
+
 void Teacher::showAllOrder() {
   OrderFile of;
   if (of.m_Size == 0) {
-    cout << "the orders is empty!" << endl;
+    std::cout << "the orders is empty!" << std::endl;
     return;
   }
   for (int i = 0; i < of.m_Size; i++) {
-    cout << "Order date:" << of.m_orderData[i]["date"] << "\t";
-    cout << "Order time:" << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening") << "\t";
-    cout << "stuID:" << of.m_orderData[i]["stuID"] << "\t";
-    cout << "StuName:" << of.m_orderData[i]["stuName"] << "\t";
-    cout << "Order room:" << of.m_orderData[i]["room"] << "\t";
-    string status = "Status:";
+    std::cout << "Order date:" << of.m_orderData[i]["date"] << "\t";
+    std::cout << "Order time:"
+              << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening")
+              << "\t";
+    std::cout << "stuID:" << of.m_orderData[i]["stuID"] << "\t";
+    std::cout << "StuName:" << of.m_orderData[i]["stuName"] << "\t";
+    std::cout << "Order room:" << of.m_orderData[i]["room"] << "\t";
+    std::string status = "Status:";
     if (of.m_orderData[i]["status"] == "1") {
       status += "under review";
     } else if (of.m_orderData[i]["status"] == "2") {
@@ -42,52 +46,55 @@ void Teacher::showAllOrder() {
       status += "review failed";
     } else
       status += "cancel review";
-    cout << status << endl;
+    std::cout << status << std::endl;
   }
 }
+
 void Teacher::validOrder() {
   OrderFile of;
   if (of.m_Size == 0) {
-    cout << "the orders is empty!" << endl;
+    std::cout << "the orders is empty!" << std::endl;
     return;
   }
-  vector<int> v;
+  std::vector<int> v;
   int index = 1;
-  cout << "the orders:" << endl;
+  std::cout << "the orders:" << std::endl;
   for (int i = 0; i < of.m_Size; i++) {
     if (of.m_orderData[i]["status"] == "1") {
       v.push_back(i);
-      cout << index++ << ". ";
-      cout << "Order date:" << of.m_orderData[i]["date"] << "\t";
-      cout << "Order time:" << (of.m_orderData[i]["interval"] == "1" ? "morning" : "evening")
-           << "\t";
-      cout << "Order room:" << of.m_orderData[i]["room"] << "\t";
-      string status = "Status:under review";
-      cout << status << endl;
+      std::cout << index++ << ". ";
+      std::cout << "Order date:" << of.m_orderData[i]["date"] << "\t";
+      std::cout << "Order time:"
+                << (of.m_orderData[i]["interval"] == "1" ? "morning"
+                                                         : "evening")
+                << "\t";
+      std::cout << "Order room:" << of.m_orderData[i]["room"] << "\t";
+      std::string status = "Status:under review";
+      std::cout << status << std::endl;
     }
   }
-  cout << "Please enter your choice, 0 is return" << endl;
+  std::cout << "Please enter your choice, 0 is return" << std::endl;
   int select = 0;
   int ret = 0;
   while (1) {
-    cin >> select;
+    std::cin >> select;
     if (select >= 0 && select <= v.size()) {
       if (select == 0) {
         break;
       } else {
-        cout << "Please enter the review result" << endl;
-        cout << "1.pass" << endl;
-        cout << "2.fail" << endl;
-        cin >> ret;
+        std::cout << "Please enter the review result" << std::endl;
+        std::cout << "1.pass" << std::endl;
+        std::cout << "2.fail" << std::endl;
+        std::cin >> ret;
         if (ret == 1) {
           of.m_orderData[v[select - 1]]["status"] = "2";
         } else
           of.m_orderData[v[select - 1]]["status"] = "-1";
       }
       of.updateOrder();
-      cout << "review over!" << endl;
+      std::cout << "review over!" << std::endl;
       break;
     }
-    cout << "the choice is wrong,please enter again!" << endl;
+    std::cout << "the choice is wrong,please enter again!" << std::endl;
   }
 }

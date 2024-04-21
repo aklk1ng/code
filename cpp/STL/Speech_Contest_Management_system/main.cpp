@@ -2,15 +2,15 @@
 #include "speechManager.h"
 #include <cstdlib>
 #include <ctime>
-#include <map>
+
 int main(int argc, char *argv[]) {
   srand((unsigned int)time(NULL));
   SpeechManager sm;
   int choice = 0;
   while (1) {
     sm.show_Menu();
-    cout << "Please enter your choice: ";
-    cin >> choice;
+    std::cout << "Please enter your choice: ";
+    std::cin >> choice;
     switch (choice) {
     case 1: // begin the speech match
       sm.startSpeech();

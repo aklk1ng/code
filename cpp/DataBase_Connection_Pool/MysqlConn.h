@@ -2,8 +2,8 @@
 #include <chrono>
 #include <iostream>
 #include <mysql/mysql.h>
-using namespace std;
-using namespace chrono;
+using namespace std::chrono;
+
 class MysqlConn {
 public:
   // init the database connection
@@ -11,16 +11,16 @@ public:
   // free the database connection
   ~MysqlConn();
   // connect the database
-  bool connect(string user, string passwd, string dbName, string ip,
-               unsigned short int port = 3306);
+  bool connect(std::string user, std::string passwd, std::string dbName,
+               std::string ip, unsigned short int port = 3306);
   // update the database
-  bool update(string sql);
+  bool update(std::string sql);
   // query database
-  bool query(string sql);
+  bool query(std::string sql);
   // traverse result
   bool next();
   // get result's fields
-  string value(int index);
+  std::string value(int index);
   // transaction operate
   bool transaction();
   // submit transaction

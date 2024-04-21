@@ -3,10 +3,11 @@
 #include <fstream>
 #include <map>
 #include <string>
+
 class OrderFile {
 public:
   OrderFile();
   void updateOrder();
-  map<int, map<string, string>> m_orderData;
+  std::map<int, std::map<std::string, std::string>> m_orderData;
   int m_Size;
 };

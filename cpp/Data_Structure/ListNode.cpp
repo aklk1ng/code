@@ -1,5 +1,4 @@
 #include <iostream>
-using namespace std;
 
 typedef int ElementType;
 
@@ -102,10 +101,10 @@ public:
   void Print() {
     Node *cur = this->dummy->next;
     while (cur) {
-      cout << cur->val << "->";
+      std::cout << cur->val << "->";
       cur = cur->next;
     }
-    cout << "nullptr" << endl;
+    std::cout << "nullptr" << std::endl;
   }
 
 private:
@@ -117,8 +116,8 @@ private:
   void Parse_Most_Value() {
     Node *cur = this->dummy->next;
     for (int i = 0; i < this->size; i++) {
-      this->Max_Index = max(Max_Index, cur->val);
-      this->Min_Index = min(Min_Index, cur->val);
+      this->Max_Index = std::max(Max_Index, cur->val);
+      this->Min_Index = std::min(Min_Index, cur->val);
       cur = cur->next;
     }
   }
@@ -131,9 +130,9 @@ void test() {
   l.ListNodeInsert(1, 1);
   l.ListNodeErase(2);
   l.Print();
-  cout << l.get(1) << endl;
-  cout << l.Get_Max() << endl;
-  cout << l.Get_Min() << endl;
+  std::cout << l.get(1) << std::endl;
+  std::cout << l.Get_Max() << std::endl;
+  std::cout << l.Get_Min() << std::endl;
 }
 
 int main(int argc, char *argv[]) {

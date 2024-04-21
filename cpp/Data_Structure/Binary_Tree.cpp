@@ -1,8 +1,6 @@
-#include <algorithm>
 #include <iostream>
 #include <stack>
 #include <vector>
-using namespace std;
 
 typedef int ElementType;
 
@@ -12,8 +10,10 @@ public:
     ElementType val;
     Node *left;
     Node *right;
+
     Node(ElementType x) : val(x), left(nullptr), right(nullptr) {}
   };
+
   Binary_Tree(ElementType x) { root = new Node(x); }
 
   Node *TreeInsert(Node *root, ElementType x) {
@@ -24,14 +24,14 @@ public:
     } else if (root->val < x) {
       root->right = TreeInsert(root->right, x);
     } else {
-      cout << "have same node data" << endl;
+      std::cout << "have same node data" << std::endl;
     }
     return root;
   }
 
   Node *TreeFind(Node *root, ElementType x) {
     if (root == nullptr) {
-      cout << "the tree is empty" << endl;
+      std::cout << "the tree is empty" << std::endl;
       return nullptr;
     } else if (root->val > x) {
       return TreeFind(root->left, x);
@@ -43,7 +43,7 @@ public:
 
   Node *Find_Max(Node *root) {
     if (root == nullptr) {
-      cout << "the tree is empty" << endl;
+      std::cout << "the tree is empty" << std::endl;
       return nullptr;
     } else if (root->right) {
       return Find_Max(root->right);
@@ -54,7 +54,7 @@ public:
 
   Node *Find_Min(Node *root) {
     if (root == nullptr) {
-      cout << "the tree is empty" << endl;
+      std::cout << "the tree is empty" << std::endl;
       return nullptr;
     } else if (root->left) {
       return Find_Min(root->left);
@@ -65,9 +65,9 @@ public:
 
   void PreOrderTree(Node *root) {
     if (root == nullptr) {
-      cout << "nullptr" << endl;
+      std::cout << "nullptr" << std::endl;
     } else {
-      cout << root->val << endl;
+      std::cout << root->val << std::endl;
       PreOrderTree(root->left);
       PreOrderTree(root->right);
     }
@@ -75,18 +75,18 @@ public:
 
   void InOrderTree(Node *root) {
     if (root == nullptr) {
-      cout << "nullptr" << endl;
+      std::cout << "nullptr" << std::endl;
     } else {
       InOrderTree(root->left);
-      cout << root->val << endl;
+      std::cout << root->val << std::endl;
       InOrderTree(root->right);
     }
   }
 
   // iteration
-  vector<int> preorderTraversal(Node *root) {
-    stack<Node *> st;
-    vector<int> res;
+  std::vector<int> preorderTraversal(Node *root) {
+    std::stack<Node *> st;
+    std::vector<int> res;
     if (root)
       st.push(root);
     while (!st.empty()) {
@@ -112,9 +112,9 @@ public:
   }
 
   // iteration
-  vector<int> inorderTraversal(Node *root) {
-    vector<int> res;
-    stack<Node *> st;
+  std::vector<int> inorderTraversal(Node *root) {
+    std::vector<int> res;
+    std::stack<Node *> st;
     if (root)
       st.push(root);
     while (!st.empty()) {
@@ -140,9 +140,9 @@ public:
   }
 
   // iteration
-  vector<int> postorderTraversal(Node *root) {
-    stack<Node *> st;
-    vector<int> res;
+  std::vector<int> postorderTraversal(Node *root) {
+    std::stack<Node *> st;
+    std::vector<int> res;
     if (root)
       st.push(root);
     while (!st.empty()) {
@@ -168,7 +168,7 @@ public:
 
   Node *TreeDelete(Node *root, ElementType x) {
     if (root == nullptr) {
-      cout << "the tree is empty" << endl;
+      std::cout << "the tree is empty" << std::endl;
       return nullptr;
     }
     Node *tmp;
@@ -190,15 +190,15 @@ public:
         delete tmp;
       }
     } else
-      cout << "no this value" << endl;
+      std::cout << "no this value" << std::endl;
     return root;
   }
 
-  void Print(vector<int> res) {
-    for (vector<int>::iterator it = res.begin(); it != res.end(); it++) {
-      cout << *it << " ";
+  void Print(std::vector<int> res) {
+    for (std::vector<int>::iterator it = res.begin(); it != res.end(); it++) {
+      std::cout << *it << " ";
     }
-    cout << endl;
+    std::cout << std::endl;
   }
 
   Node *root;
@@ -211,10 +211,10 @@ void test() {
   b.TreeInsert(b.root, 3);
   b.InOrderTree(b.root);
   Binary_Tree::Node *max = b.Find_Max(b.root);
-  cout << max->val << endl;
+  std::cout << max->val << std::endl;
   Binary_Tree::Node *min = b.Find_Min(b.root);
-  cout << min->val << endl;
-  cout << "-------------------" << endl;
+  std::cout << min->val << std::endl;
+  std::cout << "-------------------" << std::endl;
   auto in_res = b.inorderTraversal(b.root);
   b.Print(in_res);
   auto pre_res = b.preorderTraversal(b.root);

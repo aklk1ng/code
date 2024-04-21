@@ -4,7 +4,6 @@
 #include <string.h>
 #include <string>
 #include <unistd.h>
-using namespace std;
 
 template <typename T>
 yazi::ThreadPool<T>::ThreadPool(int max, int min) {

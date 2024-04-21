@@ -4,11 +4,17 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+
 Value::Value() {}
+
 Value::Value(bool value) { *this = value; }
+
 Value::Value(int value) { *this = value; }
+
 Value::Value(double value) { *this = value; }
+
 Value::Value(const char *value) { *this = value; }
+
 Value::Value(const string &value) { *this = value; }
 
 Value &Value::operator=(bool value) {
@@ -42,8 +48,11 @@ Value &Value::operator=(const string &value) {
 }
 
 Value::operator bool() { return m_value == "true"; }
+
 Value::operator int() { return std::atoi(m_value.c_str()); }
+
 Value::operator double() { return std::atof(m_value.c_str()); }
+
 Value::operator string() { return m_value; }
 
 IniFile::IniFile() {}
@@ -99,9 +108,12 @@ string IniFile::trim(string s) {
   return s;
 }
 
-Value &IniFile::get(const string &section, const string &key) { return m_sections[section][key]; }
+Value &IniFile::get(const string &section, const string &key) {
+  return m_sections[section][key];
+}
 
-void IniFile::set(const string &section, const string &key, const Value &value) {
+void IniFile::set(const string &section, const string &key,
+                  const Value &value) {
   m_sections[section][key] = value;
 }
 
@@ -113,7 +125,10 @@ bool IniFile::has(const string &section, const string &key) {
   return false;
 }
 
-bool IniFile::has(const string &section) { return (m_sections.find(section) != m_sections.end()); }
+bool IniFile::has(const string &section) {
+  return (m_sections.find(section) != m_sections.end());
+}
+
 bool IniFile::save(const string &filename) {
   ofstream fout(filename);
   if (fout.fail())

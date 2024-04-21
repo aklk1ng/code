@@ -5,10 +5,11 @@
 #include "student.h"
 #include "teacher.h"
 #include <vector>
+
 class Manager : public Identity {
 public:
   Manager();
-  Manager(string name, string pwd);
+  Manager(std::string name, std::string pwd);
   virtual void operMenu();
 
   void addPerson();
@@ -19,7 +20,7 @@ public:
   void showComputer();
   void cleanFile();
 
-  vector<Student> vStu;
-  vector<Teacher> vTea;
-  vector<ComputerRoom> vCom;
+  std::vector<Student> vStu;
+  std::vector<Teacher> vTea;
+  std::vector<ComputerRoom> vCom;
 };

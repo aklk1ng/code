@@ -4,13 +4,13 @@
 #include <memory>
 #include <mutex>
 #include <queue>
-using namespace std;
+
 class ConnectionPool {
 public:
   static ConnectionPool *getConnectPool();
   ConnectionPool(const ConnectionPool &obj) = delete;
   ConnectionPool &operator=(const ConnectionPool &obj) = delete;
-  shared_ptr<MysqlConn> getConnection();
+  std::shared_ptr<MysqlConn> getConnection();
   ~ConnectionPool();
 
 private:
@@ -20,16 +20,16 @@ private:
   void recyclerConnection();
   void addConnection();
 
-  string m_ip;
-  string m_user;
-  string m_passwd;
-  string m_dbName;
+  std::string m_ip;
+  std::string m_user;
+  std::string m_passwd;
+  std::string m_dbName;
   unsigned short m_port;
   int m_minSize;
   int m_maxSize;
   int m_timeout;
   int m_maxIdleTime;
-  queue<MysqlConn *> m_connectionQ;
-  mutex m_mutexQ;
-  condition_variable m_cond;
+  std::queue<MysqlConn *> m_connectionQ;
+  std::mutex m_mutexQ;
+  std::condition_variable m_cond;
 };

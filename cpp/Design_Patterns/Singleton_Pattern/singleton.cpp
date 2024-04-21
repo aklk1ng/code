@@ -1,10 +1,8 @@
-#include <atomic>
 #include <chrono>
 #include <iostream>
 #include <mutex>
 #include <queue>
 #include <thread>
-using namespace std;
 
 #if 1
 // hungry man mode --> create a singleton object when defining a class
@@ -13,21 +11,21 @@ public:
   TaskQueue(const TaskQueue &t) = delete;
   TaskQueue &operator=(const TaskQueue &t) = delete;
   static TaskQueue *getInstance() { return m_taskQ; }
-  void print() { cout << "I am a member function..." << endl; }
+  void print() { std::cout << "I am a member function..." << std::endl; }
 
   bool isEmpty() {
-    lock_guard<mutex> locker(m_mutex);
+    std::lock_guard<std::mutex> locker(m_mutex);
     bool flag = m_data.empty();
     return flag;
   }
 
   void addTask(int node) {
-    lock_guard<mutex> locker(m_mutex);
+    std::lock_guard<std::mutex> locker(m_mutex);
     m_data.push(node);
   }
 
   bool popTask() {
-    lock_guard<mutex> locker(m_mutex);
+    std::lock_guard<std::mutex> locker(m_mutex);
     if (m_data.empty()) {
       return false;
     }
@@ -36,7 +34,7 @@ public:
   }
 
   int takeTask() {
-    lock_guard<mutex> locker(m_mutex);
+    std::lock_guard<std::mutex> locker(m_mutex);
     if (m_data.empty()) {
       return -1;
     }
@@ -49,8 +47,8 @@ private:
   /* TaskQueue(const TaskQueue &t) = default; */
   /* TaskQueue &operator=(const TaskQueue &t) = default; */
   static TaskQueue *m_taskQ;
-  queue<int> m_data;
-  mutex m_mutex;
+  std::queue<int> m_data;
+  std::mutex m_mutex;
 };
 TaskQueue *TaskQueue::m_taskQ = new TaskQueue;
 #endif // 1
@@ -92,21 +90,21 @@ mutex TaskQueue::m_mutex;
 
 int main(int argc, char *argv[]) {
   TaskQueue *taskQ = TaskQueue::getInstance();
-  thread t1([=]() {
+  std::thread t1([=]() {
     for (int i = 0; i < 10; i++) {
       taskQ->addTask(i);
-      cout << "push data ++ " << i << "," << this_thread::get_id() << endl;
-      this_thread::sleep_for(chrono::milliseconds(500));
+      std::cout << "push data ++ " << i << "," << std::this_thread::get_id() << std::endl;
+      std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
   });
 
-  thread t2([=]() {
-    this_thread::sleep_for(chrono::milliseconds(100));
+  std::thread t2([=]() {
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     while (!taskQ->isEmpty()) {
       int num = taskQ->takeTask();
-      cout << "take data -- " << num << "," << this_thread::get_id() << endl;
+      std::cout << "take data -- " << num << "," << std::this_thread::get_id() << std::endl;
       taskQ->popTask();
-      this_thread::sleep_for(chrono::milliseconds(1000));
+      std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
   });
 

@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <deque>
 #include <iostream>
-#include <iterator>
 using namespace std;
 
 void PrintDeque(const deque<int> &d) {
@@ -11,6 +10,7 @@ void PrintDeque(const deque<int> &d) {
   }
   cout << endl;
 }
+
 void test1() {
   deque<int> d;
   for (int i = 0; i < 10; i++) {
@@ -136,6 +136,7 @@ void test6() {
   }
   cout << endl;
 }
+
 int main(int argc, char *argv[]) {
   /* test1(); */
   /* test2(); */

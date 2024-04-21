@@ -2,21 +2,22 @@
 #include "orderFile.h"
 #include <map>
 #include <utility>
+
 OrderFile::OrderFile() {
-  ifstream ifs;
-  ifs.open(ORDER_FILE, ios::in);
-  string date;
-  string interval;
-  string stuID;
-  string stuName;
-  string roomID;
-  string status;
+  std::ifstream ifs;
+  ifs.open(ORDER_FILE, std::ios::in);
+  std::string date;
+  std::string interval;
+  std::string stuID;
+  std::string stuName;
+  std::string roomID;
+  std::string status;
   this->m_Size = 0;
-  while (ifs >> date && ifs >> interval && ifs >> stuID && ifs >> stuName && ifs >> roomID &&
-         ifs >> status) {
-    string key;
-    string value;
-    map<string, string> m;
+  while (ifs >> date && ifs >> interval && ifs >> stuID && ifs >> stuName &&
+         ifs >> roomID && ifs >> status) {
+    std::string key;
+    std::string value;
+    std::map<std::string, std::string> m;
     int pos = date.find(":");
     if (pos != -1) {
       key = date.substr(0, pos);
@@ -83,14 +84,14 @@ void OrderFile::updateOrder() {
   if (this->m_Size == 0) {
     return;
   }
-  ofstream ofs(ORDER_FILE, ios::out | ios::trunc);
+  std::ofstream ofs(ORDER_FILE, std::ios::out | std::ios::trunc);
   for (int i = 0; i < m_Size; i++) {
     ofs << "date:" << this->m_orderData[i]["date"] << " ";
     ofs << "interval:" << this->m_orderData[i]["interval"] << " ";
     ofs << "stuID:" << this->m_orderData[i]["stuID"] << " ";
     ofs << "stuName:" << this->m_orderData[i]["stuName"] << " ";
     ofs << "room:" << this->m_orderData[i]["room"] << " ";
-    ofs << "status:" << this->m_orderData[i]["status"] << endl;
+    ofs << "status:" << this->m_orderData[i]["status"] << std::endl;
   }
   ofs.close();
 }

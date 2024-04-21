@@ -12,9 +12,11 @@ public:
     this->m_name = name;
     this->m_score = score;
   }
+
   string m_name;
   int m_score;
 };
+
 void createPerson(vector<Person> &v) {
   string nameSeed = "ABCDE";
   for (int i = 0; i < 5; i++) {
@@ -25,6 +27,7 @@ void createPerson(vector<Person> &v) {
     v.push_back(p);
   }
 }
+
 void setScore(vector<Person> &v) {
   for (vector<Person>::iterator it = v.begin(); it != v.end(); it++) {
     deque<int> d;
@@ -51,11 +54,13 @@ void setScore(vector<Person> &v) {
     it->m_score = avg;
   }
 }
+
 void showScore(vector<Person> &p) {
   for (vector<Person>::iterator it = p.begin(); it != p.end(); it++) {
     cout << it->m_name << " " << it->m_score << endl;
   }
 }
+
 void test1() {
   srand((unsigned int)time(NULL));
   vector<Person> v;
@@ -66,6 +71,7 @@ void test1() {
   setScore(v);
   showScore(v);
 }
+
 int main(int argc, char *argv[]) {
   test1();
   return 0;

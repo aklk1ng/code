@@ -4,23 +4,29 @@
 #include <string>
 #include <vector>
 using namespace std;
+
 class MyAdd {
 public:
   int operator()(int v1, int v2) { return v1 + v2; }
 };
+
 void test() {
   MyAdd myadd;
   cout << myadd(19, 19) << endl;
 }
+
 class MyPrint {
 public:
   MyPrint() { this->count = 0; }
+
   void operator()(string test) {
     cout << test << endl;
     this->count++;
   }
+
   int count;
 };
+
 void test1() {
   MyPrint myprint;
   myprint("hello");
@@ -28,6 +34,7 @@ void test1() {
 }
 
 void doPrint(MyPrint &mp, string s) { mp(s); }
+
 void test2() {
   MyPrint myprint;
   doPrint(myprint, "hello cpp");
@@ -38,6 +45,7 @@ class GreaterFive {
 public:
   bool operator()(int val) { return val > 5; }
 };
+
 void test3() {
   vector<int> v;
   for (int i = 0; i < 10; i++) {
@@ -55,6 +63,7 @@ class MyCompare {
 public:
   bool operator()(int v1, int v2) { return v1 > v2; }
 };
+
 void test4() {
   vector<int> v;
   v.push_back(10);
@@ -121,6 +130,7 @@ void test7() {
   }
   cout << endl;
 }
+
 int main(int argc, char *argv[]) {
   /* test(); */
   /* test1(); */

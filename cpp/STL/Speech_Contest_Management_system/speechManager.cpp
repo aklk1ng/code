@@ -7,7 +7,6 @@
 #include <map>
 #include <numeric>
 #include <random>
-#include <system_error>
 #include <utility>
 #include <vector>
 
@@ -18,19 +17,19 @@ SpeechManager::SpeechManager() {
 }
 
 void SpeechManager::show_Menu() {
-  cout << "--------------------------------------" << endl;
-  cout << "-------       Welcome !!!    ---------" << endl;
-  cout << "----    1.begin the speech match   ---" << endl;
-  cout << "----    2.check the match record   ---" << endl;
-  cout << "----    3.empty the game record    ---" << endl;
-  cout << "--------       0.exit        ---------" << endl;
-  cout << "--------------------------------------" << endl;
+  std::cout << "--------------------------------------" << std::endl;
+  std::cout << "-------       Welcome !!!    ---------" << std::endl;
+  std::cout << "----    1.begin the speech match   ---" << std::endl;
+  std::cout << "----    2.check the match record   ---" << std::endl;
+  std::cout << "----    3.empty the game record    ---" << std::endl;
+  std::cout << "--------       0.exit        ---------" << std::endl;
+  std::cout << "--------------------------------------" << std::endl;
 }
 
 void SpeechManager::createSpeaker() {
-  string nameSeed = "ABCDEFGHIJKL";
+  std::string nameSeed = "ABCDEFGHIJKL";
   for (int i = 0; i < nameSeed.size(); i++) {
-    string name = "";
+    std::string name = "";
     name += nameSeed[i];
 
     Speaker sp;
@@ -40,7 +39,7 @@ void SpeechManager::createSpeaker() {
     }
 
     this->first_round.push_back(i + 10001);
-    this->m_Speaker.insert(make_pair(i + 10001, sp));
+    this->m_Speaker.insert(std::make_pair(i + 10001, sp));
   }
 }
 
@@ -63,7 +62,7 @@ void SpeechManager::startSpeech() {
   this->speechContest();
   this->showScore();
   this->saveRecord();
-  cout << "------The match is over!------" << endl;
+  std::cout << "------The match is over!------" << std::endl;
 
   this->InitSpeech();
   this->createSpeaker();
@@ -71,37 +70,38 @@ void SpeechManager::startSpeech() {
 }
 
 void SpeechManager::speechDraw() {
-  cout << "The " << this->Index << " round match draws!" << endl;
-  cout << "---------------------------" << endl;
-  cout << "order of speeches after draw:" << endl;
+  std::cout << "The " << this->Index << " round match draws!" << std::endl;
+  std::cout << "---------------------------" << std::endl;
+  std::cout << "order of speeches after draw:" << std::endl;
 
-  random_device rd;
-  mt19937 gen(rd());
+  std::random_device rd;
+  std::mt19937 gen(rd());
   if (this->Index == 1) {
     shuffle(first_round.begin(), first_round.end(), gen);
     for (auto it : first_round) {
-      cout << it << " ";
+      std::cout << it << " ";
     }
-    cout << endl;
+    std::cout << std::endl;
   } else {
     shuffle(first_victory.begin(), first_victory.end(), gen);
     for (auto it : first_victory) {
-      cout << it << " ";
+      std::cout << it << " ";
     }
-    cout << endl;
+    std::cout << std::endl;
   }
-  cout << "---------------------------" << endl;
+  std::cout << "---------------------------" << std::endl;
   system("pause");
-  cout << endl;
+  std::cout << std::endl;
 }
 
 void SpeechManager::speechContest() {
-  cout << "------The" << this->Index << "round match starts!-------" << endl;
+  std::cout << "------The" << this->Index << "round match starts!-------"
+            << std::endl;
 
-  multimap<double, int, greater<double>> groupScore;
+  std::multimap<double, int, std::greater<double>> groupScore;
   int num = 0;
 
-  vector<int> v_Src;
+  std::vector<int> v_Src;
   if (this->Index == 1) {
     v_Src = first_round;
   } else
@@ -109,27 +109,27 @@ void SpeechManager::speechContest() {
 
   for (auto it = v_Src.begin(); it != v_Src.end(); it++) {
     num++;
-    deque<double> d;
+    std::deque<double> d;
     for (int i = 0; i < 10; i++) {
       double score = (rand() % 401 + 600) / 10.f; // 600 - 1000
       /* cout << score << " "; */
       d.push_back(score);
     }
-    sort(d.begin(), d.end(), greater<double>());
+    sort(d.begin(), d.end(), std::greater<double>());
     d.pop_back();                                      // the min
     d.pop_front();                                     // the max
     double sum = accumulate(d.begin(), d.end(), 0.0f); // total
     double avg = sum / (double)(d.size());             // averge
 
     this->m_Speaker[*it].m_score[this->Index - 1] = avg;
-    groupScore.insert(make_pair(avg, *it));
+    groupScore.insert(std::make_pair(avg, *it));
     if (num % 6 == 0) {
-      cout << "The " << num / 6 << " group:" << endl;
+      std::cout << "The " << num / 6 << " group:" << std::endl;
       for (auto it : groupScore) {
-        cout << "Speaker:" << it.second
-             << " Name:" << this->m_Speaker[it.second].m_name
-             << " Score:" << this->m_Speaker[it.second].m_score[this->Index - 1]
-             << endl;
+        std::cout << "Speaker:" << it.second
+                  << " Name:" << this->m_Speaker[it.second].m_name << " Score:"
+                  << this->m_Speaker[it.second].m_score[this->Index - 1]
+                  << std::endl;
       }
       int count = 0;
       for (auto it : groupScore) {
@@ -139,62 +139,64 @@ void SpeechManager::speechContest() {
           top_three.push_back(it.second);
       }
       groupScore.clear();
-      cout << endl;
+      std::cout << std::endl;
     }
   }
-  cout << "------The " << this->Index << " match is over!------" << endl;
+  std::cout << "------The " << this->Index << " match is over!------"
+            << std::endl;
 }
 
 void SpeechManager::showScore() {
-  cout << "------The " << this->Index << " round advancement speaker------"
-       << endl;
-  vector<int> v;
+  std::cout << "------The " << this->Index << " round advancement speaker------"
+            << std::endl;
+  std::vector<int> v;
   if (this->Index == 1) {
     v = first_victory;
   } else
     v = top_three;
   for (auto it : v) {
-    cout << "Speaker:" << it << " Name:" << this->m_Speaker[it].m_name
-         << " Score:" << this->m_Speaker[it].m_score[this->Index - 1] << endl;
+    std::cout << "Speaker:" << it << " Name:" << this->m_Speaker[it].m_name
+              << " Score:" << this->m_Speaker[it].m_score[this->Index - 1]
+              << std::endl;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 
 void SpeechManager::saveRecord() {
-  ofstream ofs;
-  ofs.open("speech.csv", ios::out | ios::app);
+  std::ofstream ofs;
+  ofs.open("speech.csv", std::ios::out | std::ios::app);
   for (auto it : top_three) {
     ofs << it << "," << this->m_Speaker[it].m_score[1] << ",";
   }
-  ofs << endl;
+  ofs << std::endl;
   ofs.close();
   this->fileIsEmpty = false;
-  cout << "------Record over!------";
+  std::cout << "------Record over!------";
 }
 
 void SpeechManager::loadRecord() {
-  ifstream ifs("speech.csv", ios::in);
+  std::ifstream ifs("speech.csv", std::ios::in);
   if (!ifs.is_open()) {
     this->fileIsEmpty = true;
-    cout << "The file isn't exist!" << endl;
+    std::cout << "The file isn't exist!" << std::endl;
     ifs.close();
     return;
   }
   char ch;
   ifs >> ch;
   if (ifs.eof()) {
-    cout << "The file is empty!" << endl;
+    std::cout << "The file is empty!" << std::endl;
     this->fileIsEmpty = true;
     ifs.close();
     return;
   }
   this->fileIsEmpty = false;
   ifs.putback(ch);
-  string data;
+  std::string data;
   int index = 0;
   while (ifs >> data) {
     /* cout << data << endl; */
-    vector<string> v;
+    std::vector<std::string> v;
     int pos = -1;
     int start = 0;
     while (1) {
@@ -202,11 +204,11 @@ void SpeechManager::loadRecord() {
       if (pos == -1) {
         break;
       }
-      string temp = data.substr(start, pos - start);
+      std::string temp = data.substr(start, pos - start);
       v.push_back(temp);
       start = pos + 1;
     }
-    this->m_Record.insert(make_pair(index, v));
+    this->m_Record.insert(std::make_pair(index, v));
     index++;
   }
   ifs.close();
@@ -214,38 +216,38 @@ void SpeechManager::loadRecord() {
 
 void SpeechManager::showRecord() {
   if (this->fileIsEmpty) {
-    cout << "The file isn't exist!" << endl;
+    std::cout << "The file isn't exist!" << std::endl;
   } else {
     for (int i = 0; i < this->m_Record.size(); i++) {
-      cout << "The " << i + 1 << " match:" << endl
-           << "Champion:" << this->m_Record[i][0]
-           << " Score:" << this->m_Record[i][1] << endl
-           << "runner up:" << this->m_Record[i][2]
-           << " Score:" << this->m_Record[i][3] << endl
-           << "runner-up:" << this->m_Record[i][4]
-           << " Score:" << this->m_Record[i][5] << endl;
+      std::cout << "The " << i + 1 << " match:" << std::endl
+                << "Champion:" << this->m_Record[i][0]
+                << " Score:" << this->m_Record[i][1] << std::endl
+                << "runner up:" << this->m_Record[i][2]
+                << " Score:" << this->m_Record[i][3] << std::endl
+                << "runner-up:" << this->m_Record[i][4]
+                << " Score:" << this->m_Record[i][5] << std::endl;
     }
   }
 }
 
 void SpeechManager::clearRecord() {
-  cout << "Are you sure?" << endl;
-  cout << "1.yes" << endl;
-  cout << "2.no" << endl;
+  std::cout << "Are you sure?" << std::endl;
+  std::cout << "1.yes" << std::endl;
+  std::cout << "2.no" << std::endl;
   int select = 0;
-  cin >> select;
+  std::cin >> select;
   if (select == 1) {
-    ofstream ofs("speech.csv", ios::trunc);
+    std::ofstream ofs("speech.csv", std::ios::trunc);
     ofs.clear();
     this->InitSpeech();
     this->createSpeaker();
     this->loadRecord();
-    cout << "clear over!" << endl;
+    std::cout << "clear over!" << std::endl;
   }
 }
 
 void SpeechManager::exitSystem() {
-  cout << "See you again!" << endl;
+  std::cout << "See you again!" << std::endl;
   exit(0);
 }
 
