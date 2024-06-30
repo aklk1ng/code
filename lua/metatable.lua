@@ -23,24 +23,3 @@ setmetatable(myFavs, { __index = defaultFavs })
 local print_eatenBy = myFavs.animal
 print(print_eatenBy)
 print(getmetatable(print_eatenBy))
-print('--------------------')
-local numbers = {
-  e = '1',
-  d = '2',
-  a = '3',
-  b = '4',
-  c = '5',
-}
-local function get(kind, space)
-  if space then
-    -- return setmetatable({}, {
-    --   __index = function (_, key)
-    --     return numbers[key] .. "xxx"
-    --   end
-    return numbers[kind] .. 'xxx'
-  else
-    return numbers[kind]
-  end
-end
-print(get('a', true))
-print(get('c', false))
