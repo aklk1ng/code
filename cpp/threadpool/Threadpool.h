@@ -15,10 +15,13 @@ class ThreadPool {
 
     ~ThreadPool();
 
+    /// Add a task to worker queue.
     void addTask(Task<T> task);
 
+    // Get the number of threads that is working.
     int getBusyNum();
 
+    // Get the number of threads that is alive.
     int getAliveNum();
 
   private:

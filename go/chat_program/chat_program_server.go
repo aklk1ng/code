@@ -66,7 +66,7 @@ func HandleConn(conn net.Conn) {
 			}
 			msg := string(buf[:n-1])
 			// fmt.Println(len(msg))
-			if len(msg) == 3 && "who" == msg {
+			if len(msg) == 3 && msg == "who" {
 				conn.Write([]byte("User list:\n"))
 				for _, value := range onlineUserMap {
 					msg = value.Addr + ":" + value.Name + "\n"
@@ -77,7 +77,7 @@ func HandleConn(conn net.Conn) {
 				cli.Name = name
 				onlineUserMap[cliAddr] = cli
 				conn.Write([]byte("Change the name successful!\n"))
-			} else if len(msg) == 6 && "whoami" == msg {
+			} else if len(msg) == 6 && msg == "whoami" {
 				msg = cli.Name + "\n"
 				conn.Write([]byte(msg))
 			} else {

@@ -4,9 +4,9 @@
 
 typedef int ElementType;
 
-// return the position to split the array
-// on the right half is not smaller the pivot
-// on the left half is smaller the pivot
+// Return the position to split the array.
+// The right half is not smaller the pivot.
+// The left half is smaller the pivot.
 int partition(ElementType a[], int low, int high) {
     int pivot = a[low];
     while (low < high) {

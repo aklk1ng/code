@@ -185,8 +185,8 @@ void yazi::ThreadPool<T>::ThreadExit() {
     for (int i = 0; i < maxnum; i++) {
         if (threadIDs[i] == tid) {
             threadIDs[i] = 0;
-            std::cout << "threadExit() called, " << std::to_string(tid)
-                      << "exiting...\n";
+            std::cout << "threadExit() called, thread:" << std::to_string(tid)
+                      << " exiting...\n";
             break;
         }
     }
