@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
 void accptConn(void *arg) {
   PoolInfo *poolInfo = (PoolInfo *)arg;
   // 4. block and wait for client connection
-  int addrlen = sizeof(struct sockaddr_in);
+  socklen_t addrlen = sizeof(struct sockaddr_in);
   while (1) {
     struct SockInfo *pinfo;
     pinfo = (struct SockInfo *)malloc(sizeof(struct SockInfo));
