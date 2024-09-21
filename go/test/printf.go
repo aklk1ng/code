@@ -11,4 +11,3 @@ func main() {
 	fmt.Printf("a=%d, b=%s, c=%c, d=%f\n", a, b, c, d)
 	fmt.Printf("a=%v, b=%v, c=%v, d=%v\n", a, b, c, d)
 }
-
