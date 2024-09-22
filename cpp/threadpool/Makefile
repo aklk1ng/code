@@ -1,10 +1,14 @@
 tar = thread
 
-all:
-	$(CXX) *.cpp -o $(tar)
+all: $(tar)
 
-run: all
+$(tar): *.cpp
+	$(CXX) -Wall $^ -o $@
+
+run:
 	./$(tar)
+
+.PHONY: clean
 
 clean:
 	rm $(tar)
