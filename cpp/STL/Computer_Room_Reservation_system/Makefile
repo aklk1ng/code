@@ -1,6 +1,11 @@
 src = $(wildcard *.cpp)
-obj = $(patsubst %.cpp, %.o, $(src))
 target = Computer_Room_Reservation
 
-$(target):$(src)
+all: $(target)
+
+$(target): $(src)
 	$(CXX) $(src) -o $(target)
+
+.PHONY: clean
+clean:
+	rm $(target)
