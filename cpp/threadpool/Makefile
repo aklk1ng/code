@@ -1,9 +1,10 @@
 tar = thread
+CXXFLAGS = -g -O0 -Wall
 
 all: $(tar)
 
 $(tar): *.cpp
-	$(CXX) -Wall $^ -o $@
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 run:
 	./$(tar)
