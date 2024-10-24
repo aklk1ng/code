@@ -32,7 +32,7 @@ void heapify(int a[], int k, int size) {
 }
 
 // adjust all non-leaf node
-void BuildMaxHeap(int a[], int size) {
+void BuildMinHeap(int a[], int size) {
     // adjust all non-leaf node
     for (int i = size / 2; i >= 0; i--) {
         heapify(a, i, size);
@@ -42,7 +42,7 @@ void BuildMaxHeap(int a[], int size) {
 // O(n * log(n))
 void heapSort(ElementType a[], int size) {
     // O(n)
-    BuildMaxHeap(a, size);
+    BuildMinHeap(a, size);
 
     // O(n * log(n))
     for (int i = size - 1; i > 0; i--) {
