@@ -4,7 +4,7 @@
 #include <vector>
 
 void relaxed_model() {
-    std::atomic<int> counter = {0};
+    std::atomic<int> counter{0};
     std::vector<std::thread> v;
 
     for (int i = 0; i < 100; i++) {
@@ -38,7 +38,7 @@ void release_consumption_model() {
 
 void release_acquire_model() {
     std::vector<int> v;
-    std::atomic<int> flag = {0};
+    std::atomic<int> flag{0};
     std::thread release([&]() {
         v.push_back(42);
         flag.store(1, std::memory_order_release);
@@ -62,7 +62,7 @@ void release_acquire_model() {
 }
 
 void sequential_model() {
-    std::atomic<int> counter = {0};
+    std::atomic<int> counter{0};
     std::vector<std::thread> v;
     for (int i = 0; i < 100; i++) {
         v.emplace_back(

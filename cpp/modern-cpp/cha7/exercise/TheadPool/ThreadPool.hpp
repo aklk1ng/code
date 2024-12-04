@@ -103,5 +103,4 @@ inline ThreadPool::~ThreadPool() {
     }
 }
 
-
 #endif

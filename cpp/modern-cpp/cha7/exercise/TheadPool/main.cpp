@@ -17,7 +17,7 @@ int main() {
         }));
     }
 
-    for (auto && e : res) {
+    for (auto &&e : res) {
         std::cout << e.get() << ' ';
     }
     std::cout << '\n';
